@@ -1,32 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Paintbrush, Download, Lock, Unlock, Copy, Check } from "lucide-react";
-
-// Simulated AI model for generating color palettes
-const generatePalettes = (answers) => {
-  // This is a placeholder function. In a real application, this would be replaced with an actual AI model or API call.
-  const palettes = [];
-  for (let i = 0; i < 6; i++) {
-    palettes.push({
-      primary: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`,
-      secondary: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`,
-      accent: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`,
-      background: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`,
-      surface: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`,
-      border: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`,
-      hover: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`,
-      text: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`,
-      textLight: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`,
-    });
-  }
-  return palettes;
-};
 
 const ColorSwatch = ({ color, name, locked, onLockToggle, onColorChange, format }) => {
   const [copied, setCopied] = useState(false);
@@ -199,35 +178,11 @@ const PaletteCard = ({ palette, index }) => {
   );
 };
 
-const MultiSelect = ({ label, options, value, onChange }) => {
-  return (
-    <div className="space-y-2">
-      <Label className="text-lg font-semibold">{label}</Label>
-      <Select value={value} onValueChange={(selectedValues) => onChange(selectedValues)} multiple>
-        <SelectTrigger className="w-full">
-          <SelectValue placeholder="Select options" />
-        </SelectTrigger>
-        <SelectContent>
-          {options.map((option) => (
-            <SelectItem key={option} value={option}>
-              {option}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
-  );
-};
-
 const QuestionnaireForm = ({ onSubmit }) => {
   const [answers, setAnswers] = useState({
-    emotions: [],
-    audience: [],
-    personality: [],
-    colorPreferences: [],
-    designPurpose: "",
-    uiPriority: [],
-    contrastPreference: "",
+    theme: "",
+    intensity: "",
+    mood: "",
   });
 
   const handleChange = (question, value) => {
@@ -241,71 +196,51 @@ const QuestionnaireForm = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <MultiSelect
-        label="Which emotions should the colors convey?"
-        options={["Calm", "Energetic", "Sophisticated", "Fun", "Warm", "Modern"]}
-        value={answers.emotions}
-        onChange={(value) => handleChange("emotions", value)}
-      />
-
-      <MultiSelect
-        label="Who is the primary audience for this design?"
-        options={["Young Adults", "Professionals", "Families", "Tech Enthusiasts", "General Audience"]}
-        value={answers.audience}
-        onChange={(value) => handleChange("audience", value)}
-      />
-
-      <MultiSelect
-        label="How would you describe the brand's personality?"
-        options={["Bold", "Friendly", "Elegant", "Trustworthy", "Minimalistic"]}
-        value={answers.personality}
-        onChange={(value) => handleChange("personality", value)}
-      />
-
-      <MultiSelect
-        label="Do you have any color preferences or avoidances?"
-        options={["No Red", "Prefer Blues", "Prefer Greens", "No Yellow", "Earth Tones"]}
-        value={answers.colorPreferences}
-        onChange={(value) => handleChange("colorPreferences", value)}
-      />
-
-      <div>
-        <Label className="text-lg font-semibold">What is the primary purpose of this design?</Label>
-        <RadioGroup
-          value={answers.designPurpose}
-          onValueChange={(value) => handleChange("designPurpose", value)}
-          className="grid grid-cols-2 gap-2 mt-2"
-        >
-          {["E-commerce", "Portfolio", "Blog", "SaaS App", "Marketing Campaign"].map((purpose) => (
-            <div key={purpose} className="flex items-center space-x-2">
-              <RadioGroupItem value={purpose} id={`purpose-${purpose}`} />
-              <Label htmlFor={`purpose-${purpose}`}>{purpose}</Label>
-            </div>
-          ))}
-        </RadioGroup>
+      <div className="space-y-2">
+        <Label className="text-lg font-semibold">What is the theme of your project?</Label>
+        <Select value={answers.theme} onValueChange={(value) => handleChange("theme", value)}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select theme" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Corporate">Corporate</SelectItem>
+            <SelectItem value="E-commerce">E-commerce</SelectItem>
+            <SelectItem value="Portfolio">Portfolio</SelectItem>
+            <SelectItem value="Blog">Blog</SelectItem>
+            <SelectItem value="SaaS">SaaS</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
 
-      <MultiSelect
-        label="Which UI elements should stand out most?"
-        options={["Buttons", "Background", "Headers", "Text", "Icons"]}
-        value={answers.uiPriority}
-        onChange={(value) => handleChange("uiPriority", value)}
-      />
+      <div className="space-y-2">
+        <Label className="text-lg font-semibold">What is the intensity of the colors?</Label>
+        <Select value={answers.intensity} onValueChange={(value) => handleChange("intensity", value)}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select intensity" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="High">High</SelectItem>
+            <SelectItem value="Medium">Medium</SelectItem>
+            <SelectItem value="Low">Low</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
 
-      <div>
-        <Label className="text-lg font-semibold">How much contrast would you like in the color scheme?</Label>
-        <RadioGroup
-          value={answers.contrastPreference}
-          onValueChange={(value) => handleChange("contrastPreference", value)}
-          className="grid grid-cols-2 gap-2 mt-2"
-        >
-          {["High Contrast", "Medium", "Low", "Pastel"].map((contrast) => (
-            <div key={contrast} className="flex items-center space-x-2">
-              <RadioGroupItem value={contrast} id={`contrast-${contrast}`} />
-              <Label htmlFor={`contrast-${contrast}`}>{contrast}</Label>
-            </div>
-          ))}
-        </RadioGroup>
+      <div className="space-y-2">
+        <Label className="text-lg font-semibold">What is the mood of the design?</Label>
+        <Select value={answers.mood} onValueChange={(value) => handleChange("mood", value)}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Select mood" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Calm">Calm</SelectItem>
+            <SelectItem value="Energetic">Energetic</SelectItem>
+            <SelectItem value="Sophisticated">Sophisticated</SelectItem>
+            <SelectItem value="Fun">Fun</SelectItem>
+            <SelectItem value="Warm">Warm</SelectItem>
+            <SelectItem value="Modern">Modern</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
 
       <Button type="submit" className="w-full">
@@ -318,9 +253,31 @@ const QuestionnaireForm = ({ onSubmit }) => {
 export default function ColorPaletteGenerator() {
   const [palettes, setPalettes] = useState([]);
 
-  const handleSubmit = (answers) => {
-    const generatedPalettes = generatePalettes(answers);
-    setPalettes(generatedPalettes);
+  const handleSubmit = async (answers) => {
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(answers),
+      });
+
+      console.log('Response status:', response.status);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Response error:', errorText);
+        throw new Error('Failed to generate palettes');
+      }
+
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      setPalettes(data.palettes);
+    } catch (error) {
+      console.error('Error generating palettes:', error);
+    }
   };
 
   return (

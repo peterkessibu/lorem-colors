@@ -1,19 +1,16 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import OpenAI from "openai";
 import { NextResponse } from 'next/server';
 
-const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(apiKey);
-
-const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-palette",
+const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY;
+const openai = new OpenAI({
+    apiKey: apiKey,
+    baseURL: "https://api.openai.com/v1",
 });
 
 const generationConfig = {
     temperature: 1,
-    topP: 0.95,
-    topK: 64,
-    maxOutputTokens: 8192,
-    responseMimeType: "application/json",
+    top_p: 0.95,
+    max_tokens: 8192,
 };
 
 export async function POST(req) {
@@ -24,21 +21,15 @@ export async function POST(req) {
             return NextResponse.json({ message: 'All fields (theme, intensity, mood) are required' }, { status: 400 });
         }
 
-        const chatSession = model.startChat({
-            generationConfig,
-            history: [
-                {
-                    role: "user",
-                    parts: [
-                        {
-                            text: `You are a professional color palette generator for UI design. Based on the user's project theme, color intensity, and mood preferences, create six unique color palettes. Each palette should contain nine cohesive colors tailored for essential UI elements, specifically labeled as primary, secondary, accent, background, border, hover, and text colors.
+        const prompt = `You are an expert color palette generator specialized in UI design, producing six distinctive, harmonious color palettes based on the user's specified project theme, color intensity, and mood preferences. Each palette should be tailored for essential UI components, incorporating nine coordinated colors that are clearly labeled for primary, secondary, accent, background, border, hover, and text use, along with two additional colors for flexibility.
 
-The output format should be JSON and structured as an array of objects, with each object representing one palette grouped within a "paletteCard" container, making it easy to render each color set in individual cards on the frontend. Each color set should be relevant to the chosen theme, intensity, and mood. Here’s the format:
+The palettes should be structured in JSON format, organized in an array under the "paletteCards" key. Each palette is an object encapsulated in a "paletteCard" container, enabling easy rendering as individual cards on the frontend. Ensure each palette aligns with the requested theme, mood, and color intensity to create an aesthetically pleasing and functional color scheme. Below is the format:
 
 {
   "paletteCards": [
     {
       "name": "Palette 1",
+      "description": "A mood and theme-aligned palette with harmonious tones for a modern UI.",
       "colors": [
         { "name": "Primary", "hex": "#color1" },
         { "name": "Secondary", "hex": "#color2" },
@@ -51,32 +42,37 @@ The output format should be JSON and structured as an array of objects, with eac
         { "name": "Additional2", "hex": "#color9" }
       ]
     },
-    // More palettes...
+    // Additional palettes...
   ]
-}
+}`;
 
-Each palette should be visually cohesive and harmonized with the specified theme and mood. Ensure that the generated colors are both aesthetic and functional for the specified UI elements.`
-                        }
-                    ],
-                }
+        const response = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "user", content: prompt },
+                { role: "user", content: `Theme: ${theme}, Intensity: ${intensity}, Mood: ${mood}` },
             ],
+            ...generationConfig,
         });
 
-        const result = await chatSession.sendMessage({ theme, intensity, mood });
+        // Check if choices exist and handle parsing
+        if (!response.choices || response.choices.length === 0) {
+            throw new Error('No choices returned from the API');
+        }
+
+        const result = response.choices[0].message.content;
 
         let palettes;
         try {
-            const responseText = await result.response.text();
-            const parsedResponse = JSON.parse(responseText);
+            const parsedResponse = JSON.parse(result);
 
-            // Ensure the response has the expected format
             if (parsedResponse.paletteCards && Array.isArray(parsedResponse.paletteCards)) {
                 palettes = parsedResponse.paletteCards;
             } else {
-                throw new Error('Unexpected response format. Expected an array of palette cards.');
+                throw new Error('Unexpected response format: Expected an array of palette cards.');
             }
-        } catch (e) {
-            console.error('Error parsing JSON:', e);
+        } catch (parseError) {
+            console.error('Error parsing JSON from OpenAI:', parseError);
             throw new Error('Error parsing palettes JSON.');
         }
 
