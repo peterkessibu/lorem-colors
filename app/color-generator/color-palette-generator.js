@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -150,12 +150,12 @@ const PaletteCard = ({ palette, index }) => {
             </div>
           </div>
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-4">
-            {Object.entries(currentPalette).map(([name, color]) => (
+            {currentPalette.colors.map((color) => (
               <ColorSwatch
-                key={name}
-                color={color}
-                name={name}
-                locked={lockedColors[name]}
+                key={color.name}
+                color={color.hex}
+                name={color.name}
+                locked={lockedColors[color.name]}
                 onLockToggle={handleLockToggle}
                 onColorChange={handleColorChange}
                 format={colorFormat}
@@ -263,20 +263,24 @@ export default function ColorPaletteGenerator() {
         body: JSON.stringify(answers),
       });
 
-      console.log('Response status:', response.status);
+      const data = await response.json();
 
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Response error:', errorText);
-        throw new Error('Failed to generate palettes');
+        throw new Error(data.message || 'Failed to generate palettes');
       }
 
-      const data = await response.json();
-      console.log('Response data:', data);
+      if (!data.palettes || !Array.isArray(data.palettes)) {
+        throw new Error('Invalid palette data received');
+      }
 
       setPalettes(data.palettes);
+
     } catch (error) {
       console.error('Error generating palettes:', error);
+      // Add error state handling
+      setPalettes([]);
+      // You might want to add a state for error messages
+      setError(error.message);
     }
   };
 
