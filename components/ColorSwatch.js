@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Copy, Check, Lock, Unlock } from "lucide-react";
+import { Copy, Check, } from "lucide-react";
 
 const ColorSwatch = ({ color, name, locked, onLockToggle, onColorChange, format }) => {
     const [copied, setCopied] = useState(false);
@@ -35,9 +35,6 @@ const ColorSwatch = ({ color, name, locked, onLockToggle, onColorChange, format 
                 )}
             </div>
             <span className="text-sm font-medium">{name}</span>
-            <button onClick={() => onLockToggle(name)} className="text-gray-500 hover:text-gray-700">
-                {locked ? <Lock className="w-4 h-4" /> : <Unlock className="w-4 h-4" />}
-            </button>
         </div>
     );
 };

@@ -1,14 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import QuestionnaireForm from "../../components/QuestionnaireForm";
-import PaletteCard from "../../components/PaletteCard";
-import MockupWindow from "../../components/MockupWindow";
-import Slider from "../../components/Slider";
+import QuestionnaireForm from "./QuestionnaireForm";
+import PaletteCard from "./PaletteCard";
 
 export default function ColorPaletteGenerator() {
     const [palettes, setPalettes] = useState([]);
-    const [currentPaletteIndex, setCurrentPaletteIndex] = useState(0);
     const [error, setError] = useState(null);
 
     const handleSubmit = async (answers) => {
@@ -32,7 +29,6 @@ export default function ColorPaletteGenerator() {
             }
 
             setPalettes(data.palettes);
-            setCurrentPaletteIndex(0);
             setError(null);
 
         } catch (error) {
@@ -40,14 +36,6 @@ export default function ColorPaletteGenerator() {
             setPalettes([]);
             setError(error.message);
         }
-    };
-
-    const handleNext = () => {
-        setCurrentPaletteIndex((prevIndex) => (prevIndex + 1) % palettes.length);
-    };
-
-    const handlePrev = () => {
-        setCurrentPaletteIndex((prevIndex) => (prevIndex - 1 + palettes.length) % palettes.length);
     };
 
     return (
@@ -66,15 +54,11 @@ export default function ColorPaletteGenerator() {
                         </div>
                     )}
                     {palettes.length > 0 ? (
-                        <>
-                            <MockupWindow colors={palettes[currentPaletteIndex].colors} />
-                            <Slider
-                                palettes={palettes}
-                                currentPaletteIndex={currentPaletteIndex}
-                                handleNext={handleNext}
-                                handlePrev={handlePrev}
-                            />
-                        </>
+                        <div className="grid grid-cols-1 gap-2">
+                            {palettes.map((palette, index) => (
+                                <PaletteCard key={index} palette={palette} index={index} />
+                            ))}
+                        </div>
                     ) : (
                         <div className="flex items-center justify-center h-full">
                             <p className="text-xl text-gray-500">Generate palettes to see them here</p>
