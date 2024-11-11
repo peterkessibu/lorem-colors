@@ -18,7 +18,8 @@ export async function POST(req) {
         }
 
         // Modified prompt to ensure consistent JSON output
-        const prompt = `Generate 6 color palettes for a ${theme} website with ${intensity} intensity and ${mood} mood. Return only valid JSON in this exact format:
+        const prompt = `Generate 6 color palettes for a ${theme} website with ${intensity} intensity and ${mood} mood. Create a professional color palette specifically designed for expert-level mobile and web app development, with roles in mind such as designers, developers, UX/UI specialists, and accessibility consultants. The palette should include colors that balance aesthetics with functionality, focusing on accessibility, readability, and a clean, modern interfaceCreate a sleek, user-friendly color palette generator website aimed at frontend and UI developers. The website should have an intuitive interface where users answer a few targeted questions about the project’s theme, desired emotions, audience, and design style. Once users complete the questionnaire, an AI model generates six distinct sets of color palettes, each containing at least nine colors to cover a broad range of UI needs, including primary, secondary, accent, background, border, hover, and various text shades.
+        Each palette should be visually presented as a card that simulates UI elements, allowing users to see how the colors might appear in real components, like buttons, headers, and backgrounds. Include functionality for users to adjust the generated palettes, lock in specific colors, and download each palette in multiple formats (HEX, RGB, and CSS variables). Return only valid JSON in this exact format:
         {
           "paletteCards": [
             {
