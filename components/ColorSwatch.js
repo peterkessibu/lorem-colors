@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Copy, Check, } from "lucide-react";
 
-const ColorSwatch = ({ color, name, locked, onLockToggle, onColorChange, format }) => {
+const ColorSwatch = ({ color, name, format }) => {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {

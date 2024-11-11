@@ -10,8 +10,6 @@ import {
     User,
     Search,
     Home,
-    Edit,
-    Shield,
 } from "lucide-react";
 
 const MockupWindow = ({ colors }) => {
