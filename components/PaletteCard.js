@@ -65,15 +65,15 @@ const PaletteCard = ({ palette, onPaletteChange, colorFormat, setColorFormat }) 
     };
 
     return (
-        <Card className="w-full">
-            <CardHeader>
+        <Card className="w-full shadow-lg rounded-lg overflow-hidden">
+            <CardHeader className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white">
                 <CardTitle className="flex justify-between items-center">
-                    <span>{palette.name}</span>
+                    <span className="text-lg font-semibold">{palette.name}</span>
                     <Select value={colorFormat} onValueChange={setColorFormat}>
-                        <SelectTrigger className="w-[120px]">
+                        <SelectTrigger className="w-[120px] bg-white text-black rounded-md shadow-md">
                             <SelectValue placeholder="Color format" />
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-white text-black rounded-md shadow-md">
                             <SelectItem value="hex">HEX</SelectItem>
                             <SelectItem value="rgb">RGB</SelectItem>
                             <SelectItem value="css">CSS Variables</SelectItem>
@@ -81,9 +81,9 @@ const PaletteCard = ({ palette, onPaletteChange, colorFormat, setColorFormat }) 
                     </Select>
                 </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="p-6 bg-gray-50">
                 <div className="space-y-4 mt-4">
-                    <div className="grid grid-cols-5 gap-1">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                         {palette.colors.map((color) => (
                             <ColorSwatch
                                 key={color.name}
@@ -98,12 +98,12 @@ const PaletteCard = ({ palette, onPaletteChange, colorFormat, setColorFormat }) 
                     </div>
                 </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-                <Button onClick={() => handleColorChange("all")}>
+            <CardFooter className="flex justify-between bg-gray-100 p-4">
+                <Button className="bg-purple-500 text-white hover:bg-purple-600" onClick={() => handleColorChange("all")}>
                     <Paintbrush className="w-4 h-4 mr-2" />
                     Regenerate
                 </Button>
-                <Button onClick={downloadPalette}>
+                <Button className="bg-indigo-500 text-white hover:bg-indigo-600" onClick={downloadPalette}>
                     <Download className="w-4 h-4 mr-2" />
                     Download
                 </Button>
