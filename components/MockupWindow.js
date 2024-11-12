@@ -15,7 +15,7 @@ import {
 const MockupWindow = ({ colors }) => {
     return (
         <div
-            className="flex flex-col h-full border rounded overflow-hidden"
+            className="flex flex-col h-full border-[1px] border-gray-400 rounded-xl overflow-hidden"
             style={{ backgroundColor: colors.Background }}
         >
             {/* Header */}

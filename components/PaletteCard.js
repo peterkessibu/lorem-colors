@@ -83,7 +83,7 @@ const PaletteCard = ({ palette, onPaletteChange, colorFormat, setColorFormat }) 
             </CardHeader>
             <CardContent>
                 <div className="space-y-4 mt-4">
-                    <div className="grid grid-cols-9 gap-1">
+                    <div className="grid grid-cols-5 gap-1">
                         {palette.colors.map((color) => (
                             <ColorSwatch
                                 key={color.name}
