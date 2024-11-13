@@ -6,32 +6,16 @@ import { useState } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Paintbrush, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import ColorSwatch from "./ColorSwatch";
 
-const PaletteCard = ({ palette, onPaletteChange, colorFormat, setColorFormat }) => {
+const PaletteCard = ({ palette, colorFormat, setColorFormat }) => {
     const [lockedColors, setLockedColors] = useState({});
 
     const handleLockToggle = (colorName) => {
         setLockedColors((prev) => ({ ...prev, [colorName]: !prev[colorName] }));
     };
 
-    const handleColorChange = (colorName) => {
-        if (colorName === "all") {
-            const updatedColors = palette.colors.map((color) =>
-                lockedColors[color.name] ? color : { ...color, hex: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}` }
-            );
-            onPaletteChange({ ...palette, colors: updatedColors });
-        } else {
-            if (!lockedColors[colorName]) {
-                const newColor = `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, "0")}`;
-                const updatedColors = palette.colors.map((color) =>
-                    color.name === colorName ? { ...color, hex: newColor } : color
-                );
-                onPaletteChange({ ...palette, colors: updatedColors });
-            }
-        }
-    };
 
     const downloadPalette = () => {
         let content = "";
@@ -83,7 +67,7 @@ const PaletteCard = ({ palette, onPaletteChange, colorFormat, setColorFormat }) 
             </CardHeader>
             <CardContent className="p-6 bg-gray-50">
                 <div className="space-y-4 mt-4">
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-6 gap-1">
                         {palette.colors.map((color) => (
                             <ColorSwatch
                                 key={color.name}
@@ -91,7 +75,6 @@ const PaletteCard = ({ palette, onPaletteChange, colorFormat, setColorFormat }) 
                                 name={color.name}
                                 locked={lockedColors[color.name]}
                                 onLockToggle={handleLockToggle}
-                                onColorChange={handleColorChange}
                                 format={colorFormat}
                             />
                         ))}
@@ -99,10 +82,6 @@ const PaletteCard = ({ palette, onPaletteChange, colorFormat, setColorFormat }) 
                 </div>
             </CardContent>
             <CardFooter className="flex justify-between bg-gray-100 p-4">
-                <Button className="bg-purple-500 text-white hover:bg-purple-600" onClick={() => handleColorChange("all")}>
-                    <Paintbrush className="w-4 h-4 mr-2" />
-                    Regenerate
-                </Button>
                 <Button className="bg-indigo-500 text-white hover:bg-indigo-600" onClick={downloadPalette}>
                     <Download className="w-4 h-4 mr-2" />
                     Download

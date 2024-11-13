@@ -133,6 +133,20 @@ const MockupWindow = ({ colors }) => {
                                     <p style={{ color: colors.Text }}>100</p>
                                 </div>
                             </div>
+                            <div className="w-full md:w-1/2 xl:w-1/3 p-4">
+                                <div
+                                    className="rounded shadow-md p-4"
+                                    style={{ backgroundColor: colors.Accent }}
+                                >
+                                    <h4
+                                        className="text-lg font-bold mb-2"
+                                        style={{ color: colors.Text }}
+                                    >
+                                        Users
+                                    </h4>
+                                    <p style={{ color: colors.Text }}>100</p>
+                                </div>
+                            </div>
                             {/* ... Add more cards as needed */}
                         </div>
                     </div>

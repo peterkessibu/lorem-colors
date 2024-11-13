@@ -18,23 +18,80 @@ export async function POST(req) {
         }
 
         // Modified prompt to ensure consistent JSON output
-        const prompt = `Generate 6 color palettes for a ${theme} website with ${intensity} intensity and ${mood} mood. Create a professional color palette specifically designed for expert-level mobile and web app development, with roles in mind such as designers, developers, UX/UI specialists, and accessibility consultants. The palette should include colors that balance aesthetics with functionality, focusing on accessibility, readability, and a clean, modern interface. Each palette should include exactly 6 colors to cover a broad range of UI needs, including primary, secondary, accent, background, border, hover, and various text shades. Return only valid JSON in this exact format:
+        const prompt = `Generate 6 color palettes for a ${theme} website with ${intensity} intensity and ${mood} mood.
+
+Parameters Definition:
+- theme: [modern-corporate | tech-startup | creative-agency | e-commerce | healthcare | education]
+- intensity: [subtle (30-50% saturation) | moderate (50-70% saturation) | bold (70-90% saturation)]
+- mood: [professional | playful | calming | energetic | luxurious | trustworthy]
+
+Requirements:
+1. Color Roles & Usage Guidelines:
+   - Primary: Main brand color, used for CTAs and key UI elements (20-30% of interface)
+   - Secondary: Supporting color for secondary actions (15-20% of interface)
+   - Accent: Highlight color for important elements (5-10% of interface)
+   - Background: Main content background (30-40% of interface)
+   - Border: Subtle divisions and containers (5-10% of interface)
+   - Hover: Interactive state variations (5-10% of interface)
+
+2. Accessibility Requirements:
+   - Primary & Secondary: Must maintain WCAG 2.1 AA contrast ratio (4.5:1) with background
+   - Text colors must achieve AAA compliance (7:1) for body text
+   - Include color-blind friendly combinations
+   - Avoid problematic color combinations (red/green, blue/purple)
+
+3. Technical Specifications:
+   - All colors must be provided in hexadecimal format
+   - Include proper color space considerations (sRGB)
+   - Maintain consistent saturation levels within the specified intensity range
+   - Ensure sufficient contrast between interactive and non-interactive elements
+
+4. Palette Naming Convention:
+   Each palette should follow the format: "${theme}-${intensity}-${mood}-variant-X"
+   Example: "tech-startup-bold-energetic-variant-1"
+
+5. Description Requirements:
+   Each palette description should include:
+   - Primary use case
+   - Suggested industry application
+   - Key psychological effects
+   - Recommended content types
+
+Return valid JSON in this format:
+{
+  "paletteCards": [
+    {
+      "name": "Palette Name",
+      "description": "Detailed description following requirements",
+      "colors": [
         {
-          "paletteCards": [
-            {
-              "name": "Palette 1",
-              "description": "Brief description",
-              "colors": [
-                { "name": "Primary", "hex": "#XXXXXX" },
-                { "name": "Secondary", "hex": "#XXXXXX" },
-                { "name": "Accent", "hex": "#XXXXXX" },
-                { "name": "Background", "hex": "#XXXXXX" },
-                { "name": "Border", "hex": "#XXXXXX" },
-                { "name": "Hover", "hex": "#XXXXXX" }
-              ]
-            }
-          ]
-        }`;
+          "name": "Primary",
+          "hex": "#XXXXXX",
+          "usage": "Specific usage guidelines",
+          "contrastRatio": {
+            "withBackground": "X.XX:1",
+            "withWhite": "X.XX:1",
+            "withBlack": "X.XX:1"
+          }
+        },
+        // Repeat for all 6 colors
+      ],
+      "accessibilityNotes": "Specific accessibility considerations",
+      "technicalNotes": "Additional technical guidance"
+    }
+  ],
+  "metadata": {
+    "theme": "${theme}",
+    "intensity": "${intensity}",
+    "mood": "${mood}",
+    "generatedAt": "ISO timestamp",
+    "version": "1.0"
+  }
+}
+
+Example Usage:
+prompt: Generate 6 color palettes for a "tech-startup" website with "bold" intensity and "energetic" mood.
+`;
 
         let stream;
         try {
