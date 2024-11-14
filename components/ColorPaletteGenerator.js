@@ -5,67 +5,68 @@ import QuestionnaireForm from "./QuestionnaireForm";
 import PaletteCard from "./PaletteCard";
 
 export default function ColorPaletteGenerator() {
-    const [palettes, setPalettes] = useState([]);
-    const [error, setError] = useState(null);
+  const [palettes, setPalettes] = useState([]);
+  const [error, setError] = useState(null);
 
-    const handleSubmit = async (answers) => {
-        try {
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(answers),
-            });
+  const handleSubmit = async (answers) => {
+    try {
+      const response = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(answers),
+      });
 
-            const data = await response.json();
+      const data = await response.json();
 
-            if (!response.ok) {
-                throw new Error(data.message || 'Failed to generate palettes');
-            }
+      if (!response.ok) {
+        throw new Error(data.message || "Failed to generate palettes");
+      }
 
-            if (!data.palettes || !Array.isArray(data.palettes)) {
-                throw new Error('Invalid palette data received');
-            }
+      if (!data.palettes || !Array.isArray(data.palettes)) {
+        throw new Error("Invalid palette data received");
+      }
 
-            setPalettes(data.palettes);
-            setError(null);
+      setPalettes(data.palettes);
+      setError(null);
+    } catch (error) {
+      console.error("Error generating palettes:", error);
+      setPalettes([]);
+      setError(error.message);
+    }
+  };
 
-        } catch (error) {
-            console.error('Error generating palettes:', error);
-            setPalettes([]);
-            setError(error.message);
-        }
-    };
-
-    return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-8 text-center">AI-Driven Color Palette Generator</h1>
-            <div className="flex flex-col lg:flex-row gap-8">
-                <div className="w-full lg:w-1/3">
-                    <div className="sticky top-8">
-                        <QuestionnaireForm onSubmit={handleSubmit} />
-                    </div>
-                </div>
-                <div className="w-full lg:w-2/3">
-                    {error && (
-                        <div className="text-red-500 text-center mb-4">
-                            {error}
-                        </div>
-                    )}
-                    {palettes.length > 0 ? (
-                        <div className="grid grid-cols-1 gap-2">
-                            {palettes.map((palette, index) => (
-                                <PaletteCard key={index} palette={palette} index={index} />
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="flex items-center justify-center h-full">
-                            <p className="text-xl text-gray-500">Generate palettes to see them here</p>
-                        </div>
-                    )}
-                </div>
-            </div>
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-8 text-center">
+        AI-Driven Color Palette Generator
+      </h1>
+      <div className="flex flex-col lg:flex-row gap-8">
+        <div className="w-full lg:w-1/3">
+          <div className="sticky top-8">
+            <QuestionnaireForm onSubmit={handleSubmit} />
+          </div>
         </div>
-    );
+        <div className="w-full lg:w-2/3">
+          {error && (
+            <div className="text-red-500 text-center mb-4">{error}</div>
+          )}
+          {palettes.length > 0 ? (
+            <div className="grid grid-cols-1 gap-2">
+              {palettes.map((palette, index) => (
+                <PaletteCard key={index} palette={palette} index={index} />
+              ))}
+            </div>
+          ) : (
+            <div className="flex items-center justify-center h-full">
+              <p className="text-xl text-gray-500">
+                Generate palettes to see them here
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }

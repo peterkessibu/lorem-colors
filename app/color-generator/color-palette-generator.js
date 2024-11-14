@@ -16,10 +16,10 @@ export default function ColorPaletteGenerator() {
 
   const handleSubmit = async (answers) => {
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
+      const response = await fetch("/api/chat", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(answers),
       });
@@ -27,19 +27,18 @@ export default function ColorPaletteGenerator() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || 'Failed to generate palettes');
+        throw new Error(data.message || "Failed to generate palettes");
       }
 
       if (!data.palettes || !Array.isArray(data.palettes)) {
-        throw new Error('Invalid palette data received');
+        throw new Error("Invalid palette data received");
       }
 
       setPalettes(data.palettes);
       setCurrentPaletteIndex(0);
       setError(null);
-
     } catch (error) {
-      console.error('Error generating palettes:', error);
+      console.error("Error generating palettes:", error);
       setPalettes([]);
       setError(error.message);
     }
@@ -50,7 +49,9 @@ export default function ColorPaletteGenerator() {
   };
 
   const handlePrev = () => {
-    setCurrentPaletteIndex((prevIndex) => (prevIndex - 1 + palettes.length) % palettes.length);
+    setCurrentPaletteIndex(
+      (prevIndex) => (prevIndex - 1 + palettes.length) % palettes.length,
+    );
   };
 
   const handlePaletteChange = (updatedPalette) => {

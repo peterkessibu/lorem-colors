@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import ColorPaletteGenerator from "./color-generator/color-palette-generator";
 
 export default function Page(): JSX.Element {
@@ -7,4 +7,4 @@ export default function Page(): JSX.Element {
       <ColorPaletteGenerator />
     </div>
   );
-};
+}
