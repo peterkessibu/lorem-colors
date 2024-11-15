@@ -4,29 +4,49 @@ import { NextResponse } from "next/server";
 const together = new Together();
 
 const generationConfig = {
-  temperature: 0.7, // Lowered temperature for more consistent output
+  temperature: 0.7,
   top_p: 0.95,
   max_tokens: 8192,
 };
 
 export async function POST(req) {
   try {
-    const { theme, intensity, mood } = await req.json();
+    const {
+      primaryColor,
+      accentColor,
+      backgroundColor,
+      saturationLevel,
+      contrastPreference,
+      intendedMood,
+      shadePreference,
+      customDescription,
+    } = await req.json();
 
-    if (!theme || !intensity || !mood) {
+    if (
+      !primaryColor ||
+      !accentColor ||
+      !backgroundColor ||
+      !saturationLevel ||
+      !contrastPreference ||
+      !intendedMood ||
+      !shadePreference
+    ) {
       return NextResponse.json(
-        { message: "All fields (theme, intensity, mood) are required" },
+        { message: "All fields are required" },
         { status: 400 },
       );
     }
 
-    // Modified prompt to ensure consistent JSON output
-    const prompt = `Generate 6 color palettes for a ${theme} website with ${intensity} intensity and ${mood} mood.
+    const prompt = `Generate 6 color palettes based on the following criteria:
 
-Parameters Definition:
-- theme: [modern-corporate | tech-startup | creative-agency | e-commerce | healthcare | education]
-- intensity: [subtle (30-50% saturation) | moderate (50-70% saturation) | bold (70-90% saturation)]
-- mood: [professional | playful | calming | energetic | luxurious | trustworthy]
+Primary Color: ${primaryColor}
+Accent Color: ${accentColor}
+Background Color Preference: ${backgroundColor}
+Saturation Level: ${saturationLevel}
+Contrast Preference: ${contrastPreference}
+Intended Mood: ${intendedMood}
+Shade Preference (for shadows and accents): ${shadePreference}
+Custom Color or Description: ${customDescription}
 
 Requirements:
 1. Color Roles & Usage Guidelines:
@@ -50,8 +70,8 @@ Requirements:
    - Ensure sufficient contrast between interactive and non-interactive elements
 
 4. Palette Naming Convention:
-   Each palette should follow the format: "${theme}-${intensity}-${mood}-variant-X"
-   Example: "tech-startup-bold-energetic-variant-1"
+   Each palette should follow the format: "palette-variant-X"
+   Example: "palette-variant-1"
 
 5. Description Requirements:
    Each palette description should include:
@@ -84,22 +104,19 @@ Return valid JSON in this format:
     }
   ],
   "metadata": {
-    "theme": "${theme}",
-    "intensity": "${intensity}",
-    "mood": "${mood}",
     "generatedAt": "ISO timestamp",
     "version": "1.0"
   }
 }
 
 Example Usage:
-prompt: Generate 6 color palettes for a "tech-startup" website with "bold" intensity and "energetic" mood.
+prompt: Generate 6 color palettes based on the following criteria: Primary Color: Blue, Accent Color: Teal, Background Color Preference: Light, Saturation Level: Highly Saturated, Contrast Preference: High Contrast, Intended Mood: Professional, Shade Preference (for shadows and accents): Light Shades, Custom Color or Description: 'cool oceanic tones'.
 `;
 
     let stream;
     try {
       stream = await together.chat.completions.create({
-        model: "Qwen/Qwen2.5-72B-Instruct-Turbo",
+        model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
         messages: [
           {
             role: "system",
@@ -127,13 +144,12 @@ prompt: Generate 6 color palettes for a "tech-startup" website with "bold" inten
       result += chunk.choices[0]?.delta?.content || "";
     }
 
-    // Clean the result string to ensure it only contains the JSON portion
     result = result.trim();
     if (result.startsWith("```json")) {
       result = result.replace(/```json\n?/, "").replace(/```$/, "");
     }
 
-    console.log("Raw result:", result); // Log the raw result string
+    console.log("Raw result:", result);
 
     let palettes;
     try {
@@ -145,7 +161,6 @@ prompt: Generate 6 color palettes for a "tech-startup" website with "bold" inten
         throw new Error("Invalid palette format received");
       }
       palettes = parsedResponse.paletteCards;
-      // Validate each palette's structure
       palettes.forEach((palette, index) => {
         if (
           !palette.colors ||

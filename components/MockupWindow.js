@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-    Menu,
-    Settings,
-    Bell,
-    Calendar,
-    Home,
-    X,
-} from "lucide-react";
+import { Menu, Settings, Bell, Calendar, Home, X } from "lucide-react";
 
 const MockupWindow = ({ colors }) => {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
