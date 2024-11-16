@@ -4,9 +4,8 @@ import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CalendarIcon, Download, Search, Users, Menu, X } from 'lucide-react';
+import { CalendarIcon, Download, Users, Menu, X } from 'lucide-react';
 import { useState } from "react";
-import { Input } from "@/components/ui/input";
 
 const data = [
     { month: "Jan", total: 4500 },
@@ -41,52 +40,25 @@ export default function Dashboard() {
                         <p className="py-2 px-4 hover:bg-gray-800">Products</p>
                         <p className="py-2 px-4 hover:bg-gray-800">Settings</p>
                     </div>
-                    <div className="ml-auto flex items-center space-x-4">
-                        <div className="relative">
-                            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
-                            <Input
-                                type="search"
-                                placeholder="Search..."
-                                className="w-64 bg-gray-900 pl-8 focus:ring-0 focus:ring-offset-0 border-0"
-                            />
-                        </div>
-                    </div>
                 </div>
             </header>
             <main className="flex-1 space-y-4 p-4 md:p-8 pt-6">
                 <div className="flex items-center justify-between">
-                    <h1 className="text-3xl font-bold">Dashboard</h1>
+                    <h1 className="text-lg md:text-xl font-bold">Dashboard</h1>
                     <div className="flex items-center space-x-2">
                         <Button variant="outline" size="sm" className="bg-gray-900 border-gray-800 text-white">
                             <CalendarIcon className="mr-2 h-4 w-4" />
-                            Jan 20, 2023 - Feb 04, 2023
+                            <span className="hidden md:block">Jan 20, 2023 - Feb 04, 2023</span>
                         </Button>
                         <Button size="sm" className="bg-gray-900">
                             <Download className="mr-2 h-4 w-4" />
-                            Download
+                            <span className="hidden md:block">Download</span>
                         </Button>
                     </div>
                 </div>
                 <div className="space-y-4">
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                        <Card className="bg-gray-900 border-gray-800 text-white">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-2xl font-bold">$45,231.89</div>
-                                <p className="text-xs text-gray-500">+20.1% from last month</p>
-                            </CardContent>
-                        </Card>
-                        <Card className="bg-gray-900 border-gray-800 text-white">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium">Subscriptions</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-2xl font-bold">+2350</div>
-                                <p className="text-xs text-gray-500">+180.1% from last month</p>
-                            </CardContent>
-                        </Card>
+                    <div className="grid gap-4 md:grid-cols-2 ">
+                        
                         <Card className="bg-gray-900 border-gray-800 text-white">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">Sales</CardTitle>
