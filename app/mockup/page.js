@@ -3,9 +3,8 @@
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from "recharts";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-import { TabsContent } from "@/components/ui/tabs";
-import { CalendarIcon, ChevronDown, Download, Search, Settings, Users, TrendingUp } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle,} from "@/components/ui/card";
+import { CalendarIcon, ChevronDown, Download, Search, Users, } from 'lucide-react';
 import {
     NavigationMenu,
     NavigationMenuItem,
@@ -14,12 +13,7 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Input } from "@/components/ui/input";
-import {
-    ChartConfig,
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
-} from "@/components/ui/chart";
+
 
 const data = [
     { month: "Jan", total: 4500 },
@@ -36,65 +30,27 @@ const data = [
     { month: "Dec", total: 2800 },
 ];
 
-const chartData = [
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-];
 
-const chartConfig = {
-    desktop: {
-        label: "Desktop",
-        color: "hsl(var(--chart-1))",
-    },
-    mobile: {
-        label: "Mobile",
-        color: "hsl(var(--chart-2))",
-    },
-};
 
-export function Dashboard() {
+export default function Dashboard() {
     return (
         <div className="min-h-screen bg-black text-white">
             <header className="border-b border-gray-800">
                 <div className="flex h-16 items-center px-4">
                     <div className="flex items-center space-x-4">
-                        <Button variant="ghost" className="space-x-2">
-                            <Avatar className="h-6 w-6">
+                        <Button variant="ghost" className="space-x-2 bg-black text-white">
+                            <div className="h-6 w-6 bg-white rounded-full">
                                 <AvatarImage src="/placeholder.svg" />
-                                <AvatarFallback>AK</AvatarFallback>
-                            </Avatar>
+                            </div>
                             <span>Atilla Koch</span>
-                            <ChevronDown className="h-4 w-4" />
                         </Button>
                     </div>
-                    <NavigationMenu className="ml-4">
-                        <NavigationMenuList>
-                            <NavigationMenuItem>
-                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                    Overview
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                    Customers
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                    Products
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                            <NavigationMenuItem>
-                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                    Settings
-                                </NavigationMenuLink>
-                            </NavigationMenuItem>
-                        </NavigationMenuList>
-                    </NavigationMenu>
+                    <div className="ml-4 flex-row flex justify-between bg-black text-white">
+                        <p className="py-2 px-4 hover:bg-gray-800">Overview</p>
+                        <p className="py-2 px-4 hover:bg-gray-800">Customers</p>
+                        <p className="py-2 px-4 hover:bg-gray-800">Products</p>
+                        <p className="py-2 px-4 hover:bg-gray-800">Settings</p>
+                    </div>
                     <div className="ml-auto flex items-center space-x-4">
                         <div className="relative">
                             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
@@ -257,42 +213,7 @@ export function Dashboard() {
                             </CardContent>
                         </Card>
                     </div>
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-                        <Card className="col-span-7 bg-gray-900 border-gray-800">
-                            <CardHeader>
-                                <CardTitle>Bar Chart - Multiple</CardTitle>
-                                <CardDescription>January - June 2024</CardDescription>
-                            </CardHeader>
-                            <CardContent>
-                                <ChartContainer config={chartConfig}>
-                                    <BarChart accessibilityLayer data={chartData}>
-                                        <CartesianGrid vertical={false} />
-                                        <XAxis
-                                            dataKey="month"
-                                            tickLine={false}
-                                            tickMargin={10}
-                                            axisLine={false}
-                                            tickFormatter={(value) => value.slice(0, 3)}
-                                        />
-                                        <ChartTooltip
-                                            cursor={false}
-                                            content={<ChartTooltipContent indicator="dashed" />}
-                                        />
-                                        <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-                                        <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-                                    </BarChart>
-                                </ChartContainer>
-                            </CardContent>
-                            <CardFooter className="flex-col items-start gap-2 text-sm">
-                                <div className="flex gap-2 font-medium leading-none">
-                                    Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-                                </div>
-                                <div className="leading-none text-muted-foreground">
-                                    Showing total visitors for the last 6 months
-                                </div>
-                            </CardFooter>
-                        </Card>
-                    </div>
+                    
                 </div>
             </main>
         </div>

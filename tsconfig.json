@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/color-generator/color-palette-generator.js"
-  ],
+, "components/MockupWindow.js"  ],
   "exclude": ["node_modules"]
 }
