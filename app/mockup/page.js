@@ -4,14 +4,8 @@ import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle,} from "@/components/ui/card";
-import { CalendarIcon, ChevronDown, Download, Search, Users, } from 'lucide-react';
-import {
-    NavigationMenu,
-    NavigationMenuItem,
-    NavigationMenuLink,
-    NavigationMenuList,
-    navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+import { CalendarIcon, Download, Search, Users, } from 'lucide-react';
+
 import { Input } from "@/components/ui/input";
 
 
@@ -38,12 +32,11 @@ export default function Dashboard() {
             <header className="border-b border-gray-800">
                 <div className="flex h-16 items-center px-4">
                     <div className="flex items-center space-x-4">
-                        <Button variant="ghost" className="space-x-2 bg-black text-white">
-                            <div className="h-6 w-6 bg-white rounded-full">
-                                <AvatarImage src="/placeholder.svg" />
+                        <div className="flex flex-row">
+                            <div className="h-6 w-6 bg-white rounded-full mr-6">
                             </div>
                             <span>Atilla Koch</span>
-                        </Button>
+                        </div>
                     </div>
                     <div className="ml-4 flex-row flex justify-between bg-black text-white">
                         <p className="py-2 px-4 hover:bg-gray-800">Overview</p>
@@ -67,7 +60,7 @@ export default function Dashboard() {
                 <div className="flex items-center justify-between">
                     <h1 className="text-3xl font-bold">Dashboard</h1>
                     <div className="flex items-center space-x-2">
-                        <Button variant="outline" size="sm" className="bg-gray-900 border-gray-800">
+                        <Button variant="outline" size="sm" className="bg-gray-900 border-gray-800 text-white">
                             <CalendarIcon className="mr-2 h-4 w-4" />
                             Jan 20, 2023 - Feb 04, 2023
                         </Button>
@@ -78,8 +71,8 @@ export default function Dashboard() {
                     </div>
                 </div>
                 <div className="space-y-4">
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                        <Card className="bg-gray-900 border-gray-800">
+                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 ">
+                        <Card className="bg-gray-900 border-gray-800 text-white">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
                             </CardHeader>
@@ -88,7 +81,7 @@ export default function Dashboard() {
                                 <p className="text-xs text-gray-500">+20.1% from last month</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-gray-900 border-gray-800">
+                        <Card className="bg-gray-900 border-gray-800 text-white">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">Subscriptions</CardTitle>
                             </CardHeader>
@@ -97,7 +90,7 @@ export default function Dashboard() {
                                 <p className="text-xs text-gray-500">+180.1% from last month</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-gray-900 border-gray-800">
+                        <Card className="bg-gray-900 border-gray-800 text-white">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">Sales</CardTitle>
                             </CardHeader>
@@ -106,7 +99,7 @@ export default function Dashboard() {
                                 <p className="text-xs text-gray-500">+19% from last month</p>
                             </CardContent>
                         </Card>
-                        <Card className="bg-gray-900 border-gray-800">
+                        <Card className="bg-gray-900 border-gray-800 text-white">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">Active Now</CardTitle>
                                 <Users className="h-4 w-4 text-gray-500" />
@@ -118,7 +111,7 @@ export default function Dashboard() {
                         </Card>
                     </div>
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-                        <Card className="col-span-4 bg-gray-900 border-gray-800">
+                        <Card className="col-span-4 bg-gray-900 border-gray-800 text-white">
                             <CardHeader>
                                 <CardTitle>Overview</CardTitle>
                             </CardHeader>
@@ -145,7 +138,7 @@ export default function Dashboard() {
                                 </ResponsiveContainer>
                             </CardContent>
                         </Card>
-                        <Card className="col-span-3 bg-gray-900 border-gray-800">
+                        <Card className="col-span-3 bg-gray-900 border-gray-800 text-white">
                             <CardHeader>
                                 <CardTitle>Recent Sales</CardTitle>
                                 <div className="text-sm text-gray-500">
