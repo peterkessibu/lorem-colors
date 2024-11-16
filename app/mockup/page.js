@@ -3,11 +3,10 @@
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from "recharts";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle,} from "@/components/ui/card";
-import { CalendarIcon, Download, Search, Users, } from 'lucide-react';
-
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CalendarIcon, Download, Search, Users, Menu, X } from 'lucide-react';
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
-
 
 const data = [
     { month: "Jan", total: 4500 },
@@ -18,21 +17,25 @@ const data = [
     { month: "Jun", total: 2800 },
 ];
 
-
-
 export default function Dashboard() {
+    const [menuOpen, setMenuOpen] = useState(false);
+
     return (
         <div className="min-h-screen bg-black text-white">
             <header className="border-b border-gray-800">
-                <div className="flex h-16 items-center px-4">
+                <div className="flex h-16 items-center px-4 justify-between">
                     <div className="flex items-center space-x-4">
                         <div className="flex flex-row">
-                            <div className="h-6 w-6 bg-white rounded-full mr-2">
-                            </div>
+                            <div className="h-6 w-6 bg-white rounded-full mr-2"></div>
                             <span>Atilla Koch</span>
                         </div>
                     </div>
-                    <div className="ml-4 flex-row flex justify-between bg-black text-white">
+                    <div className="flex items-center space-x-4 md:hidden">
+                        <button onClick={() => setMenuOpen(!menuOpen)}>
+                            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                        </button>
+                    </div>
+                    <div className={`flex-col md:flex-row md:flex ${menuOpen ? 'flex' : 'hidden'} bg-black text-white md:bg-transparent`}>
                         <p className="py-2 px-4 hover:bg-gray-800">Overview</p>
                         <p className="py-2 px-4 hover:bg-gray-800">Customers</p>
                         <p className="py-2 px-4 hover:bg-gray-800">Products</p>
@@ -65,7 +68,7 @@ export default function Dashboard() {
                     </div>
                 </div>
                 <div className="space-y-4">
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 ">
+                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                         <Card className="bg-gray-900 border-gray-800 text-white">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
@@ -200,7 +203,6 @@ export default function Dashboard() {
                             </CardContent>
                         </Card>
                     </div>
-                    
                 </div>
             </main>
         </div>
