@@ -53,7 +53,7 @@ export default function Dashboard() {
                     </div>
                 </div>
             </header>
-            <main className="flex-1 space-y-4 p-4 md:p-8 pt-6">
+            <main className="flex-1 space-y-4 p-4 md:p-6">
                 <div className="flex items-center justify-between">
                     <h1 className="text-lg md:text-xl font-bold">Dashboard</h1>
                     <div className="flex items-center space-x-2">
@@ -84,7 +84,7 @@ export default function Dashboard() {
                     </div>
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
                         <Card className="col-span-7 lg:col-span-4 bg-gray-900 border-gray-800 text-white">
-                            <div>
+                            <div className="p-4"> 
                                 <CardTitle>Overview</CardTitle>
                             </div>
                             <CardContent className="pl-2">
