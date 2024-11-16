@@ -4,7 +4,7 @@ import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CalendarIcon, Download, Users, Menu } from 'lucide-react';
+import { CalendarIcon, Download, Users, Menu, DollarSign } from 'lucide-react';
 
 const data = [
     { month: "Jan", total: 4500 },
@@ -21,6 +21,11 @@ const salesData = [
     { name: "Isabella Nguyen", email: "isabella.nguyen@email.com", amount: "+$299.00", avatar: "/avatars/03.png", fallback: "IN" },
     { name: "William Kim", email: "will@email.com", amount: "+$99.00", avatar: "/avatars/04.png", fallback: "WK" },
     { name: "Sofia Davis", email: "sofia.davis@email.com", amount: "+$39.00", avatar: "/avatars/05.png", fallback: "SD" },
+];
+
+const cardData = [
+    { title: "Sales", value: "+12,234", description: "+19% from last month", icon: <DollarSign className="h-4 w-4 text-gray-500" /> },
+    { title: "Active Now", value: "+573", description: "+201 since last hour", icon: <Users className="h-4 w-4 text-gray-500" /> },
 ];
 
 export default function Dashboard() {
@@ -63,32 +68,25 @@ export default function Dashboard() {
                     </div>
                 </div>
                 <div className="space-y-4">
-                    <div className="grid gap-4 md:grid-cols-2 ">
-                        <Card className="bg-gray-900 border-gray-800 text-white">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium">Sales</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-2xl font-bold">+12,234</div>
-                                <p className="text-xs text-gray-500">+19% from last month</p>
-                            </CardContent>
-                        </Card>
-                        <Card className="bg-gray-900 border-gray-800 text-white">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                                <CardTitle className="text-sm font-medium">Active Now</CardTitle>
-                                <Users className="h-4 w-4 text-gray-500" />
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-2xl font-bold">+573</div>
-                                <p className="text-xs text-gray-500">+201 since last hour</p>
-                            </CardContent>
-                        </Card>
+                    <div className="grid gap-4 md:grid-cols-2">
+                        {cardData.map((card, index) => (
+                            <div key={index} className="bg-gray-900 border-gray-800 text-white rounded-xl">
+                                <div className="flex flex-row items-center justify-between space-y-0 p-4">
+                                    <CardTitle className="text-sm font-medium">{card.title}</CardTitle>
+                                    {card.icon}
+                                </div>
+                                <CardContent>
+                                    <div className="text-2xl font-bold">{card.value}</div>
+                                    <p className="text-xs text-gray-500">{card.description}</p>
+                                </CardContent>
+                            </div>
+                        ))}
                     </div>
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
                         <Card className="col-span-7 lg:col-span-4 bg-gray-900 border-gray-800 text-white">
-                            <CardHeader>
+                            <div>
                                 <CardTitle>Overview</CardTitle>
-                            </CardHeader>
+                            </div>
                             <CardContent className="pl-2">
                                 <ResponsiveContainer width="100%" height={350}>
                                     <BarChart data={data}>
@@ -123,7 +121,7 @@ export default function Dashboard() {
                                 <div className="space-y-6">
                                     {salesData.map((sale, index) => (
                                         <div key={index} className="flex items-center">
-                                            <Avatar className="h-4 w-4">
+                                            <Avatar className="h-6 w-6">
                                                 <AvatarImage src={sale.avatar} alt="Avatar" />
                                                 <AvatarFallback>{sale.fallback}</AvatarFallback>
                                             </Avatar>
