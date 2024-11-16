@@ -16,12 +16,6 @@ const data = [
     { month: "Apr", total: 5000 },
     { month: "May", total: 3000 },
     { month: "Jun", total: 2800 },
-    { month: "Jul", total: 4000 },
-    { month: "Aug", total: 2500 },
-    { month: "Sep", total: 3500 },
-    { month: "Oct", total: 3000 },
-    { month: "Nov", total: 3200 },
-    { month: "Dec", total: 2800 },
 ];
 
 
@@ -33,7 +27,7 @@ export default function Dashboard() {
                 <div className="flex h-16 items-center px-4">
                     <div className="flex items-center space-x-4">
                         <div className="flex flex-row">
-                            <div className="h-6 w-6 bg-white rounded-full mr-6">
+                            <div className="h-6 w-6 bg-white rounded-full mr-2">
                             </div>
                             <span>Atilla Koch</span>
                         </div>
