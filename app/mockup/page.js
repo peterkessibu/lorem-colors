@@ -4,8 +4,7 @@ import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CalendarIcon, Download, Users, Menu, X } from 'lucide-react';
-import { useState } from "react";
+import { CalendarIcon, Download, Users, Menu } from 'lucide-react';
 
 const data = [
     { month: "Jan", total: 4500 },
@@ -16,8 +15,15 @@ const data = [
     { month: "Jun", total: 2800 },
 ];
 
+const salesData = [
+    { name: "Olivia Martin", email: "olivia.martin@email.com", amount: "+$1,999.00", avatar: "/avatars/01.png", fallback: "OM" },
+    { name: "Jackson Lee", email: "jackson.lee@email.com", amount: "+$39.00", avatar: "/avatars/02.png", fallback: "JL" },
+    { name: "Isabella Nguyen", email: "isabella.nguyen@email.com", amount: "+$299.00", avatar: "/avatars/03.png", fallback: "IN" },
+    { name: "William Kim", email: "will@email.com", amount: "+$99.00", avatar: "/avatars/04.png", fallback: "WK" },
+    { name: "Sofia Davis", email: "sofia.davis@email.com", amount: "+$39.00", avatar: "/avatars/05.png", fallback: "SD" },
+];
+
 export default function Dashboard() {
-    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <div className="min-h-screen bg-black text-white">
@@ -30,11 +36,11 @@ export default function Dashboard() {
                         </div>
                     </div>
                     <div className="flex items-center space-x-4 md:hidden">
-                        <button onClick={() => setMenuOpen(!menuOpen)}>
-                            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                        <button className="block md:hidden">
+                            <Menu className="h-6 w-6" />
                         </button>
                     </div>
-                    <div className={`flex-col md:flex-row md:flex ${menuOpen ? 'flex' : 'hidden'} bg-black text-white md:bg-transparent`}>
+                    <div className={`flex-col md:flex-row hidden md:flex bg-black text-white md:bg-transparent`}>
                         <p className="py-2 px-4 hover:bg-gray-800">Overview</p>
                         <p className="py-2 px-4 hover:bg-gray-800">Customers</p>
                         <p className="py-2 px-4 hover:bg-gray-800">Products</p>
@@ -58,7 +64,6 @@ export default function Dashboard() {
                 </div>
                 <div className="space-y-4">
                     <div className="grid gap-4 md:grid-cols-2 ">
-                        
                         <Card className="bg-gray-900 border-gray-800 text-white">
                             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                                 <CardTitle className="text-sm font-medium">Sales</CardTitle>
@@ -116,61 +121,19 @@ export default function Dashboard() {
                             </CardHeader>
                             <CardContent>
                                 <div className="space-y-6">
-                                    <div className="flex items-center">
-                                        <Avatar className="h-4 w-4">
-                                            <AvatarImage src="/avatars/01.png" alt="Avatar" />
-                                            <AvatarFallback>OM</AvatarFallback>
-                                        </Avatar>
-                                        <div className="ml-4 space-y-1">
-                                            <p className="text-[12px] font-medium leading-none">Olivia Martin</p>
-                                            <p className="text-[12px] text-gray-500">olivia.martin@email.com</p>
+                                    {salesData.map((sale, index) => (
+                                        <div key={index} className="flex items-center">
+                                            <Avatar className="h-4 w-4">
+                                                <AvatarImage src={sale.avatar} alt="Avatar" />
+                                                <AvatarFallback>{sale.fallback}</AvatarFallback>
+                                            </Avatar>
+                                            <div className="ml-4 space-y-1">
+                                                <p className="text-[12px] font-medium leading-none">{sale.name}</p>
+                                                <p className="text-[12px] text-gray-500">{sale.email}</p>
+                                            </div>
+                                            <div className="ml-auto text-sm">{sale.amount}</div>
                                         </div>
-                                        <div className="ml-auto text-sm">+$1,999.00</div>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <Avatar className="h-4 w-4">
-                                            <AvatarImage src="/avatars/02.png" alt="Avatar" />
-                                            <AvatarFallback>JL</AvatarFallback>
-                                        </Avatar>
-                                        <div className="ml-4 space-y-1">
-                                            <p className="text-[12px] leading-none">Jackson Lee</p>
-                                            <p className="text-[12px] text-gray-500">jackson.lee@email.com</p>
-                                        </div>
-                                        <div className="ml-auto text-sm">+$39.00</div>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <Avatar className="h-4 w-4">
-                                            <AvatarImage src="/avatars/03.png" alt="Avatar" />
-                                            <AvatarFallback>IN</AvatarFallback>
-                                        </Avatar>
-                                        <div className="ml-4 space-y-1">
-                                            <p className="text-[12px] leading-none">Isabella Nguyen</p>
-                                            <p className="text-[12px] text-gray-500">isabella.nguyen@email.com</p>
-                                        </div>
-                                        <div className="ml-auto text-sm">+$299.00</div>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <Avatar className="h-4 w-4">
-                                            <AvatarImage src="/avatars/04.png" alt="Avatar" />
-                                            <AvatarFallback>WK</AvatarFallback>
-                                        </Avatar>
-                                        <div className="ml-4 space-y-1">
-                                            <p className="text-[12px] leading-none">William Kim</p>
-                                            <p className="text-[12px] text-gray-500">will@email.com</p>
-                                        </div>
-                                        <div className="ml-auto text-sm">+$99.00</div>
-                                    </div>
-                                    <div className="flex items-center">
-                                        <Avatar className="h-4 w-4">
-                                            <AvatarImage src="/avatars/05.png" alt="Avatar" />
-                                            <AvatarFallback>SD</AvatarFallback>
-                                        </Avatar>
-                                        <div className="ml-4 space-y-1">
-                                            <p className="text-[12px] leading-none">Sofia Davis</p>
-                                            <p className="text-[12px] text-gray-500">sofia.davis@email.com</p>
-                                        </div>
-                                        <div className="ml-auto text-sm">+$39.00</div>
-                                    </div>
+                                    ))}
                                 </div>
                             </CardContent>
                         </Card>
