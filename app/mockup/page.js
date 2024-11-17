@@ -96,7 +96,7 @@ export default function Dashboard() {
           </div>
           <div className="flex-col md:flex-row hidden md:flex bg-black text-white md:bg-transparent">
             {menuItems.map((item, index) => (
-              <p key={index} className={itemStyles}>{item}</p>
+              <button key={index} className={itemStyles}>{item}</button>
             ))}
           </div>
         </div>
