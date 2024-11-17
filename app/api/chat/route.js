@@ -80,37 +80,14 @@ Requirements:
    - Key psychological effects
    - Recommended content types
 
-Return valid JSON in this format:
-{
-  "paletteCards": [
-    {
-      "name": "Palette Name",
-      "description": "Detailed description following requirements",
-      "colors": [
-        {
-          "name": "Primary",
-          "hex": "#XXXXXX",
-          "usage": "Specific usage guidelines",
-          "contrastRatio": {
-            "withBackground": "X.XX:1",
-            "withWhite": "X.XX:1",
-            "withBlack": "X.XX:1"
-          }
-        },
-        // Repeat for all 6 colors
-      ],
-      "accessibilityNotes": "Specific accessibility considerations",
-      "technicalNotes": "Additional technical guidance"
-    }
-  ],
-  "metadata": {
-    "generatedAt": "ISO timestamp",
-    "version": "1.0"
-  }
-}
-
-Example Usage:
-prompt: Generate 6 color palettes based on the following criteria: Primary Color: Blue, Accent Color: Teal, Background Color Preference: Light, Saturation Level: Highly Saturated, Contrast Preference: High Contrast, Intended Mood: Professional, Shade Preference (for shadows and accents): Light Shades, Custom Color or Description: 'cool oceanic tones'.
+6. Additional Requirements:
+   - Use the accent colors for the cards.
+   - Depending on the shade of the background and the accent of the card, use dark text for a light accent or background color and light text for a dark background.
+   - Use the secondary color for the bar colors, maintaining borders but using a light color for the border when the accent is dark as well as the background.
+   - For the text color in the sales.name and sales.email:
+     a. The name should be white for dark accents and background, and the email should be slightly off the color of the name (e.g., text-white for the name and gray for the email).
+     b. The name should be black or shades of black for light accents and background, and the email should be slightly off the color of the name (e.g., text-black for the name and gray for the email).
+   - For the hover effect, the hover colors should be for hover, when hover before the hover colors shows.
 `;
 
     let stream;
@@ -154,18 +131,19 @@ prompt: Generate 6 color palettes based on the following criteria: Primary Color
     let palettes;
     try {
       const parsedResponse = JSON.parse(result);
+      console.log("Parsed response:", parsedResponse);
       if (
-        !parsedResponse.paletteCards ||
-        !Array.isArray(parsedResponse.paletteCards)
+        !parsedResponse.palettes ||
+        !Array.isArray(parsedResponse.palettes)
       ) {
         throw new Error("Invalid palette format received");
       }
-      palettes = parsedResponse.paletteCards;
+      palettes = parsedResponse.palettes;
       palettes.forEach((palette, index) => {
         if (
           !palette.colors ||
-          !Array.isArray(palette.colors) ||
-          palette.colors.length !== 6
+          typeof palette.colors !== 'object' ||
+          Object.keys(palette.colors).length === 0
         ) {
           throw new Error(`Invalid palette structure at index ${index}`);
         }

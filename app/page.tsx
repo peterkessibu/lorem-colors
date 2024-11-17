@@ -1,5 +1,5 @@
 "use client";
-import ColorPaletteGenerator from "./color-generator/color-palette-generator";
+import ColorPaletteGenerator from "@/components/ColorPaletteGenerator";
 
 export default function Page(): JSX.Element {
   return (
