@@ -24,6 +24,8 @@ export default function ColorPaletteGenerator() {
 
       const data = await response.json();
 
+      console.log("Response data:", data); // Add this line to log the response data
+
       if (!response.ok) {
         throw new Error(data.message || "Failed to generate palettes");
       }

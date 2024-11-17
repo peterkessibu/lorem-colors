@@ -126,7 +126,10 @@ Requirements:
       result = result.replace(/```json\n?/, "").replace(/```$/, "");
     }
 
-    console.log("Raw result:", result);
+    // Ensure logging happens only once
+    if (!result.includes("Parsed response:")) {
+      console.log("Raw result:", result);
+    }
 
     let palettes;
     try {
