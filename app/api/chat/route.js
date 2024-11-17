@@ -88,6 +88,8 @@ Requirements:
      a. The name should be white for dark accents and background, and the email should be slightly off the color of the name (e.g., text-white for the name and gray for the email).
      b. The name should be black or shades of black for light accents and background, and the email should be slightly off the color of the name (e.g., text-black for the name and gray for the email).
    - For the hover effect, the hover colors should be for hover, when hover before the hover colors shows.
+
+**Please respond only with valid JSON without any additional text or markdown. The JSON structure should have a top-level key "palettes" which is an array of palette objects as described above. Ensure that there are no duplicate keys within each palette object.**
 `;
 
     let stream;
@@ -126,10 +128,8 @@ Requirements:
       result = result.replace(/```json\n?/, "").replace(/```$/, "");
     }
 
-    // Ensure logging happens only once
-    if (!result.includes("Parsed response:")) {
-      console.log("Raw result:", result);
-    }
+    // Log the raw result once
+    console.log("Raw result:", result);
 
     let palettes;
     try {

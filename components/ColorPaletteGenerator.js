@@ -11,8 +11,11 @@ export default function ColorPaletteGenerator() {
   const [currentPaletteIndex, setCurrentPaletteIndex] = useState(0);
   const [error, setError] = useState(null);
   const [colorFormat, setColorFormat] = useState("hex");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (answers) => {
+    if (isSubmitting) return; // Prevent duplicate submissions
+    setIsSubmitting(true);
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -24,7 +27,7 @@ export default function ColorPaletteGenerator() {
 
       const data = await response.json();
 
-      console.log("Response data:", data); // Add this line to log the response data
+      console.log("Response data:", data); // Log the response data
 
       if (!response.ok) {
         throw new Error(data.message || "Failed to generate palettes");
@@ -41,6 +44,8 @@ export default function ColorPaletteGenerator() {
       console.error("Error generating palettes:", error);
       setPalettes([]);
       setError(error.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -67,10 +72,11 @@ export default function ColorPaletteGenerator() {
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="w-full lg:w-1/3">
           <div className="sticky top-8">
-            <QuestionnaireForm onSubmit={handleSubmit} />
+            <QuestionnaireForm onSubmit={handleSubmit} disabled={isSubmitting} />
           </div>
         </div>
         <div className="w-full lg:w-2/3">
+          {isSubmitting && <p>Generating palettes...</p>}
           {error && (
             <div className="text-red-500 text-center mb-4">{error}</div>
           )}
