@@ -34,7 +34,19 @@ const QuestionnaireForm = ({ onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="space-y-2">
+      <div className="space-y-1">
+        <Label className="text-lg font-semibold">
+          Custom Color or Description
+        </Label>
+        <input
+          value={answers.customDescription}
+          className="w-full p-4 border border-gray-300 rounded-md"
+          onChange={(e) => handleChange("customDescription", e.target.value)}
+          placeholder="Describe any specific color or effect you envision (e.g., 'warm sunset hues,' 'cool oceanic tones,' or provide hex codes)."
+        />
+      </div>
+
+      <div className="space-y-1">
         <Label className="text-lg font-semibold">Primary Color</Label>
         <Select
           value={answers.primaryColor}
@@ -55,7 +67,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
         </Select>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-1">
         <Label className="text-lg font-semibold">Accent Color</Label>
         <Select
           value={answers.accentColor}
@@ -76,8 +88,10 @@ const QuestionnaireForm = ({ onSubmit }) => {
         </Select>
       </div>
 
-      <div className="space-y-2">
-        <Label className="text-lg font-semibold">Background Color Preference</Label>
+      <div className="space-y-1">
+        <Label className="text-lg font-semibold">
+          Background Color Preference
+        </Label>
         <Select
           value={answers.backgroundColor}
           onValueChange={(value) => handleChange("backgroundColor", value)}
@@ -97,7 +111,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
         </Select>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-1">
         <Label className="text-lg font-semibold">Saturation Level</Label>
         <Select
           value={answers.saturationLevel}
@@ -108,7 +122,9 @@ const QuestionnaireForm = ({ onSubmit }) => {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="Highly Saturated">Highly Saturated</SelectItem>
-            <SelectItem value="Moderately Saturated">Moderately Saturated</SelectItem>
+            <SelectItem value="Moderately Saturated">
+              Moderately Saturated
+            </SelectItem>
             <SelectItem value="Subtle/Muted">Subtle/Muted</SelectItem>
             <SelectItem value="Pastel">Pastel</SelectItem>
             <SelectItem value="Custom">Custom</SelectItem>
@@ -116,7 +132,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
         </Select>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-1">
         <Label className="text-lg font-semibold">Contrast Preference</Label>
         <Select
           value={answers.contrastPreference}
@@ -134,7 +150,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
         </Select>
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-1">
         <Label className="text-lg font-semibold">Intended Mood</Label>
         <Select
           value={answers.intendedMood}
@@ -155,8 +171,10 @@ const QuestionnaireForm = ({ onSubmit }) => {
         </Select>
       </div>
 
-      <div className="space-y-2">
-        <Label className="text-lg font-semibold">Shade Preference (for shadows and accents)</Label>
+      <div className="space-y-1">
+        <Label className="text-lg font-semibold">
+          Shade Preference (for shadows and accents)
+        </Label>
         <Select
           value={answers.shadePreference}
           onValueChange={(value) => handleChange("shadePreference", value)}
@@ -173,17 +191,6 @@ const QuestionnaireForm = ({ onSubmit }) => {
           </SelectContent>
         </Select>
       </div>
-
-      <div className="space-y-2">
-        <Label className="text-lg font-semibold">Custom Color or Description</Label>
-        <input
-          value={answers.customDescription}
-          className="w-full p-4 border border-gray-300 rounded-md"
-          onChange={(e) => handleChange("customDescription", e.target.value)}
-          placeholder="Describe any specific color or effect you envision (e.g., 'warm sunset hues,' 'cool oceanic tones,' or provide hex codes)."
-        />
-      </div>
-
       <Button type="submit" className="w-full">
         Generate Palettes
       </Button>
