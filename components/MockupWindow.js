@@ -93,7 +93,7 @@ export default function Dashboard({ colors }) {
   const borderColor = isDark(colors.Accent) ? "border-gray-300" : "border-gray-700";
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: colors.Background, color: colors.Text }}>
+    <div className="min-h-screen max-w-full p-6 flex-1" style={{ backgroundColor: colors.Background, color: colors.Text }}>
       <header className="border-b" style={{ borderColor: colors.Border }}>
         <div className="flex h-16 items-center px-4 justify-between">
           <div className="flex items-center space-x-4">

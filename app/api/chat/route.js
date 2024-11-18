@@ -1,3 +1,5 @@
+// route.js
+
 import Together from "together-ai";
 import { NextResponse } from "next/server";
 
@@ -33,7 +35,7 @@ export async function POST(req) {
     ) {
       return NextResponse.json(
         { message: "All fields are required" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -114,7 +116,7 @@ Requirements:
           message: "Failed to generate palettes",
           error: apiError.message,
         },
-        { status: 500 },
+        { status: 500 }
       );
     }
 
@@ -124,12 +126,24 @@ Requirements:
     }
 
     result = result.trim();
+
+    // Remove any markdown code block wrappers
     if (result.startsWith("```json")) {
-      result = result.replace(/```json\n?/, "").replace(/```$/, "");
+      result = result.replace(/```json\s*/, "").replace(/```$/, "").trim();
     }
 
-    // Log the raw result once
-    console.log("Raw result:", result);
+    // Remove any remaining backticks
+    result = result.replace(/`/g, "").trim();
+
+    // Extract JSON content if any other text is present
+    const jsonStart = result.indexOf("{");
+    const jsonEnd = result.lastIndexOf("}");
+    if (jsonStart !== -1 && jsonEnd !== -1) {
+      result = result.substring(jsonStart, jsonEnd + 1);
+    }
+
+    // Log the cleaned result for debugging
+    console.log("Cleaned Raw Result:", result);
 
     let palettes;
     try {
@@ -141,27 +155,82 @@ Requirements:
       ) {
         throw new Error("Invalid palette format received");
       }
-      palettes = parsedResponse.palettes;
-      palettes.forEach((palette, index) => {
-        if (
-          !palette.colors ||
-          typeof palette.colors !== 'object' ||
-          Object.keys(palette.colors).length === 0
-        ) {
-          throw new Error(`Invalid palette structure at index ${index}`);
+
+      // Wrap color properties within a "colors" object
+      palettes = parsedResponse.palettes.map((palette, index) => {
+        const {
+          primary,
+          secondary,
+          accent,
+          background,
+          border,
+          hover,
+          text,
+          sales_name,
+          sales_email,
+          ...rest
+        } = palette;
+
+        // Validate required color properties
+        const requiredColors = [
+          "primary",
+          "secondary",
+          "accent",
+          "background",
+          "border",
+          "hover",
+          "text",
+          "sales_name",
+          "sales_email",
+        ];
+
+        for (const color of requiredColors) {
+          if (!palette[color]) {
+            throw new Error(
+              `Missing color '${color}' in palette at index ${index}`
+            );
+          }
         }
+
+        return {
+          ...rest,
+          name: palette.name,
+          colors: {
+            primary,
+            secondary,
+            accent,
+            background,
+            border,
+            hover,
+            text,
+            sales_name,
+            sales_email,
+          },
+          description: palette.description,
+        };
       });
+
+      // Assuming you have a function to set palettes, if not, adjust accordingly
+      // setPalettes(palettes);
+      // setCurrentPaletteIndex(0);
+      // setError(null);
+
+      return NextResponse.json({ palettes });
     } catch (parseError) {
-      console.error("Error parsing JSON:", parseError, "\nRaw result:", result);
+      console.error(
+        "Error parsing JSON:",
+        parseError,
+        "\nCleaned Raw Result:",
+        result
+      );
       return NextResponse.json(
         {
           message: "Failed to parse palette data",
           error: parseError.message,
         },
-        { status: 500 },
+        { status: 500 }
       );
     }
-    return NextResponse.json({ palettes });
   } catch (error) {
     console.error("API Error:", error);
     return NextResponse.json(
@@ -169,7 +238,7 @@ Requirements:
         message: "Internal server error",
         error: error.message,
       },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

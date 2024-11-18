@@ -12,10 +12,12 @@ export default function ColorPaletteGenerator() {
   const [error, setError] = useState(null);
   const [colorFormat, setColorFormat] = useState("hex");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const handleSubmit = async (answers) => {
     if (isSubmitting) return; // Prevent duplicate submissions
     setIsSubmitting(true);
+    setIsGenerating(true);
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -27,7 +29,7 @@ export default function ColorPaletteGenerator() {
 
       const data = await response.json();
 
-      console.log("Response data:", data); // Log the response data
+      console.log("Response data:", data);
 
       if (!response.ok) {
         throw new Error(data.message || "Failed to generate palettes");
@@ -46,6 +48,7 @@ export default function ColorPaletteGenerator() {
       setError(error.message);
     } finally {
       setIsSubmitting(false);
+      setIsGenerating(false);
     }
   };
 
@@ -70,17 +73,24 @@ export default function ColorPaletteGenerator() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row gap-8">
-        <div className="w-full lg:w-1/3">
+        <aside className="w-full lg:w-52">
           <div className="sticky top-8">
             <QuestionnaireForm onSubmit={handleSubmit} disabled={isSubmitting} />
           </div>
-        </div>
-        <div className="w-full lg:w-2/3">
+        </aside>
+        <div className="flex-1">
           {isSubmitting && <p>Generating palettes...</p>}
           {error && (
             <div className="text-red-500 text-center mb-4">{error}</div>
           )}
-          {palettes.length > 0 ? (
+          <MockupWindow
+            colors={
+              isGenerating || palettes.length === 0
+                ? { Background: "#f0f0f0", Text: "#a0a0a0", Border: "#d0d0d0", Accent: "#c0c0c0", Secondary: "#b0b0b0" }
+                : currentPalette.colors
+            }
+          />
+          {palettes.length > 0 && (
             <>
               {/* Navigation Arrows */}
               <div className="flex items-center justify-center mb-4">
@@ -95,11 +105,6 @@ export default function ColorPaletteGenerator() {
                 </button>
               </div>
 
-              {/* Mockup Window */}
-              <MockupWindow
-                colors={currentPalette.colors}
-              />
-
               {/* Palette Card */}
               <PaletteCard
                 palette={currentPalette}
@@ -108,15 +113,9 @@ export default function ColorPaletteGenerator() {
                 setColorFormat={setColorFormat}
               />
             </>
-          ) : (
-            <div className="flex items-center justify-center h-full">
-              <p className="text-xl text-gray-500">
-                Generate palettes to see them here
-              </p>
-            </div>
           )}
         </div>
       </div>
     </div>
-  );
-}
+  ) 
+};
