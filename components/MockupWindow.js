@@ -66,15 +66,10 @@ const isDark = (color) => {
 export default function Dashboard({ colors }) {
   // Destructure colors with default values to prevent undefined errors
   const {
-    primary = "#FFFFFF",
-    secondary = "#FFFFFF",
+    secondary = "#000000",
     accent = "#FFFFFF",
     background = "#FFFFFF",
-    border = "#CCCCCC",
-    hover = "#FFFFFF",
     text = "#000000",
-    sales_name = "#000000",
-    sales_email = "#000000",
   } = colors || {}; // Fallback to empty object if colors is undefined
 
   // Determine text and border colors based on Accent color brightness
@@ -84,7 +79,7 @@ export default function Dashboard({ colors }) {
 
   return (
     <div
-      className="min-h-screen max-w-full p-6 flex-1"
+      className="min-h-screen max-w-full p-6 flex-1 border-black border"
       style={{ backgroundColor: background, color: text }}
     >
       {/* Header Section */}
@@ -97,7 +92,7 @@ export default function Dashboard({ colors }) {
                 className="h-6 w-6 rounded-full mr-2"
                 style={{ backgroundColor: accent }}
               ></div>
-              <span>Atilla Koch</span>
+              <span className="font-bold text-xl">Atilla Koch</span>
             </div>
           </div>
           <div className="flex items-center space-x-4 md:hidden">
@@ -110,7 +105,7 @@ export default function Dashboard({ colors }) {
             style={{ backgroundColor: background, color: text }}
           >
             {["Overview", "Customers", "Products", "Settings"].map((item, index) => (
-              <p key={index} className="py-2 px-4 hover:bg-gray-800 rounded-lg">
+              <p key={index} className="py-2 px-4 hover:bg-gray-800 hover:text-white rounded-lg">
                 {item}
               </p>
             ))}
@@ -147,7 +142,7 @@ export default function Dashboard({ colors }) {
           <div className="grid gap-4 md:grid-cols-2">
             {/* Sales Card */}
             <div
-              className="rounded-xl"
+              className="rounded-xl border-black border"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
@@ -168,7 +163,7 @@ export default function Dashboard({ colors }) {
 
             {/* Active Now Card */}
             <div
-              className="rounded-xl"
+              className="rounded-xl border-black border"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
