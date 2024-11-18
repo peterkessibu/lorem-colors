@@ -83,6 +83,17 @@ export default function ColorPaletteGenerator() {
           {error && (
             <div className="text-red-500 text-center mb-4">{error}</div>
           )}
+          <div className="flex items-center justify-center mb-4">
+            <button onClick={handlePrev} className="p-2">
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <span className="mx-4">
+              Palette {currentPaletteIndex + 1} of {palettes.length}
+            </span>
+            <button onClick={handleNext} className="p-2">
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
           <MockupWindow
             colors={
               isGenerating || palettes.length === 0
@@ -92,19 +103,6 @@ export default function ColorPaletteGenerator() {
           />
           {palettes.length > 0 && (
             <>
-              {/* Navigation Arrows */}
-              <div className="flex items-center justify-center mb-4">
-                <button onClick={handlePrev} className="p-2">
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <span className="mx-4">
-                  Palette {currentPaletteIndex + 1} of {palettes.length}
-                </span>
-                <button onClick={handleNext} className="p-2">
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </div>
-
               {/* Palette Card */}
               <PaletteCard
                 palette={currentPalette}

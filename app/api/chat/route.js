@@ -1,18 +1,24 @@
 // route.js
 
-import Together from "together-ai";
-import { NextResponse } from "next/server";
+import Together from "together-ai"; // Importing the Together AI SDK
+import { NextResponse } from "next/server"; // Importing Next.js response utility
 
-const together = new Together();
+const together = new Together(); // Initialize the Together AI client
 
+// Configuration for the AI generation
 const generationConfig = {
-  temperature: 0.7,
-  top_p: 0.95,
-  max_tokens: 8192,
+  temperature: 0.7, // Controls the randomness of the AI output
+  top_p: 0.95,       // Controls the diversity via nucleus sampling
+  max_tokens: 8192,  // Maximum number of tokens in the response
 };
 
+/**
+ * POST handler for generating color palettes.
+ * Expects a JSON payload with specific color and design preferences.
+ */
 export async function POST(req) {
   try {
+    // Destructure required fields from the request body
     const {
       primaryColor,
       accentColor,
@@ -24,6 +30,7 @@ export async function POST(req) {
       customDescription,
     } = await req.json();
 
+    // Validate that all required fields are present
     if (
       !primaryColor ||
       !accentColor ||
@@ -39,6 +46,7 @@ export async function POST(req) {
       );
     }
 
+    // Construct the prompt for the AI model
     const prompt = `Generate 6 color palettes based on the following criteria:
 
 Primary Color: ${primaryColor}
@@ -91,13 +99,36 @@ Requirements:
      b. The name should be black or shades of black for light accents and background, and the email should be slightly off the color of the name (e.g., text-black for the name and gray for the email).
    - For the hover effect, the hover colors should be for hover, when hover before the hover colors shows.
 
-**Please respond only with valid JSON without any additional text or markdown. The JSON structure should have a top-level key "palettes" which is an array of palette objects as described above. Ensure that there are no duplicate keys within each palette object.**
+**Please respond only with valid JSON without any additional text or markdown. The JSON structure should have a top-level key "palettes" which is an array of palette objects as described below. Ensure that there are no duplicate keys within each palette object.**
+
+Each palette object should have the following structure:
+{
+  "name": "palette-variant-X",
+  "colors": {
+    "primary": "#HEXCODE",
+    "secondary": "#HEXCODE",
+    "accent": "#HEXCODE",
+    "background": "#HEXCODE",
+    "border": "#HEXCODE",
+    "hover": "#HEXCODE",
+    "text": "#HEXCODE",
+    "sales_name": "#HEXCODE",
+    "sales_email": "#HEXCODE"
+  },
+  "description": {
+    "primary_use_case": "Description here",
+    "suggested_industry_application": "Description here",
+    "key_psychological_effects": "Description here",
+    "recommended_content_types": "Description here"
+  }
+}
 `;
 
     let stream;
     try {
+      // Initiate the AI generation process with the specified model and prompt
       stream = await together.chat.completions.create({
-        model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+        model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", // Specify the AI model
         messages: [
           {
             role: "system",
@@ -106,10 +137,11 @@ Requirements:
           },
           { role: "user", content: prompt },
         ],
-        stream: true,
-        ...generationConfig,
+        stream: true, // Enable streaming of the response
+        ...generationConfig, // Spread the generation configuration
       });
     } catch (apiError) {
+      // Handle errors from the AI API
       console.error("Error calling Together API:", apiError);
       return NextResponse.json(
         {
@@ -121,57 +153,75 @@ Requirements:
     }
 
     let result = "";
-    for await (const chunk of stream) {
-      result += chunk.choices[0]?.delta?.content || "";
+    try {
+      // Aggregate the streamed response chunks
+      for await (const chunk of stream) {
+        result += chunk.choices[0]?.delta?.content || "";
+      }
+
+      result = result.trim(); // Trim any leading/trailing whitespace
+
+      // Remove any markdown code block wrappers (e.g., ```json ... ```)
+      if (result.startsWith("```json")) {
+        result = result.replace(/```json\s*/, "").replace(/```$/, "").trim();
+      }
+
+      // Remove any remaining backticks
+      result = result.replace(/`/g, "").trim();
+
+      // Extract JSON content if there's any additional text present
+      const jsonStart = result.indexOf("{");
+      const jsonEnd = result.lastIndexOf("}");
+      if (jsonStart !== -1 && jsonEnd !== -1) {
+        result = result.substring(jsonStart, jsonEnd + 1);
+      }
+
+      // Log the cleaned result for debugging purposes
+      console.log("Cleaned Raw Result:", result);
+    } catch (streamError) {
+      // Handle any errors that occur during the streaming process
+      console.error("Error during streaming:", streamError);
+      return NextResponse.json(
+        {
+          message: "Failed to process streamed response",
+          error: streamError.message,
+        },
+        { status: 500 }
+      );
     }
-
-    result = result.trim();
-
-    // Remove any markdown code block wrappers
-    if (result.startsWith("```json")) {
-      result = result.replace(/```json\s*/, "").replace(/```$/, "").trim();
-    }
-
-    // Remove any remaining backticks
-    result = result.replace(/`/g, "").trim();
-
-    // Extract JSON content if any other text is present
-    const jsonStart = result.indexOf("{");
-    const jsonEnd = result.lastIndexOf("}");
-    if (jsonStart !== -1 && jsonEnd !== -1) {
-      result = result.substring(jsonStart, jsonEnd + 1);
-    }
-
-    // Log the cleaned result for debugging
-    console.log("Cleaned Raw Result:", result);
 
     let palettes;
     try {
+      // Parse the cleaned JSON string
       const parsedResponse = JSON.parse(result);
       console.log("Parsed response:", parsedResponse);
-      if (
-        !parsedResponse.palettes ||
-        !Array.isArray(parsedResponse.palettes)
-      ) {
+
+      // Validate that the "palettes" key exists and is an array
+      if (!parsedResponse.palettes || !Array.isArray(parsedResponse.palettes)) {
         throw new Error("Invalid palette format received");
       }
 
-      // Wrap color properties within a "colors" object
+      // Transform each palette to ensure it has the correct structure
       palettes = parsedResponse.palettes.map((palette, index) => {
+        // Destructure the required color properties from the "colors" object
         const {
-          primary,
-          secondary,
-          accent,
-          background,
-          border,
-          hover,
-          text,
-          sales_name,
-          sales_email,
-          ...rest
+          colors: {
+            primary,
+            secondary,
+            accent,
+            background,
+            border,
+            hover,
+            text,
+            sales_name,
+            sales_email,
+          } = {}, // Provide a default empty object to prevent destructuring errors
+          name,
+          description,
+          ...rest // Capture any additional properties
         } = palette;
 
-        // Validate required color properties
+        // Define the required color properties
         const requiredColors = [
           "primary",
           "secondary",
@@ -184,17 +234,19 @@ Requirements:
           "sales_email",
         ];
 
+        // Validate that all required color properties are present
         for (const color of requiredColors) {
-          if (!palette[color]) {
+          if (!palette.colors || !palette.colors[color]) {
             throw new Error(
               `Missing color '${color}' in palette at index ${index}`
             );
           }
         }
 
+        // Return the transformed palette object
         return {
-          ...rest,
-          name: palette.name,
+          ...rest, // Spread any additional properties
+          name,    // Include the palette name
           colors: {
             primary,
             secondary,
@@ -205,18 +257,15 @@ Requirements:
             text,
             sales_name,
             sales_email,
-          },
-          description: palette.description,
+          }, // Ensure colors are nested under the "colors" key
+          description, // Include the palette description
         };
       });
 
-      // Assuming you have a function to set palettes, if not, adjust accordingly
-      // setPalettes(palettes);
-      // setCurrentPaletteIndex(0);
-      // setError(null);
-
+      // Send the successfully parsed and transformed palettes as a JSON response
       return NextResponse.json({ palettes });
     } catch (parseError) {
+      // Handle JSON parsing errors or validation failures
       console.error(
         "Error parsing JSON:",
         parseError,
@@ -232,6 +281,7 @@ Requirements:
       );
     }
   } catch (error) {
+    // Handle any unexpected errors
     console.error("API Error:", error);
     return NextResponse.json(
       {
