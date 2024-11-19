@@ -36,24 +36,20 @@ import {
  * @returns {boolean} - Returns true if the color is dark, else false.
  */
 const isDark = (color) => {
-  // Check if 'color' is a valid string starting with '#' and has 7 characters
   if (typeof color !== "string" || !color.startsWith("#") || color.length !== 7) {
     console.warn(
       `Invalid color format received: "${color}". Expected a string like "#FFFFFF". Defaulting to light color.`
     );
-    return false; // Default to light if invalid
+    return false;
   }
 
-  // Remove the '#' and parse the hex value
   const rgb = parseInt(color.slice(1), 16);
   const r = (rgb >> 16) & 0xff;
   const g = (rgb >> 8) & 0xff;
   const b = rgb & 0xff;
 
-  // Calculate luminance based on RGB values
   const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b;
 
-  // Return true if luminance is less than 128 (dark), else false
   return luminance < 128;
 };
 
@@ -64,26 +60,24 @@ const isDark = (color) => {
  * @returns {JSX.Element} - Rendered Dashboard component.
  */
 export default function Dashboard({ colors }) {
-  // Destructure colors with default values to prevent undefined errors
   const {
     secondary = "#000000",
     accent = "#FFFFFF",
     background = "#FFFFFF",
     text = "#000000",
-  } = colors || {}; // Fallback to empty object if colors is undefined
+  } = colors || {};
 
-  // Determine text and border colors based on Accent color brightness
-  const textColor = isDark(accent) ? "text-white" : "text-black";
-  const emailColor = isDark(accent) ? "text-gray-300" : "text-gray-700";
-  const borderColor = isDark(accent) ? "border-gray-300" : "border-gray-700";
+  const textColor = isDark(accent) ? "#FFFFFF" : "#000000";
+  const emailColor = isDark(accent) ? "#D1D5DB" : "#4B5563";
+  const borderColor = isDark(accent) ? "#D1D5DB" : "#374151";
 
   return (
     <div
-      className="min-h-screen max-w-full p-6 flex-1 border-black border"
+      className="min-h-screen max-w-full p-6 flex-1 border"
       style={{ backgroundColor: background, color: text }}
     >
       {/* Header Section */}
-      <header className="border-b" style={{ borderColor }}>
+      <header style={{ borderColor: borderColor, borderBottomWidth: "1px" }}>
         <div className="flex h-16 items-center px-4 justify-between">
           <div className="flex items-center space-x-4">
             <div className="flex flex-row">
@@ -122,14 +116,24 @@ export default function Dashboard({ colors }) {
             <Button
               variant="outline"
               size="sm"
-              className="bg-gray-900 border-gray-800 text-white"
+              style={{
+                backgroundColor: "#1F2937",
+                borderColor: "#1F2937",
+                color: "#FFFFFF",
+              }}
             >
               <CalendarIcon className="mr-2 h-4 w-4" />
               <span className="hidden md:block">
                 Jan 20, 2023 - Feb 04, 2023
               </span>
             </Button>
-            <Button size="sm" className="bg-gray-900">
+            <Button
+              size="sm"
+              style={{
+                backgroundColor: "#1F2937",
+                color: "#FFFFFF",
+              }}
+            >
               <Download className="mr-2 h-4 w-4" />
               <span className="hidden md:block">Download</span>
             </Button>
@@ -142,7 +146,7 @@ export default function Dashboard({ colors }) {
           <div className="grid gap-4 md:grid-cols-2">
             {/* Sales Card */}
             <div
-              className="rounded-xl border-black border"
+              className="rounded-xl border"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
@@ -163,7 +167,7 @@ export default function Dashboard({ colors }) {
 
             {/* Active Now Card */}
             <div
-              className="rounded-xl border-black border"
+              className="rounded-xl border"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
