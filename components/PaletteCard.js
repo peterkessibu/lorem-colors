@@ -74,7 +74,7 @@ const PaletteCard = ({ palette, colorFormat, setColorFormat }) => {
       <CardContent className="p-6 bg-gray-50">
         <div className="space-y-4 mt-4">
           {/* Grid Layout for Color Swatches */}
-          <div className="grid grid-cols-6 gap-1">
+          <div className="grid grid-cols-9">
             {Object.entries(palette.colors).map(([name, hex]) => (
               <ColorSwatch
                 key={name}               // Unique key for each swatch

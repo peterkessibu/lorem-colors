@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "app/color-generator/color-palette-generator.js",
     "components/MockupWindow.js"
-  ],
+, "components/landing-page.js", "components/Header.js", "components/Hero.js", "components/Features.js"  ],
   "exclude": ["node_modules"]
 }

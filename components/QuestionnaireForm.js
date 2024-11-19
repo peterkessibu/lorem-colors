@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import colors from "@/lib/colors"; // Import colors
+import colors from "@/lib/colors";
 
 const colorNames = Object.keys(colors);
 
@@ -37,7 +37,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-1">
-        <Label className="text-lg font-semibold">
+        <Label className="text-sm font-semibold">
           Custom Color or Description
         </Label>
         <input
@@ -49,7 +49,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
       </div>
 
       <div className="space-y-1">
-        <Label className="text-lg font-semibold">Primary Color</Label>
+        <Label className="text-sm font-semibold">Primary Color</Label>
         <Select
           value={answers.primaryColor}
           onValueChange={(value) => handleChange("primaryColor", value)}
@@ -69,7 +69,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
       </div>
 
       <div className="space-y-1">
-        <Label className="text-lg font-semibold">
+        <Label className="text-sm font-semibold">
           Background Color Preference
         </Label>
         <Select
@@ -88,7 +88,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
       </div>
 
       <div className="space-y-1">
-        <Label className="text-lg font-semibold">Contrast Preference</Label>
+        <Label className="text-sm font-semibold">Contrast Preference</Label>
         <Select
           value={answers.contrastPreference}
           onValueChange={(value) => handleChange("contrastPreference", value)}
@@ -104,7 +104,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
       </div>
 
       <div className="space-y-1">
-        <Label className="text-lg font-semibold">Intended Mood</Label>
+        <Label className="text-sm font-semibold">Intended Mood</Label>
         <Select
           value={answers.intendedMood}
           onValueChange={(value) => handleChange("intendedMood", value)}
