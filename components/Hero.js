@@ -25,9 +25,17 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <span className="block xl:inline">Transform Your Designs</span>{' '}
-                <span className="block text-primary xl:inline">with Perfect Colors</span>
+                <span className="block xl:inline">Everything in black and white</span>{' '}
+                <span className="block text-primary xl:inline">till you click...</span>
               </motion.h1>
+              <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                <div className="rounded-md shadow">
+                  <Button variant="default" size="xl" className='text-xl'>
+                    Generate Palette
+                  </Button>
+                </div>
+              </div>
+            </div>
               <motion.p
                 className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
                 initial={{ opacity: 0, y: 20 }}
@@ -36,19 +44,6 @@ export default function Hero() {
               >
                 Generate stunning color palettes tailored to your needs. Elevate your projects with AI-powered color recommendations and comprehensive analytics.
               </motion.p>
-              <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                <div className="rounded-md shadow">
-                  <Button variant="default" size="lg">
-                    Generate Your Palette
-                  </Button>
-                </div>
-                <div className="mt-3 sm:mt-0 sm:ml-3">
-                  <Button variant="outline" size="lg">
-                    Learn More
-                  </Button>
-                </div>
-              </div>
-            </div>
           </main>
         </div>
       </div>

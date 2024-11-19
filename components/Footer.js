@@ -104,7 +104,7 @@ export default function Footer() {
           </div>
 
           {/* Footer Sections */}
-          <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+          <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-4">
             {footerSections.map((section) => (
               <div key={section.title} className="md:grid md:grid-cols-2 md:gap-8">
                 <div>
@@ -134,7 +134,7 @@ export default function Footer() {
             &copy; {currentYear} Lorem Colors, Inc. All rights reserved.
           </p>
         </div>
-        </div>
+      </div>
     </footer>
   )
 }

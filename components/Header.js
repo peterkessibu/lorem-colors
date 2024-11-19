@@ -1,7 +1,7 @@
 
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { Palette } from 'lucide-react'
+import { Palette, Play } from 'lucide-react'
 import Link from 'next/link'
 
 export default function Header() {
@@ -22,11 +22,19 @@ export default function Header() {
             </a>
           </div>
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <Link href="/color-palette">
-              <Button variant="outline" size="lg">
-                Get Started
-              </Button>
-            </Link>
+            <div className='justify-between space-x-4'>
+              <Link href="/color-palette">
+                <Button variant="destructive" size="lg">
+                  Demo
+                  <Play className="h-6 w-6 ml-2" />
+                </Button>
+              </Link>
+              <Link href="/color-palette">
+                <Button variant="outline" size="lg">
+                  Get Started
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

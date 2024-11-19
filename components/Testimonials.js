@@ -30,9 +30,9 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="bg-gray-50 overflow-hidden w-full">
+    <section className="bg-gray-50 overflow-hidden w-full items-center">
       <div className="mx-auto pt-20 pb-12 px-4 sm:px-6 lg:px-8 lg:py-20 w-full">
-        <div className="relative lg:flex lg:items-center w-full">
+        <div className="relative md:flex md:items-center w-full">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="flex lg:items-center mb-10 w-full">
               <div className="hidden lg:block lg:flex-shrink-0">
