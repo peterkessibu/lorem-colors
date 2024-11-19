@@ -12,6 +12,16 @@ const generationConfig = {
   max_tokens: 8192,
 };
 
+// Definitions of intended moods
+const moodDefinitions = {
+  Professional: "A polished, refined approach that emphasizes competence, precision, and corporate standards",
+  Playful: "A lighthearted, creative style that embraces whimsy, spontaneity, and joyful expression",
+  Minimalistic: "A clean, streamlined design focused on essential elements, simplicity, and elegant restraint",
+  Bold: "A dramatic, high-impact style characterized by strong statements, confident choices, and striking contrasts",
+  Relaxed: "A laid-back, comfortable approach that prioritizes ease, natural flow, and gentle interactions",
+  Vibrant: "An energetic, dynamic style that celebrates intensity, excitement, and passionate expression",
+};
+
 // Utility function to select a shade based on preference
 const selectShade = (colorName, preference) => {
   const colorShades = colors[colorName];
@@ -27,8 +37,6 @@ const selectShade = (colorName, preference) => {
   } else if (preference === "Dark") {
     // Shades 500 - 950 for specified colors
     const darkShadesGeneral = [500, 600, 700, 800, 900, 950];
-    const darkShadesSpecial = [950]; // for colors: emerald, green, lime, teal, cyan, sky, blue, indigo, violet, purple, fuchsia, pink, rose
-
     const specialColors = [
       "Emerald",
       "Green",
@@ -88,7 +96,7 @@ export async function POST(request) {
     // Select background color based on preference
     const backgroundColor = selectShade(primaryColor, backgroundColorPreference);
 
-    // Select accent color: a slightly higher contrast based on background color
+    // Select accent color: a shade slightly different from background color
     const primaryShades = Object.keys(colors[primaryColor])
       .map(Number)
       .sort((a, b) => a - b);
@@ -103,52 +111,41 @@ export async function POST(request) {
 
     const accentColor = colors[primaryColor][accentShade];
 
-    // Prepare the prompt with selected colors
-    const paletteData = {
-      primaryColor,
-      backgroundColorPreference,
-      contrastPreference,
-      intendedMood,
-      customDescription,
-      backgroundColor,
-      accentColor,
-    };
+    // Get mood description
+    const moodDescription = moodDefinitions[intendedMood] || "";
 
-    const initialPrompt = `Phase 1: Analyze the primary color and background color preference.
+    // Prepare the prompt with selected colors and mood definitions
+    const prompt = `Generate 6 color palettes based on the following criteria:
 
-Primary Color: ${primaryColor}
+Primary Color: ${primaryColor} (This should be the base color for the background and accent, with all other colors relating to it, especially for the light and dark Background Color Preference)
+Accent Color: ${accentColor}
 Background Color Preference: ${backgroundColorPreference}
-
-Determine a suitable background shade based on the primary color and preference.`;
-
-    const finalPrompt = `Phase 2: Generate 6 distinguishable color palettes based on the analysis.
-
+Saturation Level: ${contrastPreference}
 Contrast Preference: ${contrastPreference}
-Intended Mood: ${intendedMood}
+Intended Mood: ${intendedMood} - ${moodDescription}
+Shade Preference (for shadows and accents): ${backgroundColorPreference}
 Custom Color or Description: ${customDescription}
-
-Ensure the background and accent colors are derived from the primary color with appropriate contrast. Provide detailed descriptions influenced by the intended mood.
 
 Requirements:
 1. Color Roles & Usage Guidelines:
    - Primary: Main brand color, used for CTAs and key UI elements (20-30% of interface)
    - Secondary: Supporting color for secondary actions (15-20% of interface)
-   - Accent: less contrasting color based on background color (5-10% of interface)
+   - Accent: Off white variation of the primary color, used for minimalistic tone (5-10% of interface)
    - Background: Main content background (30-40% of interface)
    - Border: Subtle divisions and containers (5-10% of interface)
    - Hover: Interactive state variations (5-10% of interface)
 
 2. Accessibility Requirements:
-   - Maintain WCAG 2.1 AA contrast ratio (4.5:1) with background for Primary & Secondary
+   - Primary & Secondary: Must maintain WCAG 2.1 AA contrast ratio (4.5:1) with background
    - Text colors must achieve AAA compliance (7:1) for body text
    - Include color-blind friendly combinations
    - Avoid problematic color combinations (red/green, blue/purple)
 
 3. Technical Specifications:
-   - All colors in hexadecimal format
-   - Proper color space considerations (sRGB)
-   - Consistent saturation levels within specified intensity range
-   - Sufficient contrast between interactive and non-interactive elements
+   - All colors must be provided in hexadecimal format
+   - Include proper color space considerations (sRGB)
+   - Maintain consistent saturation levels within the specified intensity range
+   - Ensure sufficient contrast between interactive and non-interactive elements
 
 4. Palette Naming Convention:
    Each palette should follow the format: "palette-variant-X"
@@ -197,36 +194,22 @@ Each palette object should have the following structure:
 
     let stream;
     try {
-      // Phase 1: Analyze colors
-      await together.chat.completions.create({
-        model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
-        messages: [
-          {
-            role: "system",
-            content:
-              "You are a color palette generator that only responds with valid JSON.",
-          },
-          { role: "user", content: initialPrompt },
-        ],
-        stream: false,
-        ...generationConfig,
-      });
-
-      // Phase 2: Generate palettes
+      // Initiate the AI generation process with the specified model and prompt
       stream = await together.chat.completions.create({
-        model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
+        model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", // Specify the AI model
         messages: [
           {
             role: "system",
             content:
               "You are a color palette generator that only responds with valid JSON.",
           },
-          { role: "user", content: finalPrompt },
+          { role: "user", content: prompt },
         ],
-        stream: true,
-        ...generationConfig,
+        stream: true, // Enable streaming of the response
+        ...generationConfig, // Spread the generation configuration
       });
     } catch (apiError) {
+      // Handle errors from the AI API
       console.error("Error calling Together API:", apiError);
       return NextResponse.json(
         {
@@ -239,26 +222,32 @@ Each palette object should have the following structure:
 
     let result = "";
     try {
+      // Aggregate the streamed response chunks
       for await (const chunk of stream) {
         result += chunk.choices[0]?.delta?.content || "";
       }
 
-      result = result.trim();
+      result = result.trim(); // Trim any leading/trailing whitespace
 
+      // Remove any markdown code block wrappers (e.g., ```json ... ```)
       if (result.startsWith("```json")) {
         result = result.replace(/```json\s*/, "").replace(/```$/, "").trim();
       }
 
+      // Remove any remaining backticks
       result = result.replace(/`/g, "").trim();
 
+      // Extract JSON content if there's any additional text present
       const jsonStart = result.indexOf("{");
       const jsonEnd = result.lastIndexOf("}");
       if (jsonStart !== -1 && jsonEnd !== -1) {
         result = result.substring(jsonStart, jsonEnd + 1);
       }
 
+      // Log the cleaned result for debugging purposes
       console.log("Cleaned Raw Result:", result);
     } catch (streamError) {
+      // Handle any errors that occur during the streaming process
       console.error("Error during streaming:", streamError);
       return NextResponse.json(
         {
@@ -271,13 +260,16 @@ Each palette object should have the following structure:
 
     let palettesData;
     try {
+      // Parse the cleaned JSON string
       const parsedResponse = JSON.parse(result);
       console.log("Parsed response:", parsedResponse);
 
+      // Validate that the "palettes" key exists and is an array
       if (!parsedResponse.palettes || !Array.isArray(parsedResponse.palettes)) {
         throw new Error("Invalid palette format received");
       }
 
+      // Transform each palette to ensure it has the correct structure
       palettesData = parsedResponse.palettes.map((palette, index) => {
         const {
           colors: {
@@ -334,8 +326,10 @@ Each palette object should have the following structure:
         };
       });
 
+      // Send the successfully parsed and transformed palettes as a JSON response
       return NextResponse.json({ palettes: palettesData });
     } catch (parseError) {
+      // Handle JSON parsing errors or validation failures
       console.error(
         "Error parsing JSON:",
         parseError,
@@ -351,6 +345,7 @@ Each palette object should have the following structure:
       );
     }
   } catch (error) {
+    // Handle any unexpected errors
     console.error("API Error:", error);
     return NextResponse.json(
       {
