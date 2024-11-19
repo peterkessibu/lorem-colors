@@ -1,6 +1,6 @@
-
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function CallToAction() {
   return (
@@ -21,22 +21,25 @@ export default function CallToAction() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Join thousands of designers and businesses using Lorem Colors to create stunning color palettes and improve their design workflow.
+          Join thousands of designers and businesses using Lorem Colors to
+          create stunning color palettes and improve their design workflow.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <Button
-            variant="secondary"
-            size="lg"
-            className="mt-8 w-full sm:w-auto"
-          >
-            Start Creating Now
-          </Button>
+          <Link href={"/color-palette"}>
+            <Button
+              variant="secondary"
+              size="lg"
+              className="mt-8 w-full sm:w-auto"
+            >
+              Start Creating Now
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </div>
-  )
+  );
 }

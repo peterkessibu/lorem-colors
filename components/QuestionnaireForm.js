@@ -74,7 +74,9 @@ const QuestionnaireForm = ({ onSubmit }) => {
         </Label>
         <Select
           value={answers.backgroundColorPreference}
-          onValueChange={(value) => handleChange("backgroundColorPreference", value)}
+          onValueChange={(value) =>
+            handleChange("backgroundColorPreference", value)
+          }
           required
         >
           <SelectTrigger className="w-full">

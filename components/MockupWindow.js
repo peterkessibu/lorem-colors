@@ -10,25 +10,10 @@ import {
   YAxis,
   CartesianGrid,
 } from "recharts";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  CalendarIcon,
-  Download,
-  Users,
-  Menu,
-  DollarSign,
-} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CalendarIcon, Download, Users, Menu, DollarSign } from "lucide-react";
 
 /**
  * Determines if a color is dark based on its hexadecimal value.
@@ -36,9 +21,13 @@ import {
  * @returns {boolean} - Returns true if the color is dark, else false.
  */
 const isDark = (color) => {
-  if (typeof color !== "string" || !color.startsWith("#") || color.length !== 7) {
+  if (
+    typeof color !== "string" ||
+    !color.startsWith("#") ||
+    color.length !== 7
+  ) {
     console.warn(
-      `Invalid color format received: "${color}". Expected a string like "#FFFFFF". Defaulting to light color.`
+      `Invalid color format received: "${color}". Expected a string like "#FFFFFF". Defaulting to light color.`,
     );
     return false;
   }
@@ -98,11 +87,16 @@ export default function Dashboard({ colors }) {
             className="flex-col md:flex-row hidden md:flex"
             style={{ backgroundColor: background, color: text }}
           >
-            {["Overview", "Customers", "Products", "Settings"].map((item, index) => (
-              <p key={index} className="py-2 px-4 hover:bg-gray-800 hover:text-white rounded-lg">
-                {item}
-              </p>
-            ))}
+            {["Overview", "Customers", "Products", "Settings"].map(
+              (item, index) => (
+                <p
+                  key={index}
+                  className="py-2 px-4 hover:bg-gray-800 hover:text-white rounded-lg"
+                >
+                  {item}
+                </p>
+              ),
+            )}
           </div>
         </div>
       </header>
@@ -175,7 +169,9 @@ export default function Dashboard({ colors }) {
               }}
             >
               <div className="flex flex-row items-center justify-between space-y-0 p-4">
-                <CardTitle className="text-sm font-medium">Active Now</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Active Now
+                </CardTitle>
                 <Users className="h-4 w-4 text-gray-500" />
               </div>
               <CardContent>
@@ -203,14 +199,16 @@ export default function Dashboard({ colors }) {
               </div>
               <CardContent className="pl-2">
                 <ResponsiveContainer width="100%" height={350}>
-                  <BarChart data={[
-                    { month: "Jan", total: 4500 },
-                    { month: "Feb", total: 3000 },
-                    { month: "Mar", total: 4000 },
-                    { month: "Apr", total: 5000 },
-                    { month: "May", total: 3000 },
-                    { month: "Jun", total: 2800 },
-                  ]}>
+                  <BarChart
+                    data={[
+                      { month: "Jan", total: 4500 },
+                      { month: "Feb", total: 3000 },
+                      { month: "Mar", total: 4000 },
+                      { month: "Apr", total: 5000 },
+                      { month: "May", total: 3000 },
+                      { month: "Jun", total: 2800 },
+                    ]}
+                  >
                     <CartesianGrid vertical={false} />
                     <XAxis
                       dataKey="month"
@@ -308,13 +306,19 @@ export default function Dashboard({ colors }) {
                       <div className="ml-4 space-y-1">
                         <p
                           className="text-[12px] font-medium leading-none"
-                          style={{ color: colors ? colors[sale.colorName] : textColor }}
+                          style={{
+                            color: colors ? colors[sale.colorName] : textColor,
+                          }}
                         >
                           {sale.name}
                         </p>
                         <p
                           className="text-[12px]"
-                          style={{ color: colors ? colors[sale.colorEmail] : emailColor }}
+                          style={{
+                            color: colors
+                              ? colors[sale.colorEmail]
+                              : emailColor,
+                          }}
                         >
                           {sale.email}
                         </p>

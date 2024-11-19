@@ -1,32 +1,34 @@
-
-import Image from 'next/image'
+import Image from "next/image";
 
 const testimonials = [
   {
-    content: "Lorem Colors has revolutionized our design process. The AI-powered recommendations are spot-on!",
+    content:
+      "Lorem Colors has revolutionized our design process. The AI-powered recommendations are spot-on!",
     author: {
-      name: 'Sarah Johnson',
-      role: 'Lead Designer, TechCorp',
-      image: '/placeholder.svg?height=96&width=96',
+      name: "Sarah Johnson",
+      role: "Lead Designer, TechCorp",
+      image: "/placeholder.svg?height=96&width=96",
     },
   },
   {
-    content: "It is easy to transform our brand identity with Lorem Colors. The color palettes are always on point!",
+    content:
+      "It is easy to transform our brand identity with Lorem Colors. The color palettes are always on point!",
     author: {
-      name: 'Michael Chen',
-      role: 'Creative Director, DesignHub',
-      image: '/placeholder.svg?height=96&width=96',
+      name: "Michael Chen",
+      role: "Creative Director, DesignHub",
+      image: "/placeholder.svg?height=96&width=96",
     },
   },
   {
-    content: "Lorem Colors has become an essential tool in our branding projects. Highly recommended!",
+    content:
+      "Lorem Colors has become an essential tool in our branding projects. Highly recommended!",
     author: {
-      name: 'Emily Rodriguez',
-      role: 'Brand Strategist, BrandWorks',
-      image: '/placeholder.svg?height=96&width=96',
+      name: "Emily Rodriguez",
+      role: "Brand Strategist, BrandWorks",
+      image: "/placeholder.svg?height=96&width=96",
     },
   },
-]
+];
 
 export default function Testimonials() {
   return (
@@ -74,8 +76,12 @@ export default function Testimonials() {
                         />
                       </div>
                       <div className="ml-4 lg:ml-0">
-                        <div className="text-base font-medium text-gray-900">{testimonial.author.name}</div>
-                        <div className="text-base font-medium text-primary">{testimonial.author.role}</div>
+                        <div className="text-base font-medium text-gray-900">
+                          {testimonial.author.name}
+                        </div>
+                        <div className="text-base font-medium text-primary">
+                          {testimonial.author.role}
+                        </div>
                       </div>
                     </div>
                   </footer>
@@ -86,5 +92,5 @@ export default function Testimonials() {
         </div>
       </div>
     </section>
-  )
+  );
 }

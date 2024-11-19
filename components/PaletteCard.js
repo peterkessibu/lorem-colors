@@ -3,12 +3,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -20,11 +15,11 @@ import ColorSwatch from "./ColorSwatch";
 
 /**
  * PaletteCard Component
- * 
+ *
  * Renders a card displaying a color palette with options to select the color format.
  * Each color in the palette is displayed using the ColorSwatch component.
  * Users can lock specific colors to prevent accidental changes.
- * 
+ *
  * @param {Object} props - Component props.
  * @param {Object} props.palette - The palette object containing name, colors, and description.
  * @param {string} props.colorFormat - The current color format selected (e.g., 'hex', 'rgb', 'css').
@@ -38,7 +33,7 @@ const PaletteCard = ({ palette, colorFormat, setColorFormat }) => {
   /**
    * Toggles the lock state of a specific color.
    * Prevents accidental modifications to locked colors.
-   * 
+   *
    * @param {string} colorName - The name of the color to toggle lock state.
    */
   const handleLockToggle = (colorName) => {
@@ -55,7 +50,7 @@ const PaletteCard = ({ palette, colorFormat, setColorFormat }) => {
         <CardTitle className="flex justify-between items-center">
           {/* Palette Name */}
           <span className="text-lg font-semibold">{palette.name}</span>
-          
+
           {/* Color Format Selector */}
           <Select value={colorFormat} onValueChange={setColorFormat}>
             <SelectTrigger className="w-[120px] bg-white text-black rounded-md shadow-md">
@@ -77,12 +72,12 @@ const PaletteCard = ({ palette, colorFormat, setColorFormat }) => {
           <div className="grid grid-cols-9">
             {Object.entries(palette.colors).map(([name, hex]) => (
               <ColorSwatch
-                key={name}               // Unique key for each swatch
-                color={hex}              // Hex code of the color
-                name={name}              // Name of the color (e.g., 'primary')
+                key={name} // Unique key for each swatch
+                color={hex} // Hex code of the color
+                name={name} // Name of the color (e.g., 'primary')
                 locked={lockedColors[name]} // Lock state of the color
                 onLockToggle={handleLockToggle} // Function to toggle lock state
-                format={colorFormat}     // Current color format selected
+                format={colorFormat} // Current color format selected
               />
             ))}
           </div>

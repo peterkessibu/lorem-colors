@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import Header from './Header'
-import Hero from './Hero'
-import Features from './Features'
-import Testimonials from './Testimonials'
-import CallToAction from './CallToAction'
-import Footer from './Footer'
+import Header from "./Header";
+import Hero from "./Hero";
+import Features from "./Features";
+import Testimonials from "./Testimonials";
+import CallToAction from "./CallToAction";
+import Footer from "./Footer";
 
 export default function LandingPage() {
   return (
@@ -19,5 +19,5 @@ export default function LandingPage() {
       </main>
       <Footer />
     </div>
-  )
+  );
 }

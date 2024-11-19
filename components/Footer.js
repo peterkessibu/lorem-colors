@@ -1,75 +1,75 @@
-'use client'
+"use client";
 
 import {
   Facebook,
   Twitter,
   Instagram,
   GitlabIcon as GitHub,
-  Palette
-} from 'lucide-react'
+  Palette,
+} from "lucide-react";
 
 const socialLinks = [
   {
-    name: 'Facebook',
-    href: '#',
-    icon: Facebook
+    name: "Facebook",
+    href: "#",
+    icon: Facebook,
   },
   {
-    name: 'Instagram',
-    href: '#',
-    icon: Instagram
+    name: "Instagram",
+    href: "#",
+    icon: Instagram,
   },
   {
-    name: 'Twitter',
-    href: '#',
-    icon: Twitter
+    name: "Twitter",
+    href: "#",
+    icon: Twitter,
   },
   {
-    name: 'GitHub',
-    href: '#',
-    icon: GitHub
-  }
-]
+    name: "GitHub",
+    href: "#",
+    icon: GitHub,
+  },
+];
 
 const footerSections = [
   {
-    title: 'Solutions',
+    title: "Solutions",
     links: [
-      { name: 'Color Palette Generator', href: '#' },
-      { name: 'Analytics Dashboard', href: '#' },
-      { name: 'AI Recommendations', href: '#' },
-      { name: 'Integrations', href: '#' }
-    ]
+      { name: "Color Palette Generator", href: "#" },
+      { name: "Analytics Dashboard", href: "#" },
+      { name: "AI Recommendations", href: "#" },
+      { name: "Integrations", href: "#" },
+    ],
   },
   {
-    title: 'Support',
+    title: "Support",
     links: [
-      { name: 'Pricing', href: '#' },
-      { name: 'Documentation', href: '#' },
-      { name: 'Guides', href: '#' },
-      { name: 'API Status', href: '#' }
-    ]
+      { name: "Pricing", href: "#" },
+      { name: "Documentation", href: "#" },
+      { name: "Guides", href: "#" },
+      { name: "API Status", href: "#" },
+    ],
   },
   {
-    title: 'Company',
+    title: "Company",
     links: [
-      { name: 'About', href: '#' },
-      { name: 'Blog', href: '#' },
-      { name: 'Jobs', href: '#' },
-      { name: 'Press', href: '#' },
-      { name: 'Partners', href: '#' }
-    ]
+      { name: "About", href: "#" },
+      { name: "Blog", href: "#" },
+      { name: "Jobs", href: "#" },
+      { name: "Press", href: "#" },
+      { name: "Partners", href: "#" },
+    ],
   },
   {
-    title: 'Legal',
+    title: "Legal",
     links: [
-      { name: 'Privacy', href: '#' },
-      { name: 'Terms', href: '#' },
-      { name: 'Cookie Policy', href: '#' },
-      { name: 'Trademark Policy', href: '#' }
-    ]
-  }
-]
+      { name: "Privacy", href: "#" },
+      { name: "Terms", href: "#" },
+      { name: "Cookie Policy", href: "#" },
+      { name: "Trademark Policy", href: "#" },
+    ],
+  },
+];
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -106,7 +106,10 @@ export default function Footer() {
           {/* Footer Sections */}
           <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-4">
             {footerSections.map((section) => (
-              <div key={section.title} className="md:grid md:grid-cols-2 md:gap-8">
+              <div
+                key={section.title}
+                className="md:grid md:grid-cols-2 md:gap-8"
+              >
                 <div>
                   <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
                     {section.title}
@@ -136,5 +139,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

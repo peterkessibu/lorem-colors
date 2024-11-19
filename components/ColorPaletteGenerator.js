@@ -22,7 +22,8 @@ const ColorPaletteGenerator = () => {
     setIsGenerating(true);
     setError(null);
     try {
-      const response = await fetch("/api/chat", { // Ensure this endpoint is correct
+      const response = await fetch("/api/chat", {
+        // Ensure this endpoint is correct
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +70,10 @@ const ColorPaletteGenerator = () => {
       <div className="flex flex-col lg:flex-row gap-8">
         <aside className="w-full lg:w-52">
           <div className="sticky top-8">
-            <QuestionnaireForm onSubmit={handleFormSubmit} disabled={isSubmitting} />
+            <QuestionnaireForm
+              onSubmit={handleFormSubmit}
+              disabled={isSubmitting}
+            />
           </div>
         </aside>
         <div className="flex-1">
@@ -102,12 +106,12 @@ const ColorPaletteGenerator = () => {
             colors={
               isGenerating || palettes.length === 0
                 ? {
-                  Background: "#f0f0f0",
-                  Text: "#a0a0a0",
-                  Border: "#d0d0d0",
-                  Accent: "#c0c0c0",
-                  Secondary: "#b0b0b0",
-                }
+                    Background: "#f0f0f0",
+                    Text: "#a0a0a0",
+                    Border: "#d0d0d0",
+                    Accent: "#c0c0c0",
+                    Secondary: "#b0b0b0",
+                  }
                 : currentPalette.colors
             }
           />

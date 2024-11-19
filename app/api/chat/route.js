@@ -14,12 +14,17 @@ const generationConfig = {
 
 // Definitions of intended moods
 const moodDefinitions = {
-  Professional: "A polished, refined approach that emphasizes competence, precision, and corporate standards",
-  Playful: "A lighthearted, creative style that embraces whimsy, spontaneity, and joyful expression",
-  Minimalistic: "A clean, streamlined design focused on essential elements, simplicity, and elegant restraint",
+  Professional:
+    "A polished, refined approach that emphasizes competence, precision, and corporate standards",
+  Playful:
+    "A lighthearted, creative style that embraces whimsy, spontaneity, and joyful expression",
+  Minimalistic:
+    "A clean, streamlined design focused on essential elements, simplicity, and elegant restraint",
   Bold: "A dramatic, high-impact style characterized by strong statements, confident choices, and striking contrasts",
-  Relaxed: "A laid-back, comfortable approach that prioritizes ease, natural flow, and gentle interactions",
-  Vibrant: "An energetic, dynamic style that celebrates intensity, excitement, and passionate expression",
+  Relaxed:
+    "A laid-back, comfortable approach that prioritizes ease, natural flow, and gentle interactions",
+  Vibrant:
+    "An energetic, dynamic style that celebrates intensity, excitement, and passionate expression",
 };
 
 // Utility function to select a shade based on preference
@@ -56,7 +61,8 @@ const selectShade = (colorName, preference) => {
     if (specialColors.includes(colorName)) {
       return colorShades[950];
     } else {
-      const selectedShade = darkShadesGeneral[getRandomInt(0, darkShadesGeneral.length - 1)];
+      const selectedShade =
+        darkShadesGeneral[getRandomInt(0, darkShadesGeneral.length - 1)];
       return colorShades[selectedShade];
     }
   }
@@ -82,26 +88,29 @@ export async function POST(request) {
     ) {
       return NextResponse.json(
         { message: "All fields are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (!colors[primaryColor]) {
       return NextResponse.json(
         { message: `Unsupported primary color: ${primaryColor}` },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     // Select background color based on preference
-    const backgroundColor = selectShade(primaryColor, backgroundColorPreference);
+    const backgroundColor = selectShade(
+      primaryColor,
+      backgroundColorPreference,
+    );
 
     // Select accent color: a shade slightly different from background color
     const primaryShades = Object.keys(colors[primaryColor])
       .map(Number)
       .sort((a, b) => a - b);
     const bgShade = Object.keys(colors[primaryColor]).find(
-      (shade) => colors[primaryColor][shade] === backgroundColor
+      (shade) => colors[primaryColor][shade] === backgroundColor,
     );
     const bgShadeIndex = primaryShades.indexOf(Number(bgShade));
     let accentShade =
@@ -216,7 +225,7 @@ Each palette object should have the following structure:
           message: "Failed to generate palettes",
           error: apiError.message,
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -231,7 +240,10 @@ Each palette object should have the following structure:
 
       // Remove any markdown code block wrappers (e.g., ```json ... ```)
       if (result.startsWith("```json")) {
-        result = result.replace(/```json\s*/, "").replace(/```$/, "").trim();
+        result = result
+          .replace(/```json\s*/, "")
+          .replace(/```$/, "")
+          .trim();
       }
 
       // Remove any remaining backticks
@@ -254,7 +266,7 @@ Each palette object should have the following structure:
           message: "Failed to process streamed response",
           error: streamError.message,
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -303,7 +315,7 @@ Each palette object should have the following structure:
         for (const color of requiredColors) {
           if (!palette.colors || !palette.colors[color]) {
             throw new Error(
-              `Missing color '${color}' in palette at index ${index}`
+              `Missing color '${color}' in palette at index ${index}`,
             );
           }
         }
@@ -334,14 +346,14 @@ Each palette object should have the following structure:
         "Error parsing JSON:",
         parseError,
         "\nCleaned Raw Result:",
-        result
+        result,
       );
       return NextResponse.json(
         {
           message: "Failed to parse palette data",
           error: parseError.message,
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
   } catch (error) {
@@ -352,7 +364,7 @@ Each palette object should have the following structure:
         message: "Internal server error",
         error: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -28,7 +28,15 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/color-generator/color-palette-generator.js",
-    "components/MockupWindow.js"
-, "components/landing-page.js", "components/Header.js", "components/Hero.js", "components/Features.js", "components/Testimonials.js", "components/CallToAction.js", "components/Footer.js", "app/page.js"  ],
+    "components/MockupWindow.js",
+    "components/landing-page.js",
+    "components/Header.js",
+    "components/Hero.js",
+    "components/Features.js",
+    "components/Testimonials.js",
+    "components/CallToAction.js",
+    "components/Footer.js",
+    "app/page.js"
+  ],
   "exclude": ["node_modules"]
 }
