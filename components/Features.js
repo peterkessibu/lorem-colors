@@ -1,7 +1,6 @@
-'use client'
 
 import { motion } from 'framer-motion'
-import { Palette, BarChart, Cpu } from 'lucide-react'
+import { Palette, Cpu } from 'lucide-react'
 
 const features = [
   {
@@ -10,18 +9,13 @@ const features = [
     icon: Palette,
   },
   {
-    name: 'Dashboard Analytics',
-    description: 'Monitor your color usage and trends with comprehensive visual reports.',
-    icon: BarChart,
-  },
-  {
     name: 'AI Integration',
     description: 'Leverage AI for intelligent color recommendations tailored to your brand.',
     icon: Cpu,
   },
 ]
 
-export function FeaturesComponent() {
+export default function Features() {
   return (
     <div className="py-12 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,7 +30,7 @@ export function FeaturesComponent() {
         </div>
 
         <div className="mt-10">
-          <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
+          <dl className="space-y-10 space-x-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.name}

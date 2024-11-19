@@ -1,10 +1,9 @@
-'use client'
 
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 
-export function HeroComponent() {
+export default function Hero() {
   return (
     <div className="relative bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto">

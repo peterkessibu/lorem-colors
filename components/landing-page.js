@@ -1,13 +1,13 @@
 'use client'
 
-import Header from './components/Header'
-import Hero from './components/Hero'
-import Features from './components/Features'
-import Testimonials from './components/Testimonials'
-import CallToAction from './components/CallToAction'
-import Footer from './components/Footer'
+import Header from './Header'
+import Hero from './Hero'
+import Features from './Features'
+import Testimonials from './Testimonials'
+import CallToAction from './CallToAction'
+import Footer from './Footer'
 
-export function LandingPageComponent() {
+export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
