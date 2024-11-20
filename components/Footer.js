@@ -1,72 +1,53 @@
-"use client";
+'use client';
 
+import Link from 'next/link';
 import {
-  Facebook,
-  Twitter,
   Instagram,
-  GitlabIcon as GitHub,
+  Github,
   Palette,
-} from "lucide-react";
+  Linkedin,
+} from 'lucide-react';
 
+// Define social media links with correct icons
 const socialLinks = [
   {
-    name: "Facebook",
-    href: "#",
-    icon: Facebook,
-  },
-  {
-    name: "Instagram",
-    href: "#",
+    name: 'Instagram',
+    href: '#',
     icon: Instagram,
   },
   {
-    name: "Twitter",
-    href: "#",
-    icon: Twitter,
+    name: 'LinkedIn',
+    href: '#',
+    icon: Linkedin,
   },
   {
-    name: "GitHub",
-    href: "#",
-    icon: GitHub,
+    name: 'GitHub',
+    href: '#',
+    icon: Github,
   },
 ];
 
+// Define footer sections
 const footerSections = [
   {
-    title: "Solutions",
+    title: 'Solutions',
     links: [
-      { name: "Color Palette Generator", href: "#" },
-      { name: "Analytics Dashboard", href: "#" },
-      { name: "AI Recommendations", href: "#" },
-      { name: "Integrations", href: "#" },
+      { name: 'Color Palette Generator', href: '#' },
+      { name: 'Integrations', href: '#' },
     ],
   },
   {
-    title: "Support",
+    title: 'Support',
     links: [
-      { name: "Pricing", href: "#" },
-      { name: "Documentation", href: "#" },
-      { name: "Guides", href: "#" },
-      { name: "API Status", href: "#" },
+      { name: 'Documentation', href: '#' },
+      { name: 'API Status', href: '#' },
     ],
   },
   {
-    title: "Company",
+    title: 'Company',
     links: [
-      { name: "About", href: "#" },
-      { name: "Blog", href: "#" },
-      { name: "Jobs", href: "#" },
-      { name: "Press", href: "#" },
-      { name: "Partners", href: "#" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { name: "Privacy", href: "#" },
-      { name: "Terms", href: "#" },
-      { name: "Cookie Policy", href: "#" },
-      { name: "Trademark Policy", href: "#" },
+      { name: 'About', href: '#' },
+      { name: 'Blog', href: '#' },
     ],
   },
 ];
@@ -79,37 +60,33 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div className="xl:grid lg:grid-cols-5 lg:gap-4">
           {/* Logo and Description */}
-          <div className="space-y-8 xl:col-span-1">
+          <div className="space-y-8 xl:col-span-1 md:mr-4">
             <div className="flex justify-start lg:w-0 lg:flex-1">
-              <a href="#" className="flex items-center">
-                <Palette className="h-18 w-18" />
-              </a>
+              <Link href="/" className="flex items-center">
+                <Palette className="h-16 w-16" />
+              </Link>
             </div>
-            <p className="text-gray-500 text-base">
-              Making the world more colorful, one palette at a time.
-            </p>
             {/* Social Media Links */}
             <div className="flex space-x-6">
-              {socialLinks.map((social) => (
+              {socialLinks.map((social) => ( // Renamed parameter to 'social'
                 <a
                   key={social.name}
                   href={social.href}
                   className="text-gray-400 hover:text-gray-500"
                 >
                   <span className="sr-only">{social.name}</span>
-                  <social.icon className="h-6 w-6" aria-hidden="true" />
+                  {social.icon && (
+                    <social.icon className="h-6 w-6" aria-hidden="true" />
+                  )}
                 </a>
               ))}
             </div>
           </div>
 
           {/* Footer Sections */}
-          <div className="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-4">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 space-x-4 xl:mt-0 xl:col-span-4">
             {footerSections.map((section) => (
-              <div
-                key={section.title}
-                className="md:grid md:grid-cols-2 md:gap-8"
-              >
+              <div key={section.title} className="md:grid md:grid-cols-1 md:gap-8">
                 <div>
                   <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
                     {section.title}
