@@ -58,15 +58,20 @@ export default function Hero() {
           </main>
         </div>
       </div>
-      <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <Image
-          className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-          src="/placeholder.svg?height=600&width=800"
-          alt="Color palette illustration"
-          width={800}
-          height={600}
-        />
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}>
+        <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+          <Image
+            className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
+            src="/placeholder.svg?height=600&width=800"
+            alt="Color palette illustration"
+            width={800}
+            height={600}
+          />
+        </div>
+        </motion.div>
     </div>
   );
 }
