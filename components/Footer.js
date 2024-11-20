@@ -1,7 +1,7 @@
-"use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { Instagram, Github, Palette, Linkedin } from "lucide-react";
+import { Instagram, Github, Palette, Linkedin, X } from "lucide-react";
 
 // Define social media links with correct icons
 const socialLinks = [
@@ -47,8 +47,39 @@ const footerSections = [
   },
 ];
 
+// Modal Component
+function Modal({ isOpen, onClose, title, children }) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+      <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-md">
+        <div className="flex justify-between items-center p-4 border-b">
+          <h2 className="text-lg font-semibold">{title}</h2>
+          <button onClick={onClose}>
+            <X className="h-6 w-6 text-gray-500" />
+          </button>
+        </div>
+        <div className="p-4">{children}</div>
+      </div>
+    </div>
+  );
+}
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
+
+  const handleLinkClick = (name) => {
+    setModalContent(name);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalContent("");
+  };
 
   return (
     <footer className="bg-background">
@@ -63,22 +94,18 @@ export default function Footer() {
             </div>
             {/* Social Media Links */}
             <div className="flex space-x-6">
-              {socialLinks.map(
-                (
-                  social, // Renamed parameter to 'social'
-                ) => (
-                  <Link
-                    key={social.name}
-                    href={social.href}
-                    className="text-gray-400 hover:text-gray-500"
-                  >
-                    <span className="sr-only">{social.name}</span>
-                    {social.icon && (
-                      <social.icon className="h-6 w-6" aria-hidden="true" />
-                    )}
-                  </Link>
-                ),
-              )}
+              {socialLinks.map((social) => (
+                <Link
+                  key={social.name}
+                  href={social.href}
+                  className="text-gray-400 hover:text-gray-500"
+                >
+                  <span className="sr-only">{social.name}</span>
+                  {social.icon && (
+                    <social.icon className="h-6 w-6" aria-hidden="true" />
+                  )}
+                </Link>
+              ))}
             </div>
           </div>
 
@@ -96,12 +123,21 @@ export default function Footer() {
                   <ul className="mt-4 space-y-4">
                     {section.links.map((link) => (
                       <li key={link.name}>
-                        <Link
-                          href={link.href}
-                          className="text-base text-gray-500 hover:text-gray-900"
-                        >
-                          {link.name}
-                        </Link>
+                        {section.title === "Support" ? (
+                          <button
+                            onClick={() => handleLinkClick(link.name)}
+                            className="text-base text-gray-500 hover:text-gray-900 focus:outline-none"
+                          >
+                            {link.name}
+                          </button>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            className="text-base text-gray-500 hover:text-gray-900"
+                          >
+                            {link.name}
+                          </Link>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -117,6 +153,20 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      <Modal isOpen={isModalOpen} onClose={closeModal} title={modalContent}>
+        {modalContent === "Documentation" && (
+          <p>
+            Visit our <a href="#" className="text-primary">Documentation</a> to learn more.
+          </p>
+        )}
+        {modalContent === "API Status" && (
+          <p>
+            Check the current <a href="#" className="text-primary">API Status</a>.
+          </p>
+        )}
+      </Modal>
     </footer>
   );
 }
