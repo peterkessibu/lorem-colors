@@ -67,7 +67,7 @@ export default function Footer() {
                 (
                   social, // Renamed parameter to 'social'
                 ) => (
-                  <a
+                  <Link
                     key={social.name}
                     href={social.href}
                     className="text-gray-400 hover:text-gray-500"
@@ -76,7 +76,7 @@ export default function Footer() {
                     {social.icon && (
                       <social.icon className="h-6 w-6" aria-hidden="true" />
                     )}
-                  </a>
+                  </Link>
                 ),
               )}
             </div>
@@ -96,12 +96,12 @@ export default function Footer() {
                   <ul className="mt-4 space-y-4">
                     {section.links.map((link) => (
                       <li key={link.name}>
-                        <a
+                        <Link
                           href={link.href}
                           className="text-base text-gray-500 hover:text-gray-900"
                         >
                           {link.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -112,9 +112,9 @@ export default function Footer() {
         </div>
         {/* Bottom Footer */}
         <div className="mt-12 border-t border-gray-200 pt-8">
-          <p className="text-base text-gray-400 xl:text-center">
+          <div className="text-base text-gray-400 xl:text-center">
             &copy; {currentYear} Lorem Colors, Inc. All rights reserved.
-          </p>
+          </div>
         </div>
       </div>
     </footer>

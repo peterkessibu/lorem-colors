@@ -26,7 +26,7 @@ export default function Testimonials() {
     },
     {
       content:
-        "Lorem Colors has become an essential tool in our branding projects. Highly recommended!",
+        "Lorem Colors has become an essential tool in our branding projects. Highly recommended for all UI designs!",
       author: {
         name: "Emily Rodriguez",
         role: "Brand Strategist, BrandWorks",
@@ -80,7 +80,7 @@ export default function Testimonials() {
               </svg>
 
               {/* Testimonial Content */}
-              <motion.p
+              <motion.div
                 className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -110,7 +110,7 @@ export default function Testimonials() {
                     </div>
                   </footer>
                 </blockquote>
-              </motion.p>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -163,14 +163,6 @@ export default function Testimonials() {
               </blockquote>
             </div>
           ))}
-        </div>
-
-        {/* Bottom Footer */}
-        <div className="mt-12 border-t border-gray-200 pt-8">
-          <p className="text-base text-gray-400 xl:text-center">
-            &copy; {new Date().getFullYear()} Lorem Colors, Inc. All rights
-            reserved.
-          </p>
         </div>
       </div>
     </section>

@@ -31,7 +31,7 @@ export default function CallToAction() {
         >
           <Link href={"/color-palette"}>
             <Button
-              variant="secondary"
+              variant="outline"
               size="lg"
               className="mt-8 w-full sm:w-auto"
             >

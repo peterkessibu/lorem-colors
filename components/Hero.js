@@ -5,7 +5,8 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <div className="relative bg-background overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto z-10 relative">
+        <div className="absolute top-0 left-8 w-96 h-72 rounded-full bg-black bg-opacity-50 filter blur-lg z-0"></div>
         <div className="relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
           <svg
             className="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-background transform translate-x-1/2"
@@ -66,7 +67,7 @@ export default function Hero() {
         <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
           <Image
             className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-            src="/placeholder.svg?height=600&width=800"
+            src="/globe.svg"
             alt="Color palette illustration"
             width={800}
             height={600}

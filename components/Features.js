@@ -1,5 +1,7 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { Palette, Cpu } from "lucide-react";
+import { Palette, Users, Cpu } from "lucide-react";
 
 const features = [
   {
@@ -7,6 +9,12 @@ const features = [
     description:
       "Create customized color schemes effortlessly with our intuitive interface.",
     icon: Palette,
+  },
+  {
+    name: "User centered",
+    description:
+      "Designed with users in mind, our platform is easy to use and navigate.",
+    icon: Users,
   },
   {
     name: "AI Integration",
@@ -34,7 +42,7 @@ export default function Features() {
         </div>
 
         <div className="mt-10">
-          <dl className="space-y-10 space-x-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+          <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
             {features.map((feature, index) => (
               <motion.div
                 key={feature.name}
