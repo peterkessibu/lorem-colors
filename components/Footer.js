@@ -158,12 +158,12 @@ export default function Footer() {
       <Modal isOpen={isModalOpen} onClose={closeModal} title={modalContent}>
         {modalContent === "Documentation" && (
           <p>
-            Visit our <a href="#" className="text-primary">Documentation</a> to learn more.
+            Visit our <Link href="#" className="text-primary">Documentation</Link> to learn more.
           </p>
         )}
         {modalContent === "API Status" && (
           <p>
-            Check the current <a href="#" className="text-primary">API Status</a>.
+            Check the current <Link href="#" className="text-primary">API Status</Link>.
           </p>
         )}
       </Modal>
