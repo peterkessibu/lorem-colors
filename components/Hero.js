@@ -12,10 +12,10 @@ export default function Hero() {
   const router = useRouter();
 
   const handleButtonClick = () => {
-    if (isClicked) return; // Prevent multiple clicks
+    if (isClicked) return;
     setIsClicked(true);
-    setImageSrc("/new-image.png"); // Replace with your second image path
-    setButtonBg("bg-violet-800");
+    setImageSrc("/globe.svg"); 
+    setButtonBg("bg-[#1fddff]");
     setBgGradient("bg-gradient-to-tr from-blue-500 via-purple-500 to-yellow-500");
 
     setTimeout(() => {
@@ -24,13 +24,13 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    return () => clearTimeout(); // Cleanup if component unmounts
+    return () => clearTimeout(); 
   }, []);
 
   return (
     <div
       className={`relative overflow-hidden min-h-screen transition-all duration-500 ${isClicked ? bgGradient : "bg-white"
-        }`} // Changed duration from 1000 to 500
+        }`}
     >
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Decorative Blur Circle */}
@@ -44,25 +44,30 @@ export default function Hero() {
         >
           {/* Decorative SVG */}
           <svg
-            className={`hidden lg:block absolute right-0 inset-y-0 h-full w-48 transform translate-x-1/2 transition-colors duration-500 ${isClicked ? "text-white" : "text-black"
+            className={`hidden lg:block absolute right-0 inset-y-0 h-full transform translate-x-1/2 transition-colors duration-500 ${isClicked ? "text-white" : "text-black"
               }`} 
             fill="white"
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            <polygon points="50,0 100,0 50,100 0,100" />
+            
           </svg>
 
           <main className="mt-10 mx-auto px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-            <div className="sm:text-center lg:text-left">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="sm:text-center lg:text-left"
+            >
               {/* Main Heading */}
               <motion.h1
-                className={`text-4xl leading-tight tracking-tight font-extrabold sm:text-5xl md:text-6xl ${isClicked ? "text-white" : "text-gray-900"
-                  }`} // Added text color change based on isClicked
+                className={`text-4xl leading-tight tracking-tight font-extrabold sm:text-5xl md:text-6xl ${isClicked ? "text-white" : "text-black"
+                  }`} 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }} // Duration set to 0.5s
+                transition={{ duration: 0.5 }} 
               >
                 <span className="block">Everything in black and white</span>{" "}
                 <span
@@ -84,7 +89,7 @@ export default function Hero() {
                     <Button
                       variant="default"
                       size="xl"
-                      className={`text-xl ${buttonBg} transition-colors duration-300 ease-in-out hover:opacity-90`}
+                      className={`text-xl ${buttonBg} text-white`}
                       onClick={handleButtonClick}
                       disabled={isClicked}
                     >
@@ -106,7 +111,7 @@ export default function Hero() {
                 your projects with AI-powered color recommendations and
                 comprehensive analytics.
               </motion.p>
-            </div>
+            </motion.div>
           </main>
         </div>
       </div>

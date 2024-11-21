@@ -80,11 +80,12 @@ export default function Footer() {
   };
 
   const isColorPalettePage = pathname === "/color-palette";
+  const isColorBox = pathname === "/color-box";
 
   return (
     <footer className="bg-background">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        {!isColorPalettePage && (
+        {!isColorPalettePage && !isColorBox && (
           <div className="xl:grid lg:grid-cols-5 lg:gap-4">
             <div className="space-y-8 xl:col-span-1 md:mr-4">
               <div className="flex justify-start lg:w-0 lg:flex-1">

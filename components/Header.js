@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function Header() {
   const pathname = usePathname();
   const isColorPalettePage = pathname === "/color-palette";
+  const isColorBox = pathname === "/color-box";
 
   return (
     <motion.header
@@ -17,6 +18,7 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
+          {/* Logo */}
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/" className="flex items-center">
               <Palette className="h-10 w-10" />
@@ -25,9 +27,26 @@ export default function Header() {
               </span>
             </Link>
           </div>
-          {!isColorPalettePage && (
-            <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-              <div className="justify-between space-x-4">
+
+          {/* Conditional Buttons */}
+          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+            {isColorBox ? (
+              // Back Button for Color Box Page
+              <Link href="/color-palette">
+                <Button variant="outline" size="lg">
+                  Back
+                </Button>
+              </Link>
+            ) : isColorPalettePage ? (
+              // Color Box Button for Color Palette Page
+              <Link href="/color-box">
+                <Button variant="outline" size="lg">
+                  Color Box
+                </Button>
+              </Link>
+            ) : (
+              // Demo and Get Started Buttons for Other Pages
+              <div className="flex space-x-4">
                 <Link href="/color-palette">
                   <Button variant="destructive" size="lg">
                     Demo
@@ -40,17 +59,8 @@ export default function Header() {
                   </Button>
                 </Link>
               </div>
-            </div>
-          )}
-          {isColorPalettePage && (
-            <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-              <Link href="/color-palette">
-                <Button variant="outline" size="lg">
-                  Get Started
-                </Button>
-              </Link>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </motion.header>
