@@ -7,6 +7,7 @@ import QuestionnaireForm from "./QuestionnaireForm";
 import PaletteCard from "./PaletteCard";
 import MockupWindow from "./MockupWindow";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Header from "./Header"
 
 const ColorPaletteGenerator = () => {
   const [palettes, setPalettes] = useState([]);
@@ -67,6 +68,7 @@ const ColorPaletteGenerator = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+    <Header />
       <div className="flex flex-col lg:flex-row gap-8">
         <aside className="w-full lg:w-52">
           <div className="sticky top-8">
