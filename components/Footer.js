@@ -25,8 +25,7 @@ const footerSections = [
   {
     title: "Solutions",
     links: [
-      { name: "Color Palette Generator", href: "#" },
-      { name: "Integrations", href: "#" },
+      { name: "Color Palette Generator", href: "/color-box"},
     ],
   },
   {
@@ -34,13 +33,6 @@ const footerSections = [
     links: [
       { name: "Documentation", href: "#" },
       { name: "API Status", href: "#" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { name: "About", href: "#" },
-      { name: "Blog", href: "#" },
     ],
   },
 ];
@@ -108,38 +100,36 @@ export default function Footer() {
                 ))}
               </div>
             </div>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 space-x-4 xl:mt-0 xl:col-span-4">
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-start lg:justify-items-center xl:col-span-4">
               {footerSections.map((section) => (
                 <div
                   key={section.title}
-                  className="md:grid md:grid-cols-1 md:gap-8"
+                  className="flex flex-col items-start lg:items-center w-full px-4"
                 >
-                  <div>
-                    <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
-                      {section.title}
-                    </h3>
-                    <ul className="mt-4 space-y-4">
-                      {section.links.map((link) => (
-                        <li key={link.name}>
-                          {section.title === "Support" ? (
-                            <button
-                              onClick={() => handleLinkClick(link.name)}
-                              className="text-base text-gray-500 hover:text-gray-900 focus:outline-none"
-                            >
-                              {link.name}
-                            </button>
-                          ) : (
-                            <Link
-                              href={link.href}
-                              className="text-base text-gray-500 hover:text-gray-900"
-                            >
-                              {link.name}
-                            </Link>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                    {section.title}
+                  </h3>
+                  <ul className="mt-4 space-y-4">
+                    {section.links.map((link) => (
+                      <li key={link.name}>
+                        {section.title === "Support" ? (
+                          <button
+                            onClick={() => handleLinkClick(link.name)}
+                            className="text-base text-gray-500 hover:text-gray-900 focus:outline-none"
+                          >
+                            {link.name}
+                          </button>
+                        ) : (
+                          <Link
+                            href={link.href}
+                            className="text-base text-gray-500 hover:text-gray-900"
+                          >
+                            {link.name}
+                          </Link>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               ))}
             </div>
@@ -154,14 +144,17 @@ export default function Footer() {
       <Modal isOpen={isModalOpen} onClose={closeModal} title={modalContent}>
         {modalContent === "Documentation" && (
           <p>
-            Visit our <Link href="#" className="text-primary">Documentation</Link> to learn more.
+            Visit our{" "}
+            <Link
+              href="https://medium.com/@peter.essibu/creating-appealing-and-cohesive-color-palettes-is-a-fundamental-aspect-of-modern-web-design-e956be3734e9"
+              className="text-blue-900 underline"
+            >
+              Blog
+            </Link>{" "}
+            to learn more.
           </p>
         )}
-        {modalContent === "API Status" && (
-          <p>
-            Check the current <Link href="#" className="text-primary">API Status</Link>.
-          </p>
-        )}
+        {modalContent === "API Status" && <p className="font-bold">Active</p>}
       </Modal>
     </footer>
   );
