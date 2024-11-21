@@ -1,12 +1,28 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { useState } from "react";
+
 
 export default function Hero() {
+  const [imageSrc, setImageSrc] = useState("/lorem-bg.png");
+  const [buttonBg, setButtonBg] = useState("bg-primary");
+
+  const handleButtonClick = () => {
+    // Toggle between two images and button backgrounds
+    if (imageSrc === "/lorem-bg.png") {
+      setImageSrc("/new-image.png"); // Replace with your second image path
+      setButtonBg("bg-secondary"); // Replace with your desired secondary color class
+    } else {
+      setImageSrc("/lorem-bg.png");
+      setButtonBg("bg-primary");
+    }
+  };
+
   return (
-    <div className="relative bg-background overflow-hidden">
+    <div className="relative bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto z-10 relative">
-        <div className="absolute top-0 left-8 w-96 h-72 rounded-full bg-black bg-opacity-50 filter blur-lg z-0"></div>
+        <div className="absolute lg:block hidden top-0 left-8 w-96 h-72 rounded-full bg-black bg-opacity-50 filter blur-lg z-0"></div>
         <div className="relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
           <svg
             className="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-background transform translate-x-1/2"
@@ -39,7 +55,7 @@ export default function Hero() {
               >
                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                   <div className="rounded-md shadow">
-                    <Button variant="default" size="xl" className="text-xl">
+                    <Button variant="default" size="xl" className={`text-xl ${buttonBg}`} onClick={handleButtonClick}>
                       Generate Palette
                     </Button>
                   </div>
@@ -66,11 +82,12 @@ export default function Hero() {
       >
         <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
           <Image
-            className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-            src="/globe.svg"
+            className="h-40 w-full object-cover sm:h-60 md:h-80 lg:h-full lg:w-full transform rotate-0 md:rotate-3 lg:rotate-6 transition-transform duration-300 ease-in-out"
+            src={imageSrc}
             alt="Color palette illustration"
             width={800}
-            height={600}
+            height={800}
+            quality={90}
           />
         </div>
       </motion.div>
