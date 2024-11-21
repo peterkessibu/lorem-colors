@@ -16,7 +16,7 @@ export default function Hero() {
     setIsClicked(true);
     setImageSrc("/new-image.png"); // Replace with your second image path
     setButtonBg("bg-violet-800");
-    setBgGradient("bg-gradient-to-r from-green-500 to-yellow-500");
+    setBgGradient("bg-gradient-to-tr from-blue-500 via-purple-500 to-yellow-500");
 
     setTimeout(() => {
       router.push("/color-palette");
@@ -117,11 +117,9 @@ export default function Hero() {
       >
         <motion.div
           className="absolute inset-y-0 right-0 w-1/2"
-          animate={{ rotateY: isClicked ? 180 : 0 }}
-          transition={{ duration: 1 }}
         >
           <Image
-            className="w-full h-full object-cover transform rotate-0 md:rotate-3 lg:rotate-6 transition-transform duration-300 ease-in-out"
+            className="w-full h-full object-cover transform transition-transform duration-300 ease-in-out"
             src={imageSrc}
             alt="Color palette illustration"
             width={800}
