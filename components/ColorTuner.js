@@ -5,7 +5,6 @@ import { HexColorPicker } from 'react-colorful'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 
 const ColorBox = () => {
@@ -123,9 +122,6 @@ const ColorBox = () => {
             </div>
           </div>
         </div>
-        <Button className="mt-4" onClick={() => console.log(colorShades)}>
-          Copy Color Palette
-        </Button>
       </CardContent>
     </Card>
   )
