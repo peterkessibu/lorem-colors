@@ -100,13 +100,13 @@ export default function Footer() {
                 ))}
               </div>
             </div>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-start lg:justify-items-center xl:col-span-4">
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 justify-items-start lg:justify-items-start xl:col-span-4">
               {footerSections.map((section) => (
                 <div
                   key={section.title}
-                  className="flex flex-col items-start lg:items-center w-full px-4"
+                  className="flex flex-col items-start lg:items-start w-full px-4"
                 >
-                  <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
+                  <h3 className="text-sm font-semibold text-left text-gray-700 tracking-wider uppercase">
                     {section.title}
                   </h3>
                   <ul className="mt-4 space-y-4">
@@ -136,7 +136,7 @@ export default function Footer() {
           </div>
         )}
         <div className="mt-12 border-t border-gray-200 pt-8">
-          <div className="text-base text-gray-400 xl:text-center">
+          <div className="text-base text-gray-400 text-center">
             &copy; {currentYear} Lorem Colors, Inc. All rights reserved.
           </div>
         </div>
