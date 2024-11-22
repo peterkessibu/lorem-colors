@@ -1,7 +1,7 @@
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from 'next/navigation'; // Import useRouter
+import { useRouter } from "next/navigation"; // Import useRouter
 import { Instagram, Github, Palette, Linkedin, X } from "lucide-react";
 
 const socialLinks = [
@@ -25,9 +25,7 @@ const socialLinks = [
 const footerSections = [
   {
     title: "Solutions",
-    links: [
-      { name: "Color Palette Generator", href: "/color-box" },
-    ],
+    links: [{ name: "Color Box", href: "/color-box" }],
   },
   {
     title: "Support",

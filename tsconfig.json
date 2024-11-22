@@ -36,7 +36,8 @@
     "components/Testimonials.js",
     "components/CallToAction.js",
     "components/Footer.js",
-    "app/page.js"
-, "components/ColorTuner.js"  ],
+    "app/page.js",
+    "components/ColorTuner.js"
+  ],
   "exclude": ["node_modules"]
 }

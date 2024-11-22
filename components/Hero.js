@@ -14,9 +14,11 @@ export default function Hero() {
   const handleButtonClick = () => {
     if (isClicked) return;
     setIsClicked(true);
-    setImageSrc("/globe.svg"); 
+    setImageSrc("/globe.svg");
     setButtonBg("bg-[#1fddff]");
-    setBgGradient("bg-gradient-to-tr from-blue-500 via-purple-500 to-yellow-500");
+    setBgGradient(
+      "bg-gradient-to-tr from-blue-500 via-purple-500 to-yellow-500",
+    );
 
     setTimeout(() => {
       router.push("/color-palette");
@@ -24,24 +26,27 @@ export default function Hero() {
   };
 
   useEffect(() => {
-    return () => clearTimeout(); 
+    return () => clearTimeout();
   }, []);
 
   return (
     <div
-      className={`relative overflow-hidden min-h-screen transition-all duration-500 ${isClicked ? bgGradient : "bg-white"
-        }`}
+      className={`relative overflow-hidden min-h-screen transition-all duration-500 ${
+        isClicked ? bgGradient : "bg-white"
+      }`}
     >
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col lg:flex-row">
         {/* Text Section */}
         <div
-          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 ${isClicked ? "bg-transparent" : ""
-            } w-full`}
+          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 ${
+            isClicked ? "bg-transparent" : ""
+          } w-full`}
         >
           {/* Decorative SVG */}
           <svg
-            className={`hidden lg:block absolute right-0 inset-y-0 h-full transform translate-x-1/2 transition-colors duration-500 ${isClicked ? "text-white" : "text-black"
-              }`}
+            className={`hidden lg:block absolute right-0 inset-y-0 h-full transform translate-x-1/2 transition-colors duration-500 ${
+              isClicked ? "text-white" : "text-black"
+            }`}
             fill="white"
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
@@ -64,15 +69,18 @@ export default function Hero() {
               >
                 <span className="block">Transform</span>
                 <span className="block">Your Designs with Perfect</span>
-                <span className={`${isClicked ? "text-white" : "text-primary"}`}>
+                <span
+                  className={`${isClicked ? "text-white" : "text-primary"}`}
+                >
                   Colors.
                 </span>
               </motion.h1>
 
               {/* Subheading Paragraph */}
               <motion.p
-                className={`mt-3 text-base leading-relaxed ${isClicked ? "text-white" : "text-gray-500"
-                  } md:leading-relaxed md:text-lg sm:mt-5 sm:max-w-xl sm:mx-auto md:mt-5 lg:mx-0`}
+                className={`mt-3 text-base leading-relaxed ${
+                  isClicked ? "text-white" : "text-gray-500"
+                } md:leading-relaxed md:text-lg sm:mt-5 sm:max-w-xl sm:mx-auto md:mt-5 lg:mx-0`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -88,7 +96,7 @@ export default function Hero() {
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                  <div className="rounded-md shadow-md">
+                  <div className="rounded-md">
                     <Button
                       variant="default"
                       size="lg"

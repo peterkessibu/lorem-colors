@@ -23,21 +23,17 @@ export default function Header() {
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/" className="flex items-center">
               <Palette className="h-10 w-10" />
-              <span className="ml-2 text-2xl font-bold text-primary">
+              <span className="ml-2 text-2xl font-bold bg-gradient-to-tr from-red-600 via-purple-600 to-yellow-500 bg-clip-text text-transparent">
                 Lorem Colors
               </span>
             </Link>
           </div>
 
           {/* Conditional Buttons To Make It dynamic*/}
-          <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
+          <div className="flex items-center justify-end md:flex-1 lg:w-0">
             {isColorBox ? (
               // Back Button for Color Box Page
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() => router.back()}
-              >
+              <Button variant="outline" size="lg" onClick={() => router.back()}>
                 Back
               </Button>
             ) : isColorPalettePage ? (
@@ -51,9 +47,9 @@ export default function Header() {
               // Demo and Get Started Buttons for Other Pages
               <div className="flex space-x-4">
                 <Link href="/color-palette">
-                  <Button variant="destructive" size="lg">
+                      <Button variant="destructive" className="px-4 py-2 h-10 hidden lg:block">
                     Demo
-                    <Play className="h-6 w-6 ml-2" />
+                    <Play className="h-6 w-6 md:ml-1" />
                   </Button>
                 </Link>
                 <Link href="/color-palette">

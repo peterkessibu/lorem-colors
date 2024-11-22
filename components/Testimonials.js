@@ -49,7 +49,7 @@ export default function Testimonials() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setAnimate(true);
-    }, 2000); 
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -73,7 +73,7 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 relative flex flex-col items-center">
           {/* SVG Quote Icon */}
-          <div className="absolute top-4 md:left-1/3 left-0 transform -translate-x-1/2 -translate-y-12 w-12 h-12 md:w-24 md:h-24 text-primary opacity-50 pointer-events-none">
+          <div className="absolute top-4 md:left-1/3 left-0 transform -translate-x-1/2 -translate-y-12 w-12 h-12 md:w-24 md:h-24 text-gray-700 pointer-events-none">
             <svg
               stroke="currentColor"
               fill="none"
