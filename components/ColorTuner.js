@@ -89,28 +89,28 @@ const ColorBox = () => {
   }, [baseColor, shadeCount]);
 
   return (
-    <Card className="w-full max-w-4xl mx-4 md:mx-auto mt-10">
+    <div className="w-full rounded-xl max-w-4xl mx-auto px-4 md:px-6 lg:px-8 mt-10 overflow-x-hidden">
       <CardHeader>
-        <CardTitle className="text-xl sm:text-2xl md:text-3xl">
+        <CardTitle className="text-xl">
           Color Palette Generator
         </CardTitle>
-        <CardDescription className="text-sm sm:text-base">
+        <CardDescription className="text-sm">
           Customize your color palette with various shades
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          <div className="flex flex-col items-start">
-            <Label className="mb-2 text-sm sm:text-base">Base Color</Label>
+      <div className="p-4 mb-4">
+        <div className="flex flex-col md:flex-row lg:mr-8 justify-between">
+          <div className="flex flex-col items-center lg:items-start w-full">
+            <Label className="mb-2 text-base">Base Color</Label>
             <HexColorPicker color={baseColor} onChange={setBaseColor} />
             <Input
               type="text"
               value={baseColor}
               onChange={(e) => setBaseColor(e.target.value)}
-              className="mt-2 w-full sm:w-3/4"
+              className="my-4 w-1/2"
             />
           </div>
-          <div className="flex flex-col items-start">
+          <div className="flex flex-col items-start w-full mt-6 md:mt-0">
             <Label className="mb-2 text-sm sm:text-base">
               Number of Shades: {shadeCount}
             </Label>
@@ -120,9 +120,9 @@ const ColorBox = () => {
               min={4}
               max={20}
               step={1}
-              className="mt-2 w-full sm:w-3/4"
+              className="my-2 w-full"
             />
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 gap-2 mt-4 w-full">
+            <div className="grid grid-cols-2 gap-2 mt-4 w-full">
               {Object.entries(colorShades).map(([shade, color]) => (
                 <div key={shade} className="flex items-center">
                   <div
@@ -146,8 +146,8 @@ const ColorBox = () => {
             </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 };
 

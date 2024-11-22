@@ -48,8 +48,8 @@ export default function Features() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <dt>
-                  <div className="absolute flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                    <feature.icon className="h-6 w-6" aria-hidden="true" />
+                  <div className="absolute flex items-center justify-center h-10 w-10 md:w-12 md:h-12 rounded-md bg-primary text-white">
+                    <feature.icon className="h-5 w-5" aria-hidden="true" />
                   </div>
                   <p className="ml-16 text-lg leading-6 font-medium text-gray-900">
                     {feature.name}

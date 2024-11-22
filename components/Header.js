@@ -46,10 +46,10 @@ export default function Header() {
             ) : (
               // Demo and Get Started Buttons for Other Pages
               <div className="flex space-x-4">
-                <Link href="/color-palette">
-                      <Button variant="destructive" className="px-4 py-2 h-10 hidden lg:block">
+                <Link href="/color-palette" className="hidden lg:block">
+                  <Button variant="destructive" size="lg">
                     Demo
-                    <Play className="h-6 w-6 md:ml-1" />
+                    <Play className="h-6 w-6 ml-2" />
                   </Button>
                 </Link>
                 <Link href="/color-palette">
