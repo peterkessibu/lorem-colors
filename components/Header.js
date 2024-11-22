@@ -1,4 +1,4 @@
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Palette, Play } from "lucide-react";
@@ -6,6 +6,7 @@ import Link from "next/link";
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const isColorPalettePage = pathname === "/color-palette";
   const isColorBox = pathname === "/color-box";
 
@@ -28,15 +29,17 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Conditional Buttons */}
+          {/* Conditional Buttons To Make It dynamic*/}
           <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
             {isColorBox ? (
               // Back Button for Color Box Page
-              <Link href="/color-palette">
-                <Button variant="outline" size="lg">
-                  Back
-                </Button>
-              </Link>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => router.back()}
+              >
+                Back
+              </Button>
             ) : isColorPalettePage ? (
               // Color Box Button for Color Palette Page
               <Link href="/color-box">

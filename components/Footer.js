@@ -1,6 +1,7 @@
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from 'next/navigation'; // Import useRouter
 import { Instagram, Github, Palette, Linkedin, X } from "lucide-react";
 
 const socialLinks = [
@@ -25,7 +26,7 @@ const footerSections = [
   {
     title: "Solutions",
     links: [
-      { name: "Color Palette Generator", href: "/color-box"},
+      { name: "Color Palette Generator", href: "/color-box" },
     ],
   },
   {
@@ -60,10 +61,15 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
+  const router = useRouter(); // Initialize router
 
   const handleLinkClick = (name) => {
     setModalContent(name);
     setIsModalOpen(true);
+  };
+
+  const handleBackClick = () => {
+    router.back(); // Navigate back to the previous page
   };
 
   const closeModal = () => {
@@ -112,7 +118,14 @@ export default function Footer() {
                   <ul className="mt-4 space-y-4">
                     {section.links.map((link) => (
                       <li key={link.name}>
-                        {section.title === "Support" ? (
+                        {link.isBackButton ? (
+                          <button
+                            onClick={handleBackClick}
+                            className="text-base text-gray-500 hover:text-gray-900 focus:outline-none"
+                          >
+                            {link.name}
+                          </button>
+                        ) : section.title === "Support" ? (
                           <button
                             onClick={() => handleLinkClick(link.name)}
                             className="text-base text-gray-500 hover:text-gray-900 focus:outline-none"
