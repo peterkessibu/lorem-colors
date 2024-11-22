@@ -26,7 +26,7 @@ const features = [
 
 export default function Features() {
   return (
-    <div className="py-12 bg-background">
+    <div className="py-4 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="lg:text-center">
           <h2 className="text-base text-black font-semibold tracking-wide uppercase">

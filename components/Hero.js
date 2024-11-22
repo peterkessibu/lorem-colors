@@ -12,9 +12,9 @@ export default function Hero() {
   const handleButtonClick = () => {
     if (isClicked) return;
     setIsClicked(true);
-    setButtonBg("bg-[#1fddff]");
+    setButtonBg("bg-[#8ff2fe]");
     setBgGradient(
-      "bg-gradient-to-tr from-blue-500 via-purple-500 to-yellow-500"
+      "bg-gradient-to-tr from-[#4158D0] via-[#C850C0] to-[#FFCC70]"
     );
 
     setTimeout(() => {
@@ -46,30 +46,17 @@ export default function Hero() {
             >
               {/* Main Heading */}
               <motion.h1
-                className={`text-3xl leading-tight tracking-tight font-extrabold md:text-4xl transition-colors duration-500`}
+                className={`text-3xl leading-tight tracking-tight font-extrabold md:text-[54px] transition-colors duration-500 ${isClicked ? "text-white" : "text-black"}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
                 <span className="block">Everything</span>
-                <span className="block">In black and white, till</span>
+                <span className="block">In black and white,</span>
                 <span className="block">
-                  You click...{" "}
+                  Till you click...{" "}
                 </span>
               </motion.h1>
-
-              {/* Subheading Paragraph */}
-              <motion.p
-                className={`mt-3 text-base leading-relaxed ${isClicked ? "text-white" : "text-gray-500"
-                  } md:leading-relaxed md:text-lg sm:mt-5 sm:max-w-xl sm:mx-auto md:mt-5 lg:mx-0`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                Generate stunning color palettes tailored to your needs. Elevate
-                your projects with AI-powered color recommendations and
-                comprehensive analytics.
-              </motion.p>
 
               {/* Generate Palette Button */}
               <motion.div
@@ -80,8 +67,8 @@ export default function Hero() {
                 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                   <div className="rounded-md">
                     <Button
-                      variant="default"
-                      size="lg"
+                      variant="outline"
+                      size="xl"
                       className={`text-lg ${buttonBg} text-white transition-colors duration-300`}
                       onClick={handleButtonClick}
                       disabled={isClicked}
@@ -141,7 +128,7 @@ export default function Hero() {
                 animate={{ opacity: isClicked ? 1 : 0 }}
                 transition={{ duration: 0.5 }}
               >
-                Lorem Colors
+                Lorem Colors.
               </motion.text>
 
               <defs>
