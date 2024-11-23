@@ -26,6 +26,11 @@ export default function Hero() {
     return () => clearTimeout();
   }, []);
 
+  const getRandomRotation = () => {
+    const rotations = [0, 30, 45, 60];
+    return rotations[Math.floor(Math.random() * rotations.length)];
+  };
+
   return (
     <div
       className={`relative overflow-hidden transition-all duration-500 ${isClicked ? bgGradient : "bg-white"
@@ -132,7 +137,7 @@ export default function Hero() {
               </motion.text>
 
               <defs>
-                <linearGradient id="gradient" gradientTransform="rotate(0)">
+                <linearGradient id="gradient" gradientTransform={`rotate(${getRandomRotation()})`}>
                   <stop offset="0%" stopColor="#ff0000" />
                   <stop offset="25%" stopColor="#ffa500" />
                   <stop offset="50%" stopColor="#00ff00" />

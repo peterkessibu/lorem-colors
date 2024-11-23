@@ -1,8 +1,8 @@
+// components/ColorTuner.js
+
 import React, { useState, useEffect } from "react";
 import { HexColorPicker } from "react-colorful";
 import {
-  Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -15,19 +15,6 @@ const ColorBox = () => {
   const [baseColor, setBaseColor] = useState("#f43f5e");
   const [colorShades, setColorShades] = useState({});
   const [shadeCount, setShadeCount] = useState(10);
-
-  const generateShades = (color, count) => {
-    const shades = {};
-    const hsl = hexToHSL(color);
-
-    for (let i = 0; i < count; i++) {
-      const lightness = 100 - (i / (count - 1)) * 100;
-      const hex = hslToHex(hsl.h, hsl.s, lightness);
-      shades[i] = hex;
-    }
-
-    return shades;
-  };
 
   const hexToHSL = (hex) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -84,6 +71,19 @@ const ColorBox = () => {
     return `#${f(0)}${f(8)}${f(4)}`;
   };
 
+  const generateShades = (color, count) => {
+    const shades = {};
+    const hsl = hexToHSL(color);
+
+    for (let i = 0; i < count; i++) {
+      const lightness = 100 - (i / (count - 1)) * 100;
+      const hex = hslToHex(hsl.h, hsl.s, lightness);
+      shades[i] = hex;
+    }
+
+    return shades;
+  };
+
   useEffect(() => {
     setColorShades(generateShades(baseColor, shadeCount));
   }, [baseColor, shadeCount]);
@@ -99,7 +99,7 @@ const ColorBox = () => {
         </CardDescription>
       </CardHeader>
       <div className="p-4 mb-4">
-        <div className="flex flex-col md:flex-row lg:mr-8 justify-between">
+        <div className="flex flex-col md:flex-row lg:justify-center justify-between">
           <div className="flex flex-col items-center lg:items-start w-full">
             <Label className="mb-2 text-base">Base Color</Label>
             <HexColorPicker color={baseColor} onChange={setBaseColor} />
