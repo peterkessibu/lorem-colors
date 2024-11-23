@@ -19,7 +19,7 @@ export default function Hero() {
 
     setTimeout(() => {
       router.push("/color-palette");
-    }, 1240);
+    }, 1140);
   };
 
   useEffect(() => {
@@ -91,12 +91,12 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           className="w-full lg:w-2/3 mt-8 lg:mt-0 flex justify-center items-center transition-transform duration-500"
         >
           <motion.div
             className="w-full h-full"
-            animate={{ scale: isClicked ? 1.1 : 1 }}
+            animate={{ scale: isClicked ? 1.06 : 1 }}
             transition={{ duration: 0.3 }}
           >
             <svg

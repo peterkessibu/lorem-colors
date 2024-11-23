@@ -1,45 +1,85 @@
-import { motion } from "framer-motion";
+// components/CallToAction.js
+
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CallToAction() {
+  const [isClicked, setIsClicked] = useState(false);
+  const router = useRouter();
+
+  const handleClick = () => {
+    setIsClicked(true);
+  };
+
+  //setting the time for automatic routing
+  useEffect(() => {
+    if (isClicked) {
+      const timer = setTimeout(() => {
+        router.push("/color-palette");
+      }, 1140); 
+      return () => clearTimeout(timer);
+    }
+  }, [isClicked, router]);
+
   return (
-    <div className="bg-gradient-to-t from-blue-600 via-violet-700 to-pink-600">
-      <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
-        <motion.h2
-          className="text-3xl font-extrabold text-white sm:text-4xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="block">Ready to elevate your designs?</span>
-          <span className="block">Start creating with Lorem Colors today.</span>
-        </motion.h2>
-        <motion.p
-          className="mt-4 text-lg leading-6 text-white"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          Join thousands of designers and businesses using Lorem Colors to
-          create stunning color palettes and improve their design workflow.
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <Link href={"/color-palette"}>
+    <motion.div className="relative">
+      {/* Gradient Overlay on Onclick*/}
+      <AnimatePresence>
+        {isClicked && (
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-t from-blue-600 via-violet-700 to-pink-600"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Content */}
+      <div className="relative z-10">
+        <hr />
+        <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
+          <motion.h2
+            className={`text-3xl font-extrabold ${isClicked ? "text-white" : "text-black"
+              } sm:text-4xl`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <span className="block">Ready to elevate your designs?</span>
+            <span className="block">Start creating with Lorem Colors today.</span>
+          </motion.h2>
+          <motion.p
+            className={`mt-4 text-lg leading-6 ${isClicked ? "text-white" : "text-black"
+              }`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Join thousands of designers using Lorem Colors to create stunning
+            colors and improve their design workflow.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <Button
               variant="outline"
               size="lg"
-              className="mt-8 w-full sm:w-auto"
+              className="mt-8 w-full sm:w-auto bg-white"
+              onClick={handleClick}
+              disabled={isClicked}
             >
               Start Creating Now
             </Button>
-          </Link>
-        </motion.div>
+          </motion.div>
+        </div>
+        <hr />
       </div>
-    </div>
+    </motion.div>
   );
 }
