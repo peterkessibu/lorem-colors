@@ -12,14 +12,14 @@ export default function Hero() {
   const handleButtonClick = () => {
     if (isClicked) return;
     setIsClicked(true);
-    setButtonBg("bg-[#8ff2fe]");
+    setButtonBg("bg-[#8ff2fe] text-white");
     setBgGradient(
       "bg-gradient-to-tr from-[#4158D0] via-[#C850C0] to-[#FFCC70]"
     );
 
     setTimeout(() => {
       router.push("/color-palette");
-    }, 2000);
+    }, 1240);
   };
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Hero() {
 
   return (
     <div
-      className={`relative overflow-hidden min-h-screen transition-all duration-500 ${isClicked ? bgGradient : "bg-white"
+      className={`relative overflow-hidden transition-all duration-500 ${isClicked ? bgGradient : "bg-white"
         }`}
     >
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col lg:flex-row">
@@ -121,18 +121,18 @@ export default function Hero() {
                 y="50%"
                 textAnchor="middle"
                 fill="url(#gradient)"
-                fontSize="92"
+                fontSize="90"
                 fontWeight="bold"
                 dy=".3em"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: isClicked ? 1 : 0 }}
                 transition={{ duration: 0.5 }}
               >
-                Lorem Colors.
+                Lorem Colors
               </motion.text>
 
               <defs>
-                <linearGradient id="gradient" gradientTransform="rotate(45)">
+                <linearGradient id="gradient" gradientTransform="rotate(0)">
                   <stop offset="0%" stopColor="#ff0000" />
                   <stop offset="25%" stopColor="#ffa500" />
                   <stop offset="50%" stopColor="#00ff00" />

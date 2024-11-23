@@ -14,12 +14,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarIcon, Download, Users, Menu, DollarSign } from "lucide-react";
+import Image from "next/image";
 
-/**
- * Determines if a color is dark based on its hexadecimal value.
- * @param {string} color - The hex color code (e.g., "#FFFFFF").
- * @returns {boolean} - Returns true if the color is dark, else false.
- */
 const isDark = (color) => {
   if (
     typeof color !== "string" ||
@@ -27,7 +23,7 @@ const isDark = (color) => {
     color.length !== 7
   ) {
     console.warn(
-      `Invalid color format received: "${color}". Expected a string like "#FFFFFF". Defaulting to light color.`,
+      `Invalid color format received: "${color}". Expected a string like "#FFFFFF". Defaulting to light color.`
     );
     return false;
   }
@@ -42,12 +38,6 @@ const isDark = (color) => {
   return luminance < 128;
 };
 
-/**
- * Dashboard component that renders the mockup window with dynamic colors.
- * @param {Object} props - Component props.
- * @param {Object} props.colors - Colors object containing various color codes.
- * @returns {JSX.Element} - Rendered Dashboard component.
- */
 export default function Dashboard({ colors }) {
   const {
     secondary = "#000000",
@@ -71,11 +61,16 @@ export default function Dashboard({ colors }) {
           <div className="flex items-center space-x-4">
             <div className="flex flex-row">
               {/* User Avatar with dynamic background color */}
-              <div
-                className="h-6 w-6 rounded-full mr-2"
-                style={{ backgroundColor: accent }}
-              ></div>
-              <span className="font-bold text-xl">Atilla Koch</span>
+              <div>
+                <Image
+                  src="/user1.png"
+                  alt="User Avatar"
+                  width={32}
+                  height={32}
+                  className="rounded-full"
+                />
+              </div>
+              <span className="font-bold text-xl ml-2">Atilla Koch</span>
             </div>
           </div>
           <div className="flex items-center space-x-4 md:hidden">
@@ -84,7 +79,7 @@ export default function Dashboard({ colors }) {
             </button>
           </div>
           <div
-            className="flex-col md:flex-row hidden md:flex"
+            className="hidden md:flex space-x-4"
             style={{ backgroundColor: background, color: text }}
           >
             {["Overview", "Customers", "Products", "Settings"].map(
@@ -95,7 +90,7 @@ export default function Dashboard({ colors }) {
                 >
                   {item}
                 </p>
-              ),
+              )
             )}
           </div>
         </div>
@@ -104,12 +99,13 @@ export default function Dashboard({ colors }) {
       {/* Main Content */}
       <main className="flex-1 space-y-4 p-4 md:p-6">
         {/* Dashboard Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between flex-col md:flex-row">
           <h1 className="text-lg md:text-xl font-bold">Dashboard</h1>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 mt-4 md:mt-0">
             <Button
               variant="outline"
               size="sm"
+              className="flex items-center"
               style={{
                 backgroundColor: "#1F2937",
                 borderColor: "#1F2937",
@@ -123,6 +119,7 @@ export default function Dashboard({ colors }) {
             </Button>
             <Button
               size="sm"
+              className="flex items-center"
               style={{
                 backgroundColor: "#1F2937",
                 color: "#FFFFFF",
@@ -140,14 +137,14 @@ export default function Dashboard({ colors }) {
           <div className="grid gap-4 md:grid-cols-2">
             {/* Sales Card */}
             <div
-              className="rounded-xl border"
+              className="rounded-xl border p-4"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
                 color: textColor,
               }}
             >
-              <div className="flex flex-row items-center justify-between space-y-0 p-4">
+              <div className="flex flex-row items-center justify-between space-y-0">
                 <CardTitle className="text-sm font-medium">Sales</CardTitle>
                 <DollarSign className="h-4 w-4 text-gray-500" />
               </div>
@@ -161,14 +158,14 @@ export default function Dashboard({ colors }) {
 
             {/* Active Now Card */}
             <div
-              className="rounded-xl border"
+              className="rounded-xl border p-4"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
                 color: textColor,
               }}
             >
-              <div className="flex flex-row items-center justify-between space-y-0 p-4">
+              <div className="flex flex-row items-center justify-between space-y-0">
                 <CardTitle className="text-sm font-medium">
                   Active Now
                 </CardTitle>
@@ -187,7 +184,7 @@ export default function Dashboard({ colors }) {
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
             {/* Overview Chart */}
             <Card
-              className="col-span-7 lg:col-span-4"
+              className="col-span-2 lg:col-span-4"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
@@ -236,7 +233,7 @@ export default function Dashboard({ colors }) {
 
             {/* Recent Sales */}
             <Card
-              className="col-span-7 lg:col-span-3"
+              className="col-span-2 lg:col-span-3"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
@@ -256,7 +253,7 @@ export default function Dashboard({ colors }) {
                       name: "Olivia Martin",
                       email: "olivia.martin@email.com",
                       amount: "+$1,999.00",
-                      avatar: "/avatars/01.png",
+                      avatar: "/user2.png",
                       fallback: "OM",
                       colorName: "sales_name",
                       colorEmail: "sales_email",
@@ -265,7 +262,7 @@ export default function Dashboard({ colors }) {
                       name: "Jackson Lee",
                       email: "jackson.lee@email.com",
                       amount: "+$39.00",
-                      avatar: "/avatars/02.png",
+                      avatar: "/user3.png",
                       fallback: "JL",
                       colorName: "sales_name",
                       colorEmail: "sales_email",
@@ -274,7 +271,7 @@ export default function Dashboard({ colors }) {
                       name: "Isabella Nguyen",
                       email: "isabella.nguyen@email.com",
                       amount: "+$299.00",
-                      avatar: "/avatars/03.png",
+                      avatar: "/user4.png",
                       fallback: "IN",
                       colorName: "sales_name",
                       colorEmail: "sales_email",
@@ -283,7 +280,7 @@ export default function Dashboard({ colors }) {
                       name: "William Kim",
                       email: "will@email.com",
                       amount: "+$99.00",
-                      avatar: "/avatars/04.png",
+                      avatar: "/user5.png",
                       fallback: "WK",
                       colorName: "sales_name",
                       colorEmail: "sales_email",
@@ -292,7 +289,7 @@ export default function Dashboard({ colors }) {
                       name: "Sofia Davis",
                       email: "sofia.davis@email.com",
                       amount: "+$39.00",
-                      avatar: "/avatars/05.png",
+                      avatar: "/user6.png",
                       fallback: "SD",
                       colorName: "sales_name",
                       colorEmail: "sales_email",
