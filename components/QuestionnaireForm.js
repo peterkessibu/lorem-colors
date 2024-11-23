@@ -34,7 +34,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
   };
 
   return (
-    <div className="mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto px-4">
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Primary Color */}
         <div className="space-y-1">

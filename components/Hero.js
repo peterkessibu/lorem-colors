@@ -1,4 +1,5 @@
 //components/Hero.js
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -17,7 +18,7 @@ export default function Hero() {
     setBgGradient(
       "bg-gradient-to-tr from-[#4158D0] via-[#C850C0] to-[#FFCC70]"
     );
-    //setting the time for automatic routing
+    //setting the time for time bound routing
     setTimeout(() => {
       router.push("/color-palette");
     }, 1140);
@@ -27,6 +28,7 @@ export default function Hero() {
     return () => clearTimeout();
   }, []);
 
+  //To randomize the angle of rotation of the colors of the "Lorem Colors" text
   const getRandomRotation = () => {
     const rotations = [0, 30, 45, 60];
     return rotations[Math.floor(Math.random() * rotations.length)];

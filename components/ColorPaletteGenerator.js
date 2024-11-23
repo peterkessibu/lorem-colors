@@ -1,7 +1,5 @@
 // components/ColorPaletteGenerator.js
 
-"use client";
-
 import { useState } from "react";
 import QuestionnaireForm from "./QuestionnaireForm";
 import PaletteCard from "./PaletteCard";
@@ -16,14 +14,14 @@ const ColorPaletteGenerator = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
+  //Submitting to the api/chat
   const handleFormSubmit = async (answers) => {
-    if (isSubmitting) return; // Prevent duplicate submissions
+    if (isSubmitting) return; 
     setIsSubmitting(true);
     setIsGenerating(true);
     setError(null);
     try {
       const response = await fetch("/api/chat", {
-        // Ensure this endpoint is correct
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -55,6 +53,7 @@ const ColorPaletteGenerator = () => {
     }
   };
 
+  //Handle the buttons for Palette navigation
   const handlePrev = () => {
     setCurrentPaletteIndex((prev) => Math.max(prev - 1, 0));
   };
@@ -68,7 +67,7 @@ const ColorPaletteGenerator = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row gap-8">
-        <aside className="w-full lg:w-52">
+        <aside className="w-full lg:w-64">
           <div className="sticky top-8">
             <QuestionnaireForm
               onSubmit={handleFormSubmit}

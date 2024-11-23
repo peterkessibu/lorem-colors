@@ -1,4 +1,4 @@
-"use client";
+//components/ColorSwatch.js
 
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
@@ -6,6 +6,7 @@ import { Copy, Check } from "lucide-react";
 const ColorSwatch = ({ color, name, format }) => {
   const [copied, setCopied] = useState(false);
 
+  //Handle the copy function
   const handleCopy = () => {
     let colorValue = color;
     if (format === "rgb") {
@@ -31,7 +32,7 @@ const ColorSwatch = ({ color, name, format }) => {
         {copied ? (
           <Check className="w-6 h-6 text-white" />
         ) : (
-          <Copy className="w-6 h-6 text-white opacity-0 hover:opacity-100 transition-opacity" />
+          <Copy className="w-6 h-6 text-green-600 opacity-0 hover:opacity-100 transition-opacity" />
         )}
       </div>
       <span className="text-sm font-medium">{name}</span>

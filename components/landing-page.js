@@ -1,4 +1,4 @@
-"use client";
+//components/Landing-Page.js
 
 import Header from "./Header";
 import Hero from "./Hero";

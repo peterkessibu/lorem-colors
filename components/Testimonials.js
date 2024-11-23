@@ -138,7 +138,7 @@ export default function Testimonials() {
             ))}
           </motion.div>
           {/* Blurred Gradient Overlay */}
-          <div className="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none"></div>
+          <div className="absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-gray-100 to-transparent pointer-events-none"></div>
         </div>
       </div>
     </section>

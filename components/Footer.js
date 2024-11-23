@@ -155,7 +155,7 @@ export default function Footer() {
         {/*Copyright Footer*/}
         <div className="mt-12 border-t border-gray-200 pt-8">
           <div className="text-base text-gray-400 text-center">
-            &copy; {currentYear} Lorem Colors, Inc. All rights reserved.
+            &copy; {currentYear} Lorem Colors. All rights reserved.
           </div>
         </div>
       </div>

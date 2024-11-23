@@ -1,7 +1,5 @@
 // components/MockupWindow.js
 
-"use client";
-
 import {
   Bar,
   BarChart,

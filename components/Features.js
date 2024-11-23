@@ -1,4 +1,4 @@
-"use client";
+//components/Features.js
 
 import { motion } from "framer-motion";
 import { Palette, Users, Cpu } from "lucide-react";
