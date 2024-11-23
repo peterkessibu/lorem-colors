@@ -1,7 +1,9 @@
+//components/Header.js
+
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Palette, Play } from "lucide-react";
+import { Palette } from "lucide-react";
 import Link from "next/link";
 
 export default function Header() {
@@ -12,7 +14,7 @@ export default function Header() {
 
   return (
     <motion.header
-      className="bg-background shadow-sm"
+      className="bg-background"
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
@@ -44,14 +46,8 @@ export default function Header() {
                 </Button>
               </Link>
             ) : (
-              // Demo and Get Started Buttons for Other Pages
+              // Get Started Button
               <div className="flex space-x-4">
-                <Link href="/color-palette" className="hidden lg:block">
-                  <Button variant="destructive" size="lg">
-                    Demo
-                    <Play className="h-6 w-6 ml-2" />
-                  </Button>
-                </Link>
                 <Link href="/color-palette">
                   <Button variant="outline" size="lg">
                     Get Started
