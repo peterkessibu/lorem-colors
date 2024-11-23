@@ -1,3 +1,4 @@
+//components/Hero.js
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
@@ -16,7 +17,7 @@ export default function Hero() {
     setBgGradient(
       "bg-gradient-to-tr from-[#4158D0] via-[#C850C0] to-[#FFCC70]"
     );
-
+    //setting the time for automatic routing
     setTimeout(() => {
       router.push("/color-palette");
     }, 1140);
@@ -87,7 +88,7 @@ export default function Hero() {
           </main>
         </div>
 
-        {/* Animated "Colors" SVG */}
+        {/* Animated "Lorem Colors" SVG */}
         <motion.div
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
