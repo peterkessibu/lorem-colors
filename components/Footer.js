@@ -1,3 +1,5 @@
+//components/Footer.js
+
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
@@ -28,9 +30,9 @@ const footerSections = [
     links: [{ name: "Color Box", href: "/color-box" }],
   },
   {
-    title: "Support",
+    title: "Info",
     links: [
-      { name: "Documentation", href: "#" },
+      { name: "Blog", href: "#" },
       { name: "API Status", href: "#" },
     ],
   },
@@ -39,6 +41,7 @@ const footerSections = [
 function Modal({ isOpen, onClose, title, children }) {
   if (!isOpen) return null;
 
+  //Modal Window
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-md">
@@ -59,15 +62,16 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  const router = useRouter(); // Initialize router
+  const router = useRouter(); 
 
   const handleLinkClick = (name) => {
     setModalContent(name);
     setIsModalOpen(true);
   };
 
+  // Navigate back to the previous page
   const handleBackClick = () => {
-    router.back(); // Navigate back to the previous page
+    router.back(); 
   };
 
   const closeModal = () => {
@@ -75,6 +79,7 @@ export default function Footer() {
     setModalContent("");
   };
 
+  //Dynamic routes
   const isColorPalettePage = pathname === "/color-palette";
   const isColorBox = pathname === "/color-box";
 
@@ -146,12 +151,16 @@ export default function Footer() {
             </div>
           </div>
         )}
+
+        {/*Copyright Footer*/}
         <div className="mt-12 border-t border-gray-200 pt-8">
           <div className="text-base text-gray-400 text-center">
             &copy; {currentYear} Lorem Colors, Inc. All rights reserved.
           </div>
         </div>
       </div>
+
+      {/*Trigger Modal Window*/}
       <Modal isOpen={isModalOpen} onClose={closeModal} title={modalContent}>
         {modalContent === "Documentation" && (
           <p>
