@@ -16,7 +16,7 @@ export default function Hero() {
     setIsClicked(true);
     setButtonBg("bg-[#8ff2fe] text-white");
     setBgGradient(
-      "bg-gradient-to-tr from-[#4158D0] via-[#C850C0] to-[#FFCC70]"
+      "bg-gradient-to-tr from-[#4158D0] via-[#C850C0] to-[#FFCC70]",
     );
     //setting the time for time bound routing
     setTimeout(() => {
@@ -36,14 +36,16 @@ export default function Hero() {
 
   return (
     <div
-      className={`relative overflow-hidden transition-all duration-500 ${isClicked ? bgGradient : "bg-white"
-        }`}
+      className={`relative overflow-hidden transition-all duration-500 ${
+        isClicked ? bgGradient : "bg-white"
+      }`}
     >
       <div className="max-w-7xl mx-auto relative z-10 flex flex-col lg:flex-row">
         {/* Text Section */}
         <div
-          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 ${isClicked ? "bg-transparent" : ""
-            } w-full`}
+          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 ${
+            isClicked ? "bg-transparent" : ""
+          } w-full`}
         >
           <main className="mt-6 mx-4 p-4 lg:py-16">
             <motion.div
@@ -61,9 +63,7 @@ export default function Hero() {
               >
                 <span className="block">Everything</span>
                 <span className="block">In black and white,</span>
-                <span className="block">
-                  Till you click...{" "}
-                </span>
+                <span className="block">Till you click... </span>
               </motion.h1>
 
               {/* Generate Palette Button */}
@@ -140,7 +140,10 @@ export default function Hero() {
               </motion.text>
 
               <defs>
-                <linearGradient id="gradient" gradientTransform={`rotate(${getRandomRotation()})`}>
+                <linearGradient
+                  id="gradient"
+                  gradientTransform={`rotate(${getRandomRotation()})`}
+                >
                   <stop offset="0%" stopColor="#ff0000" />
                   <stop offset="25%" stopColor="#ffa500" />
                   <stop offset="50%" stopColor="#00ff00" />

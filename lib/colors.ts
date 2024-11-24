@@ -1,6 +1,5 @@
 // lib/colors.js
 
-
 //Scrapped from tailwindcss.com
 const colors = {
   Slate: {

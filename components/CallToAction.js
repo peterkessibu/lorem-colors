@@ -18,7 +18,7 @@ export default function CallToAction() {
     if (isClicked) {
       const timer = setTimeout(() => {
         router.push("/color-palette");
-      }, 1140); 
+      }, 1140);
       return () => clearTimeout(timer);
     }
   }, [isClicked, router]);
@@ -43,18 +43,22 @@ export default function CallToAction() {
         <hr />
         <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
           <motion.h2
-            className={`text-3xl font-extrabold ${isClicked ? "text-white" : "text-black"
-              } sm:text-4xl`}
+            className={`text-3xl font-extrabold ${
+              isClicked ? "text-white" : "text-black"
+            } sm:text-4xl`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <span className="block">Ready to elevate your designs?</span>
-            <span className="block">Start creating with Lorem Colors today.</span>
+            <span className="block">
+              Start creating with Lorem Colors today.
+            </span>
           </motion.h2>
           <motion.p
-            className={`mt-4 text-lg leading-6 ${isClicked ? "text-white" : "text-black"
-              }`}
+            className={`mt-4 text-lg leading-6 ${
+              isClicked ? "text-white" : "text-black"
+            }`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}

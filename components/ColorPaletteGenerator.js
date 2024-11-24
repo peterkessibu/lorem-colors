@@ -16,7 +16,7 @@ const ColorPaletteGenerator = () => {
 
   //Submitting to the api/chat
   const handleFormSubmit = async (answers) => {
-    if (isSubmitting) return; 
+    if (isSubmitting) return;
     setIsSubmitting(true);
     setIsGenerating(true);
     setError(null);

@@ -2,11 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { HexColorPicker } from "react-colorful";
-import {
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
@@ -91,9 +87,7 @@ const ColorBox = () => {
   return (
     <div className="w-full rounded-xl max-w-4xl mx-auto px-4 md:px-6 lg:px-8 mt-10 overflow-x-hidden">
       <CardHeader>
-        <CardTitle className="text-xl">
-          Color Palette Generator
-        </CardTitle>
+        <CardTitle className="text-xl">Color Palette Generator</CardTitle>
         <CardDescription className="text-sm">
           Customize your color palette with various shades
         </CardDescription>

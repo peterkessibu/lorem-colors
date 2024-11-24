@@ -21,7 +21,7 @@ const isDark = (color) => {
     color.length !== 7
   ) {
     console.warn(
-      `Invalid color format received: "${color}". Expected a string like "#FFFFFF". Defaulting to light color.`
+      `Invalid color format received: "${color}". Expected a string like "#FFFFFF". Defaulting to light color.`,
     );
     return false;
   }
@@ -88,7 +88,7 @@ export default function Dashboard({ colors }) {
                 >
                   {item}
                 </p>
-              )
+              ),
             )}
           </div>
         </div>

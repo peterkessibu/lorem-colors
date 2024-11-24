@@ -90,9 +90,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
           <Label className="text-sm font-semibold">Contrast Preference</Label>
           <Select
             value={answers.contrastPreference}
-            onValueChange={(value) =>
-              handleChange("contrastPreference", value)
-            }
+            onValueChange={(value) => handleChange("contrastPreference", value)}
             required
           >
             <SelectTrigger className="w-full">
