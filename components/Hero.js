@@ -113,7 +113,7 @@ export default function Hero() {
                 y="50%"
                 textAnchor="middle"
                 fill="#000000"
-                fontSize="92"
+                fontSize="90"
                 fontWeight="bold"
                 dy=".3em"
                 initial={{ opacity: 1 }}

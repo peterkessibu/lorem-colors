@@ -50,7 +50,13 @@ const QuestionnaireForm = ({ onSubmit }) => {
             <SelectContent>
               {colorNames.map((colorName) => (
                 <SelectItem key={colorName} value={colorName}>
-                  {colorName}
+                  <div className="flex items-center space-x-2">
+                    <div
+                      className="w-[15px] h-[15px]"
+                      style={{ backgroundColor: colors[colorName][500] }}
+                    ></div>
+                    <span>{colorName}</span>
+                  </div>
                 </SelectItem>
               ))}
             </SelectContent>
@@ -70,7 +76,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
             required
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select background color preference" />
+              <SelectValue placeholder="Background theme" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="Light">Light</SelectItem>
@@ -90,7 +96,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
             required
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select contrast preference" />
+              <SelectValue placeholder="Contrast preference" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="High Contrast">High Contrast</SelectItem>
@@ -108,7 +114,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
             required
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Select intended mood" />
+              <SelectValue placeholder="Intended mood" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="Professional">Professional</SelectItem>

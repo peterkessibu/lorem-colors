@@ -42,7 +42,7 @@ export default function Header() {
               // Color Box Button for Color Palette Page
               <Link href="/color-box">
                 <Button variant="outline" size="lg">
-                  Color Box
+                  Color Gen
                 </Button>
               </Link>
             ) : (

@@ -95,11 +95,11 @@ export default function Dashboard({ colors }) {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 space-y-4 p-4 md:p-6">
+      <main className="flex-1 space-y-4 p-4">
         {/* Dashboard Header */}
         <div className="flex items-center justify-between flex-col md:flex-row">
           <h1 className="text-lg md:text-xl font-bold">Dashboard</h1>
-          <div className="flex items-center space-x-2 mt-4 md:mt-0">
+          <div className="flex space-x-2 mt-4 md:mt-0">
             <Button
               variant="outline"
               size="sm"
@@ -179,10 +179,10 @@ export default function Dashboard({ colors }) {
           </div>
 
           {/* Overview and Recent Sales */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 justify-center">
             {/* Overview Chart */}
             <Card
-              className="col-span-2 lg:col-span-4"
+              className="col-span-2 lg:col-span-4 mx-4 md:mx-0"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
@@ -231,7 +231,7 @@ export default function Dashboard({ colors }) {
 
             {/* Recent Sales */}
             <Card
-              className="col-span-2 lg:col-span-3"
+              className="col-span-2 lg:col-span-3 mx-4 md:mx-0"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,

@@ -26,7 +26,7 @@ const socialLinks = [
 const footerSections = [
   {
     title: "Solutions",
-    links: [{ name: "Color Box", href: "/color-box" }],
+    links: [{ name: "Color Gen", href: "/color-box" }],
   },
   {
     title: "Info",
