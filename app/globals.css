@@ -6,6 +6,25 @@ body {
   @apply bg-background text-foreground;
 }
 
+
+.video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+}
+
+.mockup-container.blur {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

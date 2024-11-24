@@ -32,7 +32,7 @@ const ColorSwatch = ({ color, name, format }) => {
         {copied ? (
           <Check className="w-6 h-6 text-white" />
         ) : (
-          <Copy className="w-6 h-6 text-green-600 opacity-0 hover:opacity-100 transition-opacity" />
+          <Copy className="w-6 h-6 text-white opacity-0 hover:opacity-100 transition-opacity" />
         )}
       </div>
       <span className="text-sm font-medium">{name}</span>

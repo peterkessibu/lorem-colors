@@ -1,6 +1,4 @@
-// components/ColorPaletteGenerator.js
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import QuestionnaireForm from "./QuestionnaireForm";
 import PaletteCard from "./PaletteCard";
 import MockupWindow from "./MockupWindow";
@@ -14,7 +12,14 @@ const ColorPaletteGenerator = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  //Submitting to the api/chat
+  useEffect(() => {
+    if (isGenerating) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isGenerating]);
+
   const handleFormSubmit = async (answers) => {
     if (isSubmitting) return;
     setIsSubmitting(true);
@@ -53,7 +58,6 @@ const ColorPaletteGenerator = () => {
     }
   };
 
-  //Handle the buttons for Palette navigation
   const handlePrev = () => {
     setCurrentPaletteIndex((prev) => Math.max(prev - 1, 0));
   };
@@ -76,7 +80,6 @@ const ColorPaletteGenerator = () => {
           </div>
         </aside>
         <div className="flex-1">
-          {isGenerating && <p>Generating palettes...</p>}
           {error && (
             <div className="text-red-500 text-center mb-4">{error}</div>
           )}
@@ -101,19 +104,31 @@ const ColorPaletteGenerator = () => {
               <ChevronRight className="w-6 h-6" />
             </button>
           </div>
-          <MockupWindow
-            colors={
-              isGenerating || palettes.length === 0
-                ? {
-                    Background: "#f0f0f0",
-                    Text: "#a0a0a0",
-                    Border: "#d0d0d0",
-                    Accent: "#c0c0c0",
-                    Secondary: "#b0b0b0",
-                  }
-                : currentPalette.colors
-            }
-          />
+          <div className="relative">
+            {isGenerating && (
+              <div className="video-container absolute inset-0 flex justify-center items-center bg-white bg-opacity-80 z-10">
+                <video autoPlay loop muted>
+                  <source src="/path/to/your/video.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            )}
+            <div className={`mockup-container ${isGenerating ? "blur" : ""}`}>
+              <MockupWindow
+                colors={
+                  isGenerating || palettes.length === 0
+                    ? {
+                      Background: "#f0f0f0",
+                      Text: "#a0a0a0",
+                      Border: "#d0d0d0",
+                      Accent: "#c0c0c0",
+                      Secondary: "#b0b0b0",
+                    }
+                    : currentPalette.colors
+                }
+              />
+            </div>
+          </div>
           {palettes.length > 0 && (
             <PaletteCard
               palette={currentPalette}
