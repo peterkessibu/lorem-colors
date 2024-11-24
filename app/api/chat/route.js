@@ -125,7 +125,7 @@ export async function POST(request) {
 
     // Prepare the prompt with selected colors and mood definitions
     const prompt = `
-Generate 6 color palettes with distinctly visible and contrasting variants based on the following criteria:
+    Generate 6 color palettes with distinctly visible and contrasting variants based on the following criteria:
 
 Primary Color: ${primaryColor} (This should be the base color for the background and accent, with all other colors relating to it, especially for the light and dark Background Color Preference)
 Accent Color: ${accentColor}
@@ -141,7 +141,10 @@ Requirements:
    - Primary: Main brand color, used for CTAs and key UI elements (20-30% of interface). Must be distinctly different from secondary and accent colors.
    - Secondary: Supporting color for secondary actions (15-20% of interface). Should complement but contrast the primary color.
    - Accent: Off white or contrasting variation of the primary color, used for minimalistic tone (5-10% of interface). Must stand out against both primary and background colors.
-   - Background: Main content background (30-40% of interface). Ensure high contrast with primary and accent colors.
+   - Background: Main content background (30-40% of interface). 
+     - For light mode: Use a light shade that complements the primary color.
+     - For dark mode: Use a darker version of the primary color instead of generic dark colors like black, ensuring it harmonizes with the primary color.
+     - Ensure high contrast with primary and accent colors.
    - Border: Subtle divisions and containers (5-10% of interface). Should be visible against the background without overpowering other elements.
    - Hover: Interactive state variations (5-10% of interface). Must provide clear visual feedback, differing significantly from default states.
 
