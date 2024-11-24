@@ -6,11 +6,13 @@ import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
+import { Copy, Check } from "lucide-react"
 
 const ColorBox = () => {
   const [baseColor, setBaseColor] = useState("#f43f5e");
   const [colorShades, setColorShades] = useState({});
   const [shadeCount, setShadeCount] = useState(10);
+  const [copiedShades, setCopiedShades] = useState({}); // State to track copied shades
 
   const hexToHSL = (hex) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -84,6 +86,18 @@ const ColorBox = () => {
     setColorShades(generateShades(baseColor, shadeCount));
   }, [baseColor, shadeCount]);
 
+  const handleCopy = async (color, shade) => {
+    try {
+      await navigator.clipboard.writeText(color);
+      setCopiedShades((prev) => ({ ...prev, [shade]: true }));
+      setTimeout(() => {
+        setCopiedShades((prev) => ({ ...prev, [shade]: false }));
+      }, 2000); // Reset after 2 seconds
+    } catch (err) {
+      console.error("Failed to copy!", err);
+    }
+  };
+
   return (
     <div className="w-full rounded-xl max-w-4xl mx-auto px-4 md:px-6 lg:px-8 mt-10 overflow-x-hidden">
       <CardHeader>
@@ -120,21 +134,28 @@ const ColorBox = () => {
               {Object.entries(colorShades).map(([shade, color]) => (
                 <div key={shade} className="flex items-center">
                   <div
-                    className="w-8 h-8 rounded mr-2 border border-gray-300"
+                    className="w-8 h-8 rounded mr-2 border border-gray-400"
                     style={{ backgroundColor: color }}
                   />
-                  <Input
-                    type="text"
-                    value={color}
-                    onChange={(e) => {
-                      const newShades = {
-                        ...colorShades,
-                        [shade]: e.target.value,
-                      };
-                      setColorShades(newShades);
-                    }}
-                    className="flex-grow text-xs sm:text-sm"
-                  />
+                  <div className="relative flex-grow">
+                    <Input
+                      type="text"
+                      value={color}
+                      className="w-full pr-10 text-xs sm:text-sm cursor-pointer text-gray-400"
+                      onClick={() => navigator.clipboard.writeText(color)}
+                    />
+                    <button
+                      onClick={() => handleCopy(color, shade)}
+                      className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-600 hover:text-gray-700"
+                      aria-label="Copy color"
+                    >
+                      {copiedShades[shade] ? (
+                        <Check className="w-5 h-5 text-green-500" />
+                      ) : (
+                        <Copy className="w-5 h-5" />
+                      )}
+                    </button>
+                  </div>
                 </div>
               ))}
             </div>

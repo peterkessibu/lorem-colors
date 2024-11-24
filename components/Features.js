@@ -11,16 +11,16 @@ const features = [
     icon: Palette,
   },
   {
-    name: "User centered",
-    description:
-      "Designed with users in mind, our platform is easy to use and navigate.",
-    icon: Users,
-  },
-  {
     name: "AI Integration",
     description:
       "Leverage AI for intelligent color recommendations tailored to your brand.",
     icon: Cpu,
+  },
+  {
+    name: "User centered",
+    description:
+      "Designed with users in mind, our platform is easy to use and navigate.",
+    icon: Users,
   },
 ];
 
