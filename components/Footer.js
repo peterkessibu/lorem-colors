@@ -26,7 +26,7 @@ const socialLinks = [
 const footerSections = [
   {
     title: "Solutions",
-    links: [{ name: "Color Gen", href: "/color-box" }],
+    links: [{ name: "Color Gen", href: "/color-gen" }],
   },
   {
     title: "Info",
@@ -74,7 +74,7 @@ export default function Footer() {
 
   //Dynamic routes
   const isColorPalettePage = pathname === "/color-palette";
-  const isColorBox = pathname === "/color-box";
+  const isColorBox = pathname === "/color-gen";
 
   return (
     <footer className="bg-background">

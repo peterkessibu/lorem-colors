@@ -95,7 +95,7 @@ const ColorBox = () => {
       <div className="p-4 mb-4">
         <div className="flex flex-col md:flex-row lg:justify-center justify-between">
           <div className="flex flex-col items-center lg:items-start w-full">
-            <Label className="mb-2 text-base">Base Color</Label>
+            <Label className="mb-2 text-base">Color Box</Label>
             <HexColorPicker color={baseColor} onChange={setBaseColor} />
             <Input
               type="text"

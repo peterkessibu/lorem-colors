@@ -10,7 +10,7 @@ export default function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const isColorPalettePage = pathname === "/color-palette";
-  const isColorBox = pathname === "/color-box";
+  const isColorBox = pathname === "/color-gen";
 
   return (
     <motion.header
@@ -40,7 +40,7 @@ export default function Header() {
               </Button>
             ) : isColorPalettePage ? (
               // Color Box Button for Color Palette Page
-              <Link href="/color-box">
+              <Link href="/color-gen">
                 <Button variant="outline" size="lg">
                   Color Gen
                 </Button>
