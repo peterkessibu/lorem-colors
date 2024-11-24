@@ -1,38 +1,38 @@
-//components/Hero.js
-
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+
+const getRandomRotation = () => {
+  const rotations = [0, 30, 45, 60];
+  return rotations[Math.floor(Math.random() * rotations.length)];
+};
 
 export default function Hero() {
   const [buttonBg, setButtonBg] = useState("bg-primary");
   const [isClicked, setIsClicked] = useState(false);
   const [bgGradient, setBgGradient] = useState("bg-white");
+  const [rotation, setRotation] = useState(0);
   const router = useRouter();
 
-  const handleButtonClick = () => {
+  const handleButtonClick = useCallback(() => {
     if (isClicked) return;
     setIsClicked(true);
     setButtonBg("bg-[#8ff2fe] text-white");
     setBgGradient(
       "bg-gradient-to-tr from-[#4158D0] via-[#C850C0] to-[#FFCC70]",
     );
-    //setting the time for time bound routing
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       router.push("/genAI-Color-Palette");
     }, 1140);
-  };
+
+    // Clear timeout on component unmount
+    return () => clearTimeout(timeoutId);
+  }, [isClicked, router]);
 
   useEffect(() => {
-    return () => clearTimeout();
+    setRotation(getRandomRotation());
   }, []);
-
-  //To randomize the angle of rotation of the colors of the "Lorem Colors" text
-  const getRandomRotation = () => {
-    const rotations = [0, 30, 45, 60];
-    return rotations[Math.floor(Math.random() * rotations.length)];
-  };
 
   return (
     <div
@@ -142,7 +142,7 @@ export default function Hero() {
               <defs>
                 <linearGradient
                   id="gradient"
-                  gradientTransform={`rotate(${getRandomRotation()})`}
+                  gradientTransform={`rotate(${rotation})`}
                 >
                   <stop offset="0%" stopColor="#ff0000" />
                   <stop offset="25%" stopColor="#ffa500" />
