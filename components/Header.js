@@ -40,7 +40,7 @@ export default function Header() {
               </Button>
             ) : isColorPalettePage ? (
               // Color Box Button for Color Palette Page
-              <Link href="/color-gen">
+              <Link href={'/color-gen'}>
                 <Button variant="outline" size="lg">
                   Color Gen
                 </Button>
@@ -48,7 +48,7 @@ export default function Header() {
             ) : (
               // Get Started Button
               <div className="flex space-x-4">
-                <Link href="/color-palette">
+                    <Link href={'/genAI-Color-Palette'}>
                   <Button variant="outline" size="lg">
                     Get Started
                   </Button>

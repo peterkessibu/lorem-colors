@@ -59,7 +59,6 @@ const PaletteCard = ({ palette, colorFormat, setColorFormat }) => {
             <SelectContent className="bg-white text-black rounded-md shadow-md">
               <SelectItem value="hex">HEX</SelectItem>
               <SelectItem value="rgb">RGB</SelectItem>
-              <SelectItem value="css">CSS Variables</SelectItem>
             </SelectContent>
           </Select>
         </CardTitle>

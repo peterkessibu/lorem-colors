@@ -97,7 +97,7 @@ export default function Dashboard({ colors }) {
       {/* Main Content */}
       <main className="flex-1 space-y-4 p-4">
         {/* Dashboard Header */}
-        <div className="flex items-center justify-between flex-col md:flex-row">
+        <div className="flex items-center justify-between flex-row">
           <h1 className="text-lg md:text-xl font-bold">Dashboard</h1>
           <div className="flex space-x-2 mt-4 md:mt-0">
             <Button
@@ -146,12 +146,12 @@ export default function Dashboard({ colors }) {
                 <CardTitle className="text-sm font-medium">Sales</CardTitle>
                 <DollarSign className="h-4 w-4 text-gray-500" />
               </div>
-              <CardContent>
-                <div className="text-2xl font-bold">+12,234</div>
+              <div>
+                <div className="text-2xl font-bold">+12,234.93</div>
                 <p className="text-xs" style={{ color: emailColor }}>
-                  +19% from last month
+                  +19% from last month.
                 </p>
-              </CardContent>
+              </div>
             </div>
 
             {/* Active Now Card */}
@@ -169,17 +169,17 @@ export default function Dashboard({ colors }) {
                 </CardTitle>
                 <Users className="h-4 w-4 text-gray-500" />
               </div>
-              <CardContent>
-                <div className="text-2xl font-bold">+573</div>
+              <div>
+                <div className="text-2xl font-bold">+573 Users</div>
                 <p className="text-xs" style={{ color: emailColor }}>
                   +201 since last hour
                 </p>
-              </CardContent>
+              </div>
             </div>
           </div>
 
           {/* Overview and Recent Sales */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7 justify-center">
+          <div className="grid gap-4 md:grid-cols-7 justify-center">
             {/* Overview Chart */}
             <Card
               className="col-span-2 lg:col-span-4 mx-4 md:mx-0"

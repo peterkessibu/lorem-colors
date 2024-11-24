@@ -20,7 +20,7 @@ export default function Hero() {
     );
     //setting the time for time bound routing
     setTimeout(() => {
-      router.push("/color-palette");
+      router.push("/genAI-Color-Palette");
     }, 1140);
   };
 

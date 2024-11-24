@@ -194,7 +194,7 @@ Respond only with valid JSON without any additional text or markdown. The JSON s
 
 Each palette object should have the following structure:
     {
-      "name": "palette-variant-X",
+      "name": "Palette-Variant-X",
         "colors": {
         "primary": "#HEXCODE",
           "secondary": "#HEXCODE",

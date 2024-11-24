@@ -17,7 +17,7 @@ export default function CallToAction() {
   useEffect(() => {
     if (isClicked) {
       const timer = setTimeout(() => {
-        router.push("/color-palette");
+        router.push("/genAI-Color-Palette");
       }, 1140);
       return () => clearTimeout(timer);
     }

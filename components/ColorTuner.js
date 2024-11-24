@@ -6,7 +6,7 @@ import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
-import { Copy, Check } from "lucide-react"
+import { Copy, Check } from "lucide-react";
 
 const ColorBox = () => {
   const [baseColor, setBaseColor] = useState("#f43f5e");
@@ -108,6 +108,7 @@ const ColorBox = () => {
       </CardHeader>
       <div className="p-4 mb-4">
         <div className="flex flex-col md:flex-row lg:justify-center justify-between">
+          {/* Color Picker Section */}
           <div className="flex flex-col items-center lg:items-start w-full">
             <Label className="mb-2 text-base">Color Box</Label>
             <HexColorPicker color={baseColor} onChange={setBaseColor} />
@@ -115,9 +116,12 @@ const ColorBox = () => {
               type="text"
               value={baseColor}
               onChange={(e) => setBaseColor(e.target.value)}
-              className="my-4 w-1/2"
+              className="my-4 w-1/2 pointer-events-none"
+              disabled
             />
           </div>
+
+          {/* Shades Generator Section */}
           <div className="flex flex-col items-start w-full mt-6 md:mt-0">
             <Label className="mb-2 text-sm sm:text-base">
               Number of Shades: {shadeCount}
@@ -130,17 +134,23 @@ const ColorBox = () => {
               step={1}
               className="my-2 w-full"
             />
+
+            {/* Shades Grid */}
             <div className="grid grid-cols-2 gap-2 mt-4 w-full">
               {Object.entries(colorShades).map(([shade, color]) => (
                 <div key={shade} className="flex items-center">
+                  {/* Color Box */}
                   <div
                     className="w-8 h-8 rounded mr-2 border border-gray-400"
                     style={{ backgroundColor: color }}
                   />
+
+                  {/* Input with Copy Button */}
                   <div className="relative flex-grow">
                     <Input
                       type="text"
                       value={color}
+                      readOnly
                       className="w-full pr-10 text-xs sm:text-sm cursor-pointer text-gray-400"
                       onClick={() => navigator.clipboard.writeText(color)}
                     />
