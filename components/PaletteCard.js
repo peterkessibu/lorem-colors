@@ -74,7 +74,6 @@ const PaletteCard = ({ palette, colorFormat, setColorFormat }) => {
               <ColorSwatch
                 key={name} // Unique key for each swatch
                 color={hex} // Hex code of the color
-                name={name} // Name of the color (e.g., 'primary')
                 locked={lockedColors[name]} // Lock state of the color
                 onLockToggle={handleLockToggle} // Function to toggle lock state
                 format={colorFormat} // Current color format selected
