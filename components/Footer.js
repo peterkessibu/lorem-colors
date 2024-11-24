@@ -1,9 +1,8 @@
-//components/Footer.js
+// components/Footer.js
 
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Instagram, Github, Palette, Linkedin, X } from "lucide-react";
 
 const socialLinks = [
@@ -62,16 +61,10 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  const router = useRouter(); 
 
   const handleLinkClick = (name) => {
     setModalContent(name);
     setIsModalOpen(true);
-  };
-
-  // Navigate back to the previous page
-  const handleBackClick = () => {
-    router.back(); 
   };
 
   const closeModal = () => {
@@ -121,14 +114,8 @@ export default function Footer() {
                   <ul className="mt-4 space-y-4">
                     {section.links.map((link) => (
                       <li key={link.name}>
-                        {link.isBackButton ? (
-                          <button
-                            onClick={handleBackClick}
-                            className="text-base text-gray-500 hover:text-gray-900 focus:outline-none"
-                          >
-                            {link.name}
-                          </button>
-                        ) : section.title === "Support" ? (
+                        {/* Updated Condition: Check if the section is "Info" to handle modal triggers */}
+                        {section.title === "Info" ? (
                           <button
                             onClick={() => handleLinkClick(link.name)}
                             className="text-base text-gray-500 hover:text-gray-900 focus:outline-none"
@@ -152,17 +139,17 @@ export default function Footer() {
           </div>
         )}
 
-        {/*Copyright Footer*/}
+        {/* Copyright Footer */}
         <div className="mt-12 border-t border-gray-200 pt-8">
           <div className="text-base text-gray-400 text-center">
-            &copy; {currentYear} Lorem Colors. All rights reserved.
+            &copy; {currentYear} Lorem Colors, Inc. All rights reserved.
           </div>
         </div>
       </div>
 
-      {/*Trigger Modal Window*/}
+      {/* Trigger Modal Window */}
       <Modal isOpen={isModalOpen} onClose={closeModal} title={modalContent}>
-        {modalContent === "Documentation" && (
+        {modalContent === "Blog" && (
           <p>
             Visit our{" "}
             <Link
