@@ -73,7 +73,7 @@ export default function Footer() {
   };
 
   //Dynamic routes
-  const isColorPalettePage = pathname === "/color-palette";
+  const isColorPalettePage = pathname === "/genAI-Color-Palette";
   const isColorBox = pathname === "/color-gen";
 
   return (
