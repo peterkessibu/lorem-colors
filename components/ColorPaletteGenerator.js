@@ -108,7 +108,7 @@ const ColorPaletteGenerator = () => {
             {isGenerating && (
               <div className="video-container absolute inset-0 flex justify-center items-center bg-white bg-opacity-80 z-10">
                 <video autoPlay loop muted>
-                  <source src="/path/to/your/video.mp4" type="video/mp4" />
+                  <source src="/gen_svg.mp4" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </div>

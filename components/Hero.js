@@ -95,7 +95,7 @@ export default function Hero() {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
-          className="w-full lg:w-2/3 mt-8 lg:mt-0 flex justify-center items-center transition-transform duration-500"
+          className="w-full lg:w-2/3 mt-4 lg:mt-0 flex justify-center items-center transition-transform duration-500"
         >
           <motion.div
             className="w-full h-full"
