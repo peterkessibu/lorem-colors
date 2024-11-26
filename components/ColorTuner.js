@@ -2,18 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import { HexColorPicker } from "react-colorful";
-import { CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardDescription, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Copy, Check } from "lucide-react";
-import Footer from "./Footer"
+import Footer from "./Footer";
 
 const ColorBox = () => {
   const [baseColor, setBaseColor] = useState("#f43f5e");
   const [colorShades, setColorShades] = useState({});
   const [shadeCount, setShadeCount] = useState(10);
-  const [copiedShades, setCopiedShades] = useState({}); 
+  const [copiedShades, setCopiedShades] = useState({});
 
   const hexToHSL = (hex) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -101,12 +101,12 @@ const ColorBox = () => {
 
   return (
     <div className="w-full rounded-xl max-w-4xl min-h-screen mx-auto px-4 mt-10 overflow-x-hidden">
-      <CardHeader>
+      <div>
         <CardTitle className="text-xl">Color Palette Generator</CardTitle>
         <CardDescription className="text-sm">
           Customize your color palette with various shades
         </CardDescription>
-      </CardHeader>
+      </div>
       <div className="p-4 mb-4">
         <div className="flex flex-col md:flex-row lg:justify-center justify-between">
           {/* Color Picker Section */}
