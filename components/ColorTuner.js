@@ -7,12 +7,13 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { Copy, Check } from "lucide-react";
+import Footer from "./Footer"
 
 const ColorBox = () => {
   const [baseColor, setBaseColor] = useState("#f43f5e");
   const [colorShades, setColorShades] = useState({});
   const [shadeCount, setShadeCount] = useState(10);
-  const [copiedShades, setCopiedShades] = useState({}); // State to track copied shades
+  const [copiedShades, setCopiedShades] = useState({}); 
 
   const hexToHSL = (hex) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -99,7 +100,7 @@ const ColorBox = () => {
   };
 
   return (
-    <div className="w-full rounded-xl max-w-4xl mx-auto px-4 md:px-6 lg:px-8 mt-10 overflow-x-hidden">
+    <div className="w-full rounded-xl max-w-4xl min-h-screen mx-auto px-4 mt-10 overflow-x-hidden">
       <CardHeader>
         <CardTitle className="text-xl">Color Palette Generator</CardTitle>
         <CardDescription className="text-sm">
@@ -172,6 +173,7 @@ const ColorBox = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

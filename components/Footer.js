@@ -42,7 +42,7 @@ function Modal({ isOpen, onClose, title, children }) {
 
   //Modal Window
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bottom-0 bg-black bg-opacity-50">
       <div className="bg-white rounded-lg shadow-lg w-11/12 max-w-md">
         <div className="flex justify-between items-center p-4 border-b">
           <h2 className="text-lg font-semibold">{title}</h2>

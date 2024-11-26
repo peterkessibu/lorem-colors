@@ -19,8 +19,8 @@ export default function Header() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-6">
           {/* Logo */}
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/" className="flex items-center">

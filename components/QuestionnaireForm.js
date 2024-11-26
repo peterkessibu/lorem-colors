@@ -119,8 +119,6 @@ const QuestionnaireForm = ({ onSubmit }) => {
               <SelectItem value="Playful">Playful</SelectItem>
               <SelectItem value="Minimalistic">Minimalistic</SelectItem>
               <SelectItem value="Bold">Bold</SelectItem>
-              <SelectItem value="Relaxed">Relaxed</SelectItem>
-              <SelectItem value="Vibrant">Vibrant</SelectItem>
             </SelectContent>
           </Select>
         </div>
