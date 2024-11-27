@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label"
+import { Label } from "@/components/ui/label";
 import { HexColorPicker } from "react-colorful";
 import { Slider } from "@/components/ui/slider";
 import { Check, Copy } from "lucide-react";
@@ -12,7 +12,6 @@ export default function ColorTuner() {
   const [shadeCount, setShadeCount] = useState(10);
   const [colorShades, setColorShades] = useState({});
   const [copiedShades, setCopiedShades] = useState({});
-
 
   const hexToHSL = (hex) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
