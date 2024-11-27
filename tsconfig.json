@@ -38,6 +38,6 @@
     "components/Footer.js",
     "app/(root)/page.js",
     "components/ColorTuner.js"
-  ],
+, "app/global-error.ts" , "components/global-error.js" ],
   "exclude": ["node_modules"]
 }
