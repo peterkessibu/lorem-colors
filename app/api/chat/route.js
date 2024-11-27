@@ -163,8 +163,8 @@ Requirements:
    - Hue Variation: Incorporate a balanced range of hues to enhance visibility and aesthetic appeal.
 
 4. Palette Naming Convention:
-   - Each palette should follow the format: "palette-variant-X"
-   - Example: "palette-variant-1"
+   - Each palette should follow the format: "Palette-variant-X"
+   - Example: "Palette-Variant-1"
 
 5. Description Requirements:
    - Each palette description should include:

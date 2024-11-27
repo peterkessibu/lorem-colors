@@ -61,7 +61,7 @@ export default function Testimonials() {
         x: {
           repeat: Infinity,
           repeatType: "mirror",
-          duration: 25,
+          duration: 15,
           ease: "linear",
         },
       },
@@ -73,7 +73,7 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 relative flex flex-col items-center">
           {/* SVG Quote Icon */}
-          <div className="absolute top-4 md:left-1/3 left-0 transform -translate-x-1/2 -translate-y-12 w-12 h-12 md:w-24 md:h-24 text-gray-700 pointer-events-none">
+          <div className="absolute top-4 md:left-1/3 left-9 transform -translate-x-1/2 -translate-y-12 w-12 h-12 md:w-24 md:h-24 text-gray-700 pointer-events-none">
             <svg
               stroke="currentColor"
               fill="none"
