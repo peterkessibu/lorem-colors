@@ -10,21 +10,22 @@ const socialLinks = [
     name: "Instagram",
     href: "#",
     icon: Instagram,
+    hoverTextColor: "hover:text-pink-500", 
     text: null,
   },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/peteressibu",
     icon: Linkedin,
-    hoverBg: "hover:text-blue-700",
+    hoverTextColor: "hover:text-blue-700", 
     text: null,
   },
   {
     name: "GitHub",
     href: "https://www.github.com/peterkessibu",
     icon: Github,
-    hoverBg: "hover:bg-gray-800",
-    text: "Hello",
+    hoverTextColor: "hover:text-gray-800", 
+    text: "Star on Github!",
   },
 ];
 
@@ -81,33 +82,33 @@ export default function Footer() {
   const isColorBox = pathname === "/color-gen";
 
   return (
-    <footer className="bg-background">
-      <div className="max-w-7xl mx-auto py-12 px-4">
+    <footer className="bg-gray-100">
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         {!isColorPalettePage && !isColorBox && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Logo and Social Links Section */}
-            <div className="flex flex-col items-start space-y-4">
+            <div className="flex flex-col items-start space-y-8">
               {/* Logo Section */}
               <div className="flex justify-start">
                 <Link href="/" className="flex items-center">
-                  <Palette className="h-14 w-14" />
+                  <Palette className="h-16 w-16 text-gray-900" />
                 </Link>
               </div>
 
               {/* Social Links Section */}
-              <div className="flex space-x-4">
+              <div className="flex space-x-4 md:space-x-6">
                 {socialLinks.map((social) => (
                   <Link
                     key={social.name}
                     href={social.href}
-                    className={`flex items-center px-4 py-2 bg-gray-200 rounded-lg shadow-md transition-colors duration-300 ${social.hoverBg}`}
+                    className={`flex items-center px-4 py-2 bg-gray-200 rounded-lg shadow-md transition-colors duration-300 ${social.hoverTextColor} text-gray-500 hover:bg-gray-200`}
                   >
                     <span className="sr-only">{social.name}</span>
                     {social.icon && (
-                      <social.icon className="h-6 w-6 text-gray-700" aria-hidden="true" />
+                      <social.icon className="h-6 w-6" aria-hidden="true" />
                     )}
                     {social.text && (
-                      <span className="ml-2 text-gray-700">{social.text}</span>
+                      <span className="ml-2">{social.text}</span>
                     )}
                   </Link>
                 ))}
@@ -115,7 +116,7 @@ export default function Footer() {
             </div>
 
             {/* Footer Sections */}
-            <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-start">
               {footerSections.map((section) => (
                 <div
                   key={section.title}
@@ -124,7 +125,7 @@ export default function Footer() {
                   <h3 className="text-sm font-semibold text-left text-gray-700 tracking-wider uppercase">
                     {section.title}
                   </h3>
-                  <ul className="mt-4 space-y-4">
+                  <ul className="mt-2 space-y-2">
                     {section.links.map((link) => (
                       <li key={link.name}>
                         {section.title === "Info" ? (

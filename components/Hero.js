@@ -1,3 +1,6 @@
+
+// components/Hero.js
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect, useCallback } from "react";
@@ -34,18 +37,20 @@ export default function Hero() {
     setRotation(getRandomRotation());
   }, []);
 
+  // Split the text into individual letters, including spaces
+  const text = "Lorem Colors";
+  const letters = text.split("");
+
   return (
     <div
-      className={`relative overflow-hidden transition-all duration-500 ${
-        isClicked ? bgGradient : "bg-white"
-      }`}
+      className={`relative overflow-hidden transition-all duration-500 ${isClicked ? bgGradient : "bg-white"
+        }`}
     >
       <div className="max-w-7xl h-screen mx-auto relative z-10 flex flex-col lg:flex-row">
         {/* Text Section */}
         <div
-          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 ${
-            isClicked ? "bg-transparent" : ""
-          } w-full`}
+          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 ${isClicked ? "bg-transparent" : ""
+            } w-full`}
         >
           <main className="mt-6 mx-4 p-4 lg:py-16">
             <motion.div
@@ -56,7 +61,8 @@ export default function Hero() {
             >
               {/* Main Heading */}
               <motion.h1
-                className={`text-5xl leading-tight tracking-tight font-extrabold md:text-[54px] transition-colors duration-500 ${isClicked ? "text-white" : "text-black"}`}
+                className={`text-4xl leading-snug tracking-tight font-extrabold md:text-[54px] transition-colors duration-500 ${isClicked ? "text-white" : "text-black"
+                  }`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -76,8 +82,8 @@ export default function Hero() {
                   <div className="rounded-md">
                     <Button
                       variant="outline"
-                      size="xl"
-                      className={`text-lg ${buttonBg} text-white transition-colors duration-300`}
+                      size="lg" // Default to 'lg' for mobile
+                      className={`text-lg lg:text-xl ${buttonBg} text-white transition-colors duration-300 px-6 py-3 rounded-md`}
                       onClick={handleButtonClick}
                       disabled={isClicked}
                     >
@@ -116,11 +122,20 @@ export default function Hero() {
                 fontSize="90"
                 fontWeight="bold"
                 dy=".3em"
-                initial={{ opacity: 1 }}
-                animate={{ opacity: isClicked ? 0 : 1 }}
-                transition={{ duration: 0.5 }}
               >
-                Lorem Colors
+                {letters.map((letter, index) => (
+                  <motion.tspan
+                    key={`black-${index}`}
+                    initial={{ opacity: 1 }}
+                    animate={{ opacity: isClicked ? 0 : 1 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.041, // Approximately 0.5s total for 12 letters
+                    }}
+                  >
+                    {letter === " " ? "\u00A0" : letter}
+                  </motion.tspan>
+                ))}
               </motion.text>
 
               {/* Gradient Text */}
@@ -132,11 +147,20 @@ export default function Hero() {
                 fontSize="90"
                 fontWeight="bold"
                 dy=".3em"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isClicked ? 1 : 0 }}
-                transition={{ duration: 0.5 }}
               >
-                Lorem Colors
+                {letters.map((letter, index) => (
+                  <motion.tspan
+                    key={`gradient-${index}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: isClicked ? 1 : 0 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: index * 0.041, // Approximately 0.5s total for 12 letters
+                    }}
+                  >
+                    {letter === " " ? "\u00A0" : letter}
+                  </motion.tspan>
+                ))}
               </motion.text>
 
               <defs>
