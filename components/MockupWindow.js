@@ -50,11 +50,14 @@ export default function Dashboard({ colors }) {
 
   return (
     <div
-      className="p-6 flex-1 border-gray-600 border"
+      className="flex flex-col p-4 border"
       style={{ backgroundColor: background, color: text }}
     >
       {/* Header Section */}
-      <header style={{ borderColor: borderColor, borderBottomWidth: "1px" }}>
+      <header
+        className="flex-shrink-0"
+        style={{ borderColor: borderColor, borderBottomWidth: "1px" }}
+      >
         <div className="flex h-16 items-center px-4 justify-between">
           <div className="flex items-center space-x-4">
             <div className="flex flex-row">
@@ -68,7 +71,7 @@ export default function Dashboard({ colors }) {
                   className="rounded-full"
                 />
               </div>
-              <span className="font-bold text-xl ml-2">Atilla Koch</span>
+              <span className="font-bold text-lg ml-2">Atilla Koch</span>
             </div>
           </div>
           <div className="flex items-center space-x-4 md:hidden">
@@ -84,47 +87,47 @@ export default function Dashboard({ colors }) {
               (item, index) => (
                 <p
                   key={index}
-                  className="py-2 px-4 hover:bg-gray-800 border border-black shadow-sm hover:text-white rounded-lg flex-grow"
+                  className="py-1 px-3 hover:bg-gray-800 hover:text-white rounded-lg text-sm"
                 >
                   {item}
                 </p>
-              ),
+              )
             )}
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 space-y-4 p-4">
+      <main className="flex-1 overflow-auto space-y-4 p-4">
         {/* Dashboard Header */}
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <h1 className="text-lg md:text-xl font-bold">Dashboard</h1>
-          <div className="flex space-x-2 mt-4 md:mt-0">
+        <div className="flex items-center justify-between flex-col md:flex-row">
+          <h1 className="text-base md:text-lg font-bold">Dashboard</h1>
+          <div className="flex space-x-2 mt-2 md:mt-0">
             <Button
               variant="outline"
               size="sm"
-              className="flex items-center flex-grow hover:bg-primary-500"
+              className="flex items-center px-2 py-1"
               style={{
                 backgroundColor: "#1F2937",
                 borderColor: "#1F2937",
                 color: "#FFFFFF",
               }}
             >
-              <CalendarIcon className="mr-2 h-4 w-4" />
-              <span className="hidden md:block">
+              <CalendarIcon className="mr-1 h-4 w-4" />
+              <span className="hidden md:block text-xs">
                 Jan 20, 2023 - Feb 04, 2023
               </span>
             </Button>
             <Button
               size="sm"
-              className="flex items-center flex-grow hover:bg-secondary-500"
+              className="flex items-center px-2 py-1"
               style={{
                 backgroundColor: "#1F2937",
                 color: "#FFFFFF",
               }}
             >
-              <Download className="mr-2 h-4 w-4" />
-              <span className="hidden md:block">Download</span>
+              <Download className="mr-1 h-4 w-4" />
+              <span className="hidden md:block text-xs">Download</span>
             </Button>
           </div>
         </div>
@@ -135,65 +138,65 @@ export default function Dashboard({ colors }) {
           <div className="grid gap-4 md:grid-cols-2">
             {/* Sales Card */}
             <div
-              className="rounded-xl border p-4 flex-grow"
+              className="rounded-xl border p-3"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
                 color: textColor,
               }}
             >
-              <div className="flex flex-row items-center justify-between">
+              <div className="flex items-center justify-between">
                 <CardTitle className="text-sm font-medium">Sales</CardTitle>
                 <DollarSign className="h-4 w-4 text-gray-500" />
               </div>
-              <div>
-                <div className="text-2xl font-bold">+12,234.93</div>
+              <CardContent>
+                <div className="text-xl font-bold">+12,234</div>
                 <p className="text-xs" style={{ color: emailColor }}>
-                  +19% from last month.
+                  +19% from last month
                 </p>
-              </div>
+              </CardContent>
             </div>
 
             {/* Active Now Card */}
             <div
-              className="rounded-xl border p-4 flex-grow"
+              className="rounded-xl border p-3"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
                 color: textColor,
               }}
             >
-              <div className="flex flex-row items-center justify-between">
+              <div className="flex items-center justify-between">
                 <CardTitle className="text-sm font-medium">
                   Active Now
                 </CardTitle>
                 <Users className="h-4 w-4 text-gray-500" />
               </div>
-              <div>
-                <div className="text-2xl font-bold">+573</div>
+              <CardContent>
+                <div className="text-xl font-bold">+573</div>
                 <p className="text-xs" style={{ color: emailColor }}>
                   +201 since last hour
                 </p>
-              </div>
+              </CardContent>
             </div>
           </div>
 
           {/* Overview and Recent Sales */}
-          <div className="grid gap-4 md:grid-cols-7">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
             {/* Overview Chart */}
             <Card
-              className="col-span-2 lg:col-span-4 mx-4 md:mx-0 flex-grow"
+              className="col-span-2 lg:col-span-4 mx-2 md:mx-0"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
                 color: textColor,
               }}
             >
-              <div className="p-4">
-                <CardTitle>Overview</CardTitle>
+              <div className="p-3">
+                <CardTitle className="text-sm">Overview</CardTitle>
               </div>
-              <CardContent className="pl-2">
-                <ResponsiveContainer width="100%" height={350}>
+              <CardContent className="pl-1">
+                <ResponsiveContainer width="100%" height={250}>
                   <BarChart
                     data={[
                       { month: "Jan", total: 4500 },
@@ -208,13 +211,13 @@ export default function Dashboard({ colors }) {
                     <XAxis
                       dataKey="month"
                       stroke={textColor}
-                      fontSize={12}
+                      fontSize={10}
                       tickLine={false}
                       axisLine={false}
                     />
                     <YAxis
                       stroke={textColor}
-                      fontSize={12}
+                      fontSize={10}
                       tickLine={false}
                       axisLine={false}
                       tickFormatter={(value) => `$${value}`}
@@ -231,7 +234,7 @@ export default function Dashboard({ colors }) {
 
             {/* Recent Sales */}
             <Card
-              className="col-span-2 lg:col-span-3 mx-4 md:mx-0 flex-grow"
+              className="col-span-2 lg:col-span-3 mx-2 md:mx-0"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
@@ -239,13 +242,13 @@ export default function Dashboard({ colors }) {
               }}
             >
               <CardHeader>
-                <CardTitle>Recent Sales</CardTitle>
-                <div className="text-sm" style={{ color: emailColor }}>
+                <CardTitle className="text-sm">Recent Sales</CardTitle>
+                <div className="text-xs" style={{ color: emailColor }}>
                   You made 265 sales this month.
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {[
                     {
                       name: "Olivia Martin",
@@ -294,13 +297,13 @@ export default function Dashboard({ colors }) {
                     },
                   ].map((sale, index) => (
                     <div key={index} className="flex items-center">
-                      <Avatar className="h-6 w-6">
+                      <Avatar className="h-5 w-5">
                         <AvatarImage src={sale.avatar} alt="Avatar" />
                         <AvatarFallback>{sale.fallback}</AvatarFallback>
                       </Avatar>
-                      <div className="ml-4 space-y-1 flex-grow">
+                      <div className="ml-3 space-y-0.5">
                         <p
-                          className="text-[12px] font-medium leading-none"
+                          className="text-[11px] font-medium leading-none"
                           style={{
                             color: colors ? colors[sale.colorName] : textColor,
                           }}
@@ -308,7 +311,7 @@ export default function Dashboard({ colors }) {
                           {sale.name}
                         </p>
                         <p
-                          className="text-[12px]"
+                          className="text-[11px]"
                           style={{
                             color: colors
                               ? colors[sale.colorEmail]
@@ -318,7 +321,7 @@ export default function Dashboard({ colors }) {
                           {sale.email}
                         </p>
                       </div>
-                      <div className="ml-auto text-sm">{sale.amount}</div>
+                      <div className="ml-auto text-xs">{sale.amount}</div>
                     </div>
                   ))}
                 </div>

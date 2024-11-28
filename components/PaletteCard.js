@@ -50,6 +50,7 @@ const PaletteCard = ({ palette, colorFormat, setColorFormat }) => {
         <CardTitle className="flex justify-between items-center">
           {/* Palette Name */}
           <span className="text-lg font-semibold">{palette.name}</span>
+          <span className="text-lg font-semibold">Color Palette</span>
 
           {/* Color Format Selector */}
           <Select value={colorFormat} onValueChange={setColorFormat}>

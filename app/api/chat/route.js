@@ -216,7 +216,7 @@ Each palette object should have the following structure:
     try {
       // Initiate the AI generation process with the specified model and prompt
       stream = await together.chat.completions.create({
-        model: "meta-llama/Llama-Vision-Free", // Specify the AI model
+        model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", // Specify the AI model
         messages: [
           {
             role: "system",

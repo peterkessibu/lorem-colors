@@ -25,7 +25,7 @@ const ColorSwatch = ({ color, name, format }) => {
   return (
     <div className="flex flex-col items-center space-y-2">
       <div
-        className="w-14 h-20 rounded-lg border border-gray-300 cursor-pointer transition-transform hover:scale-110 flex items-center justify-center"
+        className="w-14 h-24 rounded-lg border border-gray-400 cursor-pointer transition-transform hover:scale-110 flex items-center justify-center"
         style={{ backgroundColor: color }}
         onClick={handleCopy}
       >
