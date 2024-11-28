@@ -84,7 +84,7 @@ export default function Dashboard({ colors }) {
               (item, index) => (
                 <p
                   key={index}
-                  className="py-2 px-4 hover:bg-gray-800 hover:text-white rounded-lg"
+                  className="py-2 px-4 hover:bg-gray-800 border-[1px] border-black shadow-sm hover:text-white rounded-lg"
                 >
                   {item}
                 </p>

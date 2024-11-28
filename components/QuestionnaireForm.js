@@ -1,8 +1,5 @@
-// components/QuestionnaireForm.js
+//components/QuestionnaireForm.js
 
-"use client";
-
-import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -16,34 +13,14 @@ import colors from "@/lib/colors";
 
 const colorNames = Object.keys(colors);
 
-const QuestionnaireForm = ({ onSubmit }) => {
-  const [answers, setAnswers] = useState({
-    primaryColor: "",
-    backgroundColorPreference: "",
-    contrastPreference: "",
-    intendedMood: "",
-  });
-
-  const handleChange = (question, value) => {
-    setAnswers((prev) => ({ ...prev, [question]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(answers);
-  };
-
+const QuestionnaireForm = () => {
   return (
     <div className="mx-auto px-4">
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form action="/api/chat" method="POST" className="space-y-6">
         {/* Primary Color */}
         <div className="space-y-1">
           <Label className="text-sm font-semibold">Primary Color</Label>
-          <Select
-            value={answers.primaryColor}
-            onValueChange={(value) => handleChange("primaryColor", value)}
-            required
-          >
+          <Select name="primaryColor" required>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select primary color" />
             </SelectTrigger>
@@ -68,13 +45,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
           <Label className="text-sm font-semibold">
             Background Color Preference
           </Label>
-          <Select
-            value={answers.backgroundColorPreference}
-            onValueChange={(value) =>
-              handleChange("backgroundColorPreference", value)
-            }
-            required
-          >
+          <Select name="backgroundColorPreference" required>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Background theme" />
             </SelectTrigger>
@@ -88,11 +59,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
         {/* Contrast Preference */}
         <div className="space-y-1">
           <Label className="text-sm font-semibold">Contrast Preference</Label>
-          <Select
-            value={answers.contrastPreference}
-            onValueChange={(value) => handleChange("contrastPreference", value)}
-            required
-          >
+          <Select name="contrastPreference" required>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Contrast preference" />
             </SelectTrigger>
@@ -106,11 +73,7 @@ const QuestionnaireForm = ({ onSubmit }) => {
         {/* Intended Mood */}
         <div className="space-y-1">
           <Label className="text-sm font-semibold">Intended Mood</Label>
-          <Select
-            value={answers.intendedMood}
-            onValueChange={(value) => handleChange("intendedMood", value)}
-            required
-          >
+          <Select name="intendedMood" required>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Intended mood" />
             </SelectTrigger>
