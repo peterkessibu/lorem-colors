@@ -1,4 +1,3 @@
-
 // components/Hero.js
 
 import { motion } from "framer-motion";
@@ -6,9 +5,47 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 
+// Function to get a random rotation angle
 const getRandomRotation = () => {
   const rotations = [0, 30, 45, 60];
   return rotations[Math.floor(Math.random() * rotations.length)];
+};
+
+// Animation variants for the container to stagger children animations
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05, 
+      duration: 0.5,
+    },
+  },
+};
+
+// Animation variants for each letter
+const letterVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+};
+
+// Animation variants for the gradient text upon button click
+const gradientVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+      duration: 0.5,
+    },
+  },
 };
 
 export default function Hero() {
@@ -23,11 +60,11 @@ export default function Hero() {
     setIsClicked(true);
     setButtonBg("bg-[#8ff2fe] text-white");
     setBgGradient(
-      "bg-gradient-to-tr from-[#4158D0] via-[#C850C0] to-[#FFCC70]",
+      "bg-gradient-to-tr from-[#4158D0] via-[#C850C0] to-[#FFCC70]"
     );
     const timeoutId = setTimeout(() => {
       router.push("/genAI-Color-Palette");
-    }, 1140);
+    }, 1080);
 
     // Clear timeout on component unmount
     return () => clearTimeout(timeoutId);
@@ -38,7 +75,7 @@ export default function Hero() {
   }, []);
 
   // Split the text into individual letters, including spaces
-  const text = "Lorem Colors";
+  const text = "Lorem Colors.";
   const letters = text.split("");
 
   return (
@@ -69,7 +106,7 @@ export default function Hero() {
               >
                 <span className="block">Everything</span>
                 <span className="block">In black and white,</span>
-                <span className="block">Till you click... </span>
+                <span className="block">Till you click...</span>
               </motion.h1>
 
               {/* Generate Palette Button */}
@@ -96,11 +133,8 @@ export default function Hero() {
           </main>
         </div>
 
-        {/* Animated "Lorem Colors" SVG */}
+        {/* Animated "Lorem Colors" SVG with Per-Letter Animation */}
         <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
           className="w-full lg:w-2/3 mt-4 lg:mt-0 flex justify-center items-center transition-transform duration-500"
         >
           <motion.div
@@ -112,7 +146,10 @@ export default function Hero() {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 600 300"
               className="w-full h-full object-contain"
+              aria-labelledby="gradient-title gradient-desc"
+              role="img"
             >
+
               {/* Black Text */}
               <motion.text
                 x="50%"
@@ -122,23 +159,21 @@ export default function Hero() {
                 fontSize="90"
                 fontWeight="bold"
                 dy=".3em"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
               >
                 {letters.map((letter, index) => (
                   <motion.tspan
                     key={`black-${index}`}
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: isClicked ? 0 : 1 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: index * 0.041, // Approximately 0.5s total for 12 letters
-                    }}
+                    variants={letterVariants}
                   >
                     {letter === " " ? "\u00A0" : letter}
                   </motion.tspan>
                 ))}
               </motion.text>
 
-              {/* Gradient Text */}
+              {/* Gradient Text - Visible Only After Button Click */}
               <motion.text
                 x="50%"
                 y="50%"
@@ -147,16 +182,14 @@ export default function Hero() {
                 fontSize="90"
                 fontWeight="bold"
                 dy=".3em"
+                variants={isClicked ? gradientVariants : containerVariants}
+                initial={isClicked ? "hidden" : "hidden"}
+                animate={isClicked ? "visible" : "hidden"}
               >
                 {letters.map((letter, index) => (
                   <motion.tspan
                     key={`gradient-${index}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: isClicked ? 1 : 0 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: index * 0.041, // Approximately 0.5s total for 12 letters
-                    }}
+                    variants={letterVariants}
                   >
                     {letter === " " ? "\u00A0" : letter}
                   </motion.tspan>
