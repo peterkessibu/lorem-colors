@@ -63,9 +63,7 @@ const ColorPaletteGenerator = () => {
   };
 
   const handleNext = () => {
-    setCurrentPaletteIndex((prev) =>
-      Math.min(prev + 1, palettes.length - 1)
-    );
+    setCurrentPaletteIndex((prev) => Math.min(prev + 1, palettes.length - 1));
   };
 
   const currentPalette = palettes[currentPaletteIndex];
@@ -117,12 +115,12 @@ const ColorPaletteGenerator = () => {
                 colors={
                   isGenerating || palettes.length === 0
                     ? {
-                      Background: "#f0f0f0",
-                      Text: "#a0a0a0",
-                      Border: "#d0d0d0",
-                      Accent: "#c0c0c0",
-                      Secondary: "#b0b0b0",
-                    }
+                        Background: "#f0f0f0",
+                        Text: "#a0a0a0",
+                        Border: "#d0d0d0",
+                        Accent: "#c0c0c0",
+                        Secondary: "#b0b0b0",
+                      }
                     : currentPalette.colors
                 }
               />

@@ -45,13 +45,16 @@ Experience Lorem Colors in action by visiting our live Demo.
 Follow these steps to set up the project locally:
 
 1. **Clone the Repository**
+
    - Use Git to clone the repository to your local machine.
 
 2. **Install Dependencies**
+
    - Ensure you have Node.js installed.
    - Install the necessary packages using your preferred package manager.
 
 3. **Configure Environment Variables**
+
    - Create a `.env.local` file in the root directory and add the necessary configurations.
 
 4. **Run the Development Server**

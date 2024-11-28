@@ -10,21 +10,21 @@ const socialLinks = [
     name: "Instagram",
     href: "#",
     icon: Instagram,
-    hoverTextColor: "hover:text-pink-500", 
+    hoverTextColor: "hover:text-pink-500",
     text: null,
   },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/peteressibu",
     icon: Linkedin,
-    hoverTextColor: "hover:text-blue-700", 
+    hoverTextColor: "hover:text-blue-700",
     text: null,
   },
   {
     name: "GitHub",
     href: "https://www.github.com/peterkessibu",
     icon: Github,
-    hoverTextColor: "hover:text-gray-800", 
+    hoverTextColor: "hover:text-gray-800",
     text: "Star on Github!",
   },
 ];
@@ -107,9 +107,7 @@ export default function Footer() {
                     {social.icon && (
                       <social.icon className="h-6 w-6" aria-hidden="true" />
                     )}
-                    {social.text && (
-                      <span className="ml-2">{social.text}</span>
-                    )}
+                    {social.text && <span className="ml-2">{social.text}</span>}
                   </Link>
                 ))}
               </div>

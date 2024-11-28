@@ -17,7 +17,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.05, 
+      staggerChildren: 0.05,
       duration: 0.5,
     },
   },
@@ -60,7 +60,7 @@ export default function Hero() {
     setIsClicked(true);
     setButtonBg("bg-[#8ff2fe] text-white");
     setBgGradient(
-      "bg-gradient-to-tr from-[#4158D0] via-[#C850C0] to-[#FFCC70]"
+      "bg-gradient-to-tr from-[#4158D0] via-[#C850C0] to-[#FFCC70]",
     );
     const timeoutId = setTimeout(() => {
       router.push("/genAI-Color-Palette");
@@ -80,14 +80,16 @@ export default function Hero() {
 
   return (
     <div
-      className={`relative overflow-hidden transition-all duration-500 ${isClicked ? bgGradient : "bg-white"
-        }`}
+      className={`relative overflow-hidden transition-all duration-500 ${
+        isClicked ? bgGradient : "bg-white"
+      }`}
     >
       <div className="max-w-7xl h-screen mx-auto relative z-10 flex flex-col lg:flex-row">
         {/* Text Section */}
         <div
-          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 ${isClicked ? "bg-transparent" : ""
-            } w-full`}
+          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 ${
+            isClicked ? "bg-transparent" : ""
+          } w-full`}
         >
           <main className="mt-6 mx-4 p-4 lg:py-16">
             <motion.div
@@ -98,8 +100,9 @@ export default function Hero() {
             >
               {/* Main Heading */}
               <motion.h1
-                className={`text-4xl leading-snug tracking-tight font-extrabold md:text-[54px] transition-colors duration-500 ${isClicked ? "text-white" : "text-black"
-                  }`}
+                className={`text-4xl leading-snug tracking-tight font-extrabold md:text-[54px] transition-colors duration-500 ${
+                  isClicked ? "text-white" : "text-black"
+                }`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -134,9 +137,7 @@ export default function Hero() {
         </div>
 
         {/* Animated "Lorem Colors" SVG with Per-Letter Animation */}
-        <motion.div
-          className="w-full lg:w-2/3 mt-4 lg:mt-0 flex justify-center items-center transition-transform duration-500"
-        >
+        <motion.div className="w-full lg:w-2/3 mt-4 lg:mt-0 flex justify-center items-center transition-transform duration-500">
           <motion.div
             className="w-full h-full"
             animate={{ scale: isClicked ? 1.06 : 1 }}
@@ -149,7 +150,6 @@ export default function Hero() {
               aria-labelledby="gradient-title gradient-desc"
               role="img"
             >
-
               {/* Black Text */}
               <motion.text
                 x="50%"

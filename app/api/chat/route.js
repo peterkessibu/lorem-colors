@@ -2,7 +2,7 @@
 
 import Together from "together-ai";
 import { NextResponse } from "next/server";
-import colors from "@/lib/colors"; 
+import colors from "@/lib/colors";
 import { getRandomInt } from "@/lib/utils";
 
 const together = new Together();
@@ -21,7 +21,7 @@ const moodDefinitions = {
     "A lighthearted, creative style that embraces whimsy, spontaneity, and joyful expression",
   Minimalistic:
     "A clean, streamlined design focused on essential elements, simplicity, and elegant restraint",
-  Bold: "A dramatic, high-impact style characterized by strong statements, confident choices, and striking contrasts"
+  Bold: "A dramatic, high-impact style characterized by strong statements, confident choices, and striking contrasts",
 };
 
 // Utility function to select a shade based on preference
