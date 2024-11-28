@@ -116,7 +116,7 @@ export default function Footer() {
             </div>
 
             {/* Footer Sections */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 justify-items-start">
               {footerSections.map((section) => (
                 <div
                   key={section.title}
