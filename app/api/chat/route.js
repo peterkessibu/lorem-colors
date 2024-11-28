@@ -1,8 +1,9 @@
 // app/api/chat/route.js
+
 import Together from "together-ai";
 import { NextResponse } from "next/server";
-import colors from "@/lib/colors"; // Adjust the path based on your project structure
-import { getRandomInt } from "@/lib/utils"; // Utility function to get a random integer
+import colors from "@/lib/colors"; 
+import { getRandomInt } from "@/lib/utils";
 
 const together = new Together();
 
@@ -20,11 +21,7 @@ const moodDefinitions = {
     "A lighthearted, creative style that embraces whimsy, spontaneity, and joyful expression",
   Minimalistic:
     "A clean, streamlined design focused on essential elements, simplicity, and elegant restraint",
-  Bold: "A dramatic, high-impact style characterized by strong statements, confident choices, and striking contrasts",
-  Relaxed:
-    "A laid-back, comfortable approach that prioritizes ease, natural flow, and gentle interactions",
-  Vibrant:
-    "An energetic, dynamic style that celebrates intensity, excitement, and passionate expression",
+  Bold: "A dramatic, high-impact style characterized by strong statements, confident choices, and striking contrasts"
 };
 
 // Utility function to select a shade based on preference
@@ -219,7 +216,7 @@ Each palette object should have the following structure:
     try {
       // Initiate the AI generation process with the specified model and prompt
       stream = await together.chat.completions.create({
-        model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo", // Specify the AI model
+        model: "meta-llama/Llama-Vision-Free", // Specify the AI model
         messages: [
           {
             role: "system",

@@ -64,7 +64,7 @@ export default function Hero() {
     );
     const timeoutId = setTimeout(() => {
       router.push("/genAI-Color-Palette");
-    }, 1080);
+    }, 550);
 
     // Clear timeout on component unmount
     return () => clearTimeout(timeoutId);
