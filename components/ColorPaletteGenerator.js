@@ -63,7 +63,9 @@ const ColorPaletteGenerator = () => {
   };
 
   const handleNext = () => {
-    setCurrentPaletteIndex((prev) => Math.min(prev + 1, palettes.length - 1));
+    setCurrentPaletteIndex((prev) =>
+      Math.min(prev + 1, palettes.length - 1)
+    );
   };
 
   const currentPalette = palettes[currentPaletteIndex];
@@ -71,13 +73,11 @@ const ColorPaletteGenerator = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row gap-8">
-        <aside className="w-full lg:w-64">
-          <div className="sticky top-8">
-            <QuestionnaireForm
-              onSubmit={handleFormSubmit}
-              disabled={isSubmitting}
-            />
-          </div>
+        <aside className="w-full lg:w-64 lg:sticky lg:top-8">
+          <QuestionnaireForm
+            onSubmit={handleFormSubmit}
+            disabled={isSubmitting}
+          />
         </aside>
         <div className="flex-1">
           {error && (
@@ -117,12 +117,12 @@ const ColorPaletteGenerator = () => {
                 colors={
                   isGenerating || palettes.length === 0
                     ? {
-                        Background: "#f0f0f0",
-                        Text: "#a0a0a0",
-                        Border: "#d0d0d0",
-                        Accent: "#c0c0c0",
-                        Secondary: "#b0b0b0",
-                      }
+                      Background: "#f0f0f0",
+                      Text: "#a0a0a0",
+                      Border: "#d0d0d0",
+                      Accent: "#c0c0c0",
+                      Secondary: "#b0b0b0",
+                    }
                     : currentPalette.colors
                 }
               />

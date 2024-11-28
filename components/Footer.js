@@ -82,8 +82,8 @@ export default function Footer() {
   const isColorBox = pathname === "/color-gen";
 
   return (
-    <footer className="bg-gray-100">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+    <footer className="bg-white">
+      <div className="max-w-7xl mx-auto p-6 lg:px-8">
         {!isColorPalettePage && !isColorBox && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Logo and Social Links Section */}

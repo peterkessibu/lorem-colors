@@ -50,7 +50,7 @@ export default function Dashboard({ colors }) {
 
   return (
     <div
-      className="min-h-screen max-w-full p-6 flex-1 border"
+      className="p-6 flex-1 border-gray-600 border"
       style={{ backgroundColor: background, color: text }}
     >
       {/* Header Section */}
@@ -84,7 +84,7 @@ export default function Dashboard({ colors }) {
               (item, index) => (
                 <p
                   key={index}
-                  className="py-2 px-4 hover:bg-gray-800 border-[1px] border-black shadow-sm hover:text-white rounded-lg"
+                  className="py-2 px-4 hover:bg-gray-800 border border-black shadow-sm hover:text-white rounded-lg flex-grow"
                 >
                   {item}
                 </p>
@@ -97,13 +97,13 @@ export default function Dashboard({ colors }) {
       {/* Main Content */}
       <main className="flex-1 space-y-4 p-4">
         {/* Dashboard Header */}
-        <div className="flex items-center justify-between flex-row">
+        <div className="flex flex-col md:flex-row items-center justify-between">
           <h1 className="text-lg md:text-xl font-bold">Dashboard</h1>
           <div className="flex space-x-2 mt-4 md:mt-0">
             <Button
               variant="outline"
               size="sm"
-              className="flex items-center"
+              className="flex items-center flex-grow hover:bg-primary-500"
               style={{
                 backgroundColor: "#1F2937",
                 borderColor: "#1F2937",
@@ -117,7 +117,7 @@ export default function Dashboard({ colors }) {
             </Button>
             <Button
               size="sm"
-              className="flex items-center"
+              className="flex items-center flex-grow hover:bg-secondary-500"
               style={{
                 backgroundColor: "#1F2937",
                 color: "#FFFFFF",
@@ -135,14 +135,14 @@ export default function Dashboard({ colors }) {
           <div className="grid gap-4 md:grid-cols-2">
             {/* Sales Card */}
             <div
-              className="rounded-xl border p-4"
+              className="rounded-xl border p-4 flex-grow"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
                 color: textColor,
               }}
             >
-              <div className="flex flex-row items-center justify-between space-y-0">
+              <div className="flex flex-row items-center justify-between">
                 <CardTitle className="text-sm font-medium">Sales</CardTitle>
                 <DollarSign className="h-4 w-4 text-gray-500" />
               </div>
@@ -156,21 +156,21 @@ export default function Dashboard({ colors }) {
 
             {/* Active Now Card */}
             <div
-              className="rounded-xl border p-4"
+              className="rounded-xl border p-4 flex-grow"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
                 color: textColor,
               }}
             >
-              <div className="flex flex-row items-center justify-between space-y-0">
+              <div className="flex flex-row items-center justify-between">
                 <CardTitle className="text-sm font-medium">
                   Active Now
                 </CardTitle>
                 <Users className="h-4 w-4 text-gray-500" />
               </div>
               <div>
-                <div className="text-2xl font-bold">+573 Users</div>
+                <div className="text-2xl font-bold">+573</div>
                 <p className="text-xs" style={{ color: emailColor }}>
                   +201 since last hour
                 </p>
@@ -179,10 +179,10 @@ export default function Dashboard({ colors }) {
           </div>
 
           {/* Overview and Recent Sales */}
-          <div className="grid gap-4 md:grid-cols-7 justify-center">
+          <div className="grid gap-4 md:grid-cols-7">
             {/* Overview Chart */}
             <Card
-              className="col-span-2 lg:col-span-4 mx-4 md:mx-0"
+              className="col-span-2 lg:col-span-4 mx-4 md:mx-0 flex-grow"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
@@ -231,7 +231,7 @@ export default function Dashboard({ colors }) {
 
             {/* Recent Sales */}
             <Card
-              className="col-span-2 lg:col-span-3 mx-4 md:mx-0"
+              className="col-span-2 lg:col-span-3 mx-4 md:mx-0 flex-grow"
               style={{
                 backgroundColor: accent,
                 borderColor: borderColor,
@@ -298,7 +298,7 @@ export default function Dashboard({ colors }) {
                         <AvatarImage src={sale.avatar} alt="Avatar" />
                         <AvatarFallback>{sale.fallback}</AvatarFallback>
                       </Avatar>
-                      <div className="ml-4 space-y-1">
+                      <div className="ml-4 space-y-1 flex-grow">
                         <p
                           className="text-[12px] font-medium leading-none"
                           style={{
