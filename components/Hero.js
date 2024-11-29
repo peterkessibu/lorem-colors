@@ -91,7 +91,7 @@ export default function Hero() {
             isClicked ? "bg-transparent" : ""
           } w-full`}
         >
-          <main className="mt-6 mx-4 p-4 lg:py-16">
+          <main className="mt-4 md:mt-6 mx-4 p-4 lg:py-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -145,10 +145,10 @@ export default function Hero() {
         </div>
 
         {/* Animated "Lorem Colors" SVG with Per-Letter Animation */}
-        <motion.div className="w-full lg:w-2/3 mt-4 lg:mt-0 flex justify-center items-center transition-transform duration-500">
+        <motion.div className="w-full lg:w-2/3 mt-0 flex justify-center items-center transition-transform duration-500">
           <motion.div
             className="w-full h-full"
-            animate={{ scale: isClicked ? 1.06 : 1 }}
+            animate={{ scale: isClicked ? 1.03 : 1 }}
             transition={{ duration: 0.3 }}
           >
             <svg

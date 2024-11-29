@@ -44,7 +44,7 @@ export default function Header() {
               <button
                 className="bg-white border-2 animate-border px-4 py-3"
               >
-                Color Gen
+                Color Shades
               </button>
 
               <style jsx>{`

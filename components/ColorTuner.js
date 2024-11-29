@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { HexColorPicker } from "react-colorful";
@@ -97,12 +97,12 @@ export default function ColorTuner() {
     <div className="flex flex-col min-h-screen">
       <main className="flex-grow flex flex-col items-center justify-center">
         <div className="w-full rounded-xl max-w-4xl mx-auto px-4 mt-10 overflow-x-hidden">
-          <CardHeader>
-            <CardTitle className="text-xl">Color Palette Generator</CardTitle>
+          <div>
+            <CardTitle className="text-xl">Color Shades</CardTitle>
             <CardDescription className="text-sm">
               Customize your color palette with various shades
             </CardDescription>
-          </CardHeader>
+          </div>
           <div className="p-4 mb-4">
             <div className="flex flex-col md:flex-row lg:justify-center justify-between">
               {/* Color Picker Section */}
@@ -138,7 +138,7 @@ export default function ColorTuner() {
                     <div key={shade} className="flex items-center">
                       {/* Color Box */}
                       <div
-                        className="w-10 h-10 rounded mr-2 border border-gray-400"
+                        className="w-10 h-10 rounded mr-2 border my-2 border-gray-400"
                         style={{ backgroundColor: color }}
                       />
 
