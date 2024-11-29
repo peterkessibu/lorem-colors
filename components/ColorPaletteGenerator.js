@@ -70,6 +70,7 @@ const ColorPaletteGenerator = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold text-center mb-8">AI Generated Color Palette Mockup</h1>
       <div className="flex flex-col lg:flex-row gap-8">
         <aside className="w-full lg:w-64 lg:sticky lg:top-8">
           <QuestionnaireForm
@@ -81,27 +82,6 @@ const ColorPaletteGenerator = () => {
           {error && (
             <div className="text-red-500 text-center mb-4">{error}</div>
           )}
-          <div className="flex items-center justify-center mb-4">
-            <button
-              onClick={handlePrev}
-              className="p-2"
-              disabled={currentPaletteIndex === 0}
-              aria-label="Previous Palette"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <span className="mx-4">
-              Palette {currentPaletteIndex + 1} of {palettes.length}
-            </span>
-            <button
-              onClick={handleNext}
-              className="p-2"
-              disabled={currentPaletteIndex === palettes.length - 1}
-              aria-label="Next Palette"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          </div>
           <div className="relative">
             {isGenerating && (
               <div className="video-container absolute inset-0 flex justify-center items-center bg-white bg-opacity-80 z-10">
@@ -126,12 +106,35 @@ const ColorPaletteGenerator = () => {
               />
             </div>
           </div>
-          {palettes.length > 0 && (
-            <PaletteCard
-              palette={currentPalette}
-              colorFormat={colorFormat}
-              setColorFormat={setColorFormat}
-            />
+          {!isGenerating && palettes.length > 0 && (
+            <>
+              <div className="flex items-center justify-center mb-4">
+                <button
+                  onClick={handlePrev}
+                  className="p-2"
+                  disabled={currentPaletteIndex === 0}
+                  aria-label="Previous Palette"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <span className="mx-4">
+                  Palette {currentPaletteIndex + 1} of {palettes.length}
+                </span>
+                <button
+                  onClick={handleNext}
+                  className="p-2"
+                  disabled={currentPaletteIndex === palettes.length - 1}
+                  aria-label="Next Palette"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+              <PaletteCard
+                palette={currentPalette}
+                colorFormat={colorFormat}
+                setColorFormat={setColorFormat}
+              />
+            </>
           )}
         </div>
       </div>

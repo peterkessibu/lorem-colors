@@ -114,8 +114,9 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
+                className="w-5/6"
               >
-                <span>
+                <span className="block leading-snug tracking-tight">
                   Generate stunning color palettes tailored to your needs. Elevate your projects with AI-powered color recommendations and comprehensive analytics.
                 </span>
               </motion.div>
@@ -129,7 +130,7 @@ export default function Hero() {
                   <div className="rounded-md">
                     <Button
                       variant="outline"
-                      size="lg" // Default to 'lg' for mobile
+                      size="lg"
                       className={`text-lg lg:text-xl ${buttonBg} text-white transition-colors duration-300 px-6 py-3 rounded-md`}
                       onClick={handleButtonClick}
                       disabled={isClicked}
@@ -186,7 +187,7 @@ export default function Hero() {
                 y="50%"
                 textAnchor="middle"
                 fill="url(#gradient)"
-                fontSize="88"
+                fontSize="90"
                 fontWeight="bold"
                 dy=".3em"
                 variants={isClicked ? gradientVariants : containerVariants}

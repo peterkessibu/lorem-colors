@@ -83,7 +83,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-white">
-      <div className="max-w-7xl mx-auto p-6 lg:px-8">
+      <div className="max-w-7xl mx-auto p-6">
         {!isColorPalettePage && !isColorBox && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Logo and Social Links Section */}
@@ -101,6 +101,7 @@ export default function Footer() {
                   <Link
                     key={social.name}
                     href={social.href}
+                    target="_blank"
                     className={`flex items-center px-4 py-2 bg-gray-200 rounded-lg shadow-md transition-colors duration-300 ${social.hoverTextColor} text-gray-500 hover:bg-gray-200`}
                   >
                     <span className="sr-only">{social.name}</span>
@@ -151,7 +152,7 @@ export default function Footer() {
         )}
 
         {/* Copyright */}
-        <div className="mt-12 border-t border-gray-200 pt-8">
+        <div className="mt-6 border-t border-gray-300 pt-8">
           <div className="text-base text-gray-400 text-center">
             &copy; {currentYear} Lorem Colors.
           </div>

@@ -18,7 +18,7 @@ export default function CallToAction() {
     if (isClicked) {
       const timer = setTimeout(() => {
         router.push("/genAI-Color-Palette");
-      }, 1140);
+      }, 1040);
       return () => clearTimeout(timer);
     }
   }, [isClicked, router]);
@@ -29,7 +29,7 @@ export default function CallToAction() {
       <AnimatePresence>
         {isClicked && (
           <motion.div
-            className="absolute inset-0 bg-gradient-to-t from-blue-600 via-violet-700 to-pink-600"
+            className="absolute inset-2 bg-gradient-to-b from-blue-600 via-violet-600 to-pink-600"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -43,9 +43,9 @@ export default function CallToAction() {
         <hr />
         <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
           <motion.h2
-            className={`text-3xl font-extrabold ${
+            className={`text-2xl font-extrabold ${
               isClicked ? "text-white" : "text-black"
-            } sm:text-4xl`}
+            } text-3xl`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
