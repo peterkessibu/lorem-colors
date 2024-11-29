@@ -1,46 +1,46 @@
 // components/PaletteCard.js
 
-"use client";
-
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 import ColorSwatch from "./ColorSwatch";
+import { motion } from "framer-motion";
 
-/**
- * PaletteCard Component
- *
- * Renders a card displaying a color palette with options to select the color format.
- * Each color in the palette is displayed using the ColorSwatch component.
- * Users can lock specific colors to prevent accidental changes.
- *
- * @param {Object} props - Component props.
- * @param {Object} props.palette - The palette object containing name, colors, and description.
- * @param {string} props.colorFormat - The current color format selected (e.g., 'hex', 'rgb', 'css').
- * @param {Function} props.setColorFormat - Function to update the selected color format.
- * @returns {JSX.Element} - Rendered PaletteCard component.
- */
-const PaletteCard = ({ palette, colorFormat, setColorFormat }) => {
-  // State to manage which colors are locked
-  const [lockedColors, setLockedColors] = useState({});
+// Helper function to convert HEX to RGB
+const hexToRgb = (hex) => {
+  // Remove '#' if present
+  hex = hex.replace('#', '');
 
-  /**
-   * Toggles the lock state of a specific color.
-   * Prevents accidental modifications to locked colors.
-   *
-   * @param {string} colorName - The name of the color to toggle lock state.
-   */
-  const handleLockToggle = (colorName) => {
-    setLockedColors((prev) => ({
-      ...prev,
-      [colorName]: !prev[colorName],
-    }));
+  // Parse the r, g, b values
+  const bigint = parseInt(hex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+
+  return `rgb(${r}, ${g}, ${b})`;
+};
+
+const PaletteCard = ({ palette, colorFormat, setColorFormat, lockedColors, handleLockToggle }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleExport = () => {
+    const exportData = Object.entries(palette.colors)
+      .map(([name, code]) => {
+        const formattedCode = colorFormat === "rgb" ? hexToRgb(code) : code;
+        return `${name}: ${formattedCode}`;
+      })
+      .join("\n");
+
+    navigator.clipboard.writeText(exportData)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 3000);
+      })
+      .catch((error) => {
+        console.error("Failed to copy palette:", error);
+        // Optionally, you can set an error state here to notify the user
+      });
   };
 
   return (
@@ -69,17 +69,35 @@ const PaletteCard = ({ palette, colorFormat, setColorFormat }) => {
       <CardContent className="p-6 bg-gray-50">
         <div className="space-y-4 mt-4">
           {/* Grid Layout for Color Swatches */}
-          <div className="grid grid-cols-9">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-9 gap-4">
             {Object.entries(palette.colors).map(([name, hex]) => (
               <ColorSwatch
                 key={name} // Unique key for each swatch
                 color={hex} // Hex code of the color
                 locked={lockedColors[name]} // Lock state of the color
-                onLockToggle={handleLockToggle} // Function to toggle lock state
+                onLockToggle={() => handleLockToggle(name)} // Function to toggle lock state
                 format={colorFormat} // Current color format selected
               />
             ))}
           </div>
+
+          {/* Popup Message */}
+          {copied && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="mt-4 p-2 bg-green-100 text-green-800 rounded text-center"
+            >
+              Palette copied to clipboard!
+            </motion.div>
+          )}
+        </div>
+        {/* Export Button */}
+        <div className="flex items-center justify-center mt-4">
+          <Button onClick={handleExport} variant="outline">
+            Export
+          </Button>
         </div>
       </CardContent>
     </Card>

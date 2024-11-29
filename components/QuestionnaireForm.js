@@ -11,8 +11,29 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import colors from "@/lib/colors";
+import { motion } from "framer-motion";
 
 const colorNames = Object.keys(colors);
+
+const loadingDots = {
+  display: "inline-block",
+  marginLeft: "5px",
+};
+
+const dotVariants = {
+  animate: {
+    y: [0, -5, 0],
+    transition: {
+      y: {
+        repeat: Infinity,
+        repeatType: "loop",
+        duration: 0.5,
+        ease: "easeInOut",
+        staggerChildren: 0.2,
+      },
+    },
+  },
+};
 
 const QuestionnaireForm = ({ onSubmit, disabled }) => {
   const [formData, setFormData] = useState({
@@ -22,15 +43,40 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
     intendedMood: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleSelectChange = (name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.primaryColor) newErrors.primaryColor = "Primary color is required.";
+    if (!formData.backgroundColorPreference)
+      newErrors.backgroundColorPreference = "Background color preference is required.";
+    if (!formData.contrastPreference)
+      newErrors.contrastPreference = "Contrast preference is required.";
+    if (!formData.intendedMood) newErrors.intendedMood = "Intended mood is required.";
+    return newErrors;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
     if (disabled) return;
     onSubmit(formData);
   };
+
+  const isFormValid =
+    formData.primaryColor &&
+    formData.backgroundColorPreference &&
+    formData.contrastPreference &&
+    formData.intendedMood;
 
   return (
     <div className="mx-auto px-4">
@@ -61,6 +107,9 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
               ))}
             </SelectContent>
           </Select>
+          {errors.primaryColor && (
+            <p className="text-red-500 text-xs">{errors.primaryColor}</p>
+          )}
         </div>
 
         {/* Background Color Preference */}
@@ -77,13 +126,18 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
             required
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Background theme" />
+              <SelectValue placeholder="Select Background theme" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="Light">Light</SelectItem>
               <SelectItem value="Dark">Dark</SelectItem>
             </SelectContent>
           </Select>
+          {errors.backgroundColorPreference && (
+            <p className="text-red-500 text-xs">
+              {errors.backgroundColorPreference}
+            </p>
+          )}
         </div>
 
         {/* Contrast Preference */}
@@ -105,6 +159,9 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
               <SelectItem value="Low Contrast">Low Contrast</SelectItem>
             </SelectContent>
           </Select>
+          {errors.contrastPreference && (
+            <p className="text-red-500 text-xs">{errors.contrastPreference}</p>
+          )}
         </div>
 
         {/* Intended Mood */}
@@ -117,20 +174,34 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
             required
           >
             <SelectTrigger className="w-full">
-              <SelectValue placeholder="Intended mood" />
+              <SelectValue placeholder="Select intended mood" />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="Professional">Professional</SelectItem>
-              <SelectItem value="Playful">Playful</SelectItem>
-              <SelectItem value="Minimalistic">Minimalistic</SelectItem>
-              <SelectItem value="Bold">Bold</SelectItem>
-            </SelectContent>
+              <SelectContent>
+                <SelectItem value="Professional">Professional</SelectItem>
+                <SelectItem value="Playful">Playful</SelectItem>
+                <SelectItem value="Minimalistic">Minimalistic</SelectItem>
+                <SelectItem value="Bold">Bold</SelectItem>
+              </SelectContent>
           </Select>
+          {errors.intendedMood && (
+            <p className="text-red-500 text-xs">{errors.intendedMood}</p>
+          )}
         </div>
 
         {/* Submit Button */}
-        <Button type="submit" className="w-full" disabled={disabled}>
-          {disabled ? "Generating..." : "Generate Palettes"}
+        <Button type="submit" className="w-full" disabled={!isFormValid || disabled}>
+          {disabled ? (
+            <>
+              Generating...
+              <motion.span style={loadingDots} variants={dotVariants} animate="animate">
+                <motion.span>.</motion.span>
+                <motion.span>.</motion.span>
+                <motion.span>.</motion.span>
+              </motion.span>
+            </>
+          ) : (
+            "Generate Palettes"
+          )}
         </Button>
       </form>
     </div>

@@ -41,9 +41,32 @@ export default function Header() {
             ) : isColorPalettePage ? (
               // Color Box Button for Color Palette Page
               <Link href={"/color-gen"}>
-                <Button variant="outline" size="lg">
-                  Color Gen
-                </Button>
+              <button
+                className="bg-white border-2 animate-border px-4 py-3"
+              >
+                Color Gen
+              </button>
+
+              <style jsx>{`
+                @keyframes borderAnimation {
+                  0% {
+                    border-color: red;
+                  }
+                  33% {
+                    border-color: purple;
+                  }
+                  66% {
+                    border-color: yellow;
+                  }
+                  100% {
+                    border-color: blue;
+                  }
+                }
+
+                .animate-border {
+                  animation: borderAnimation 0.5s infinite;
+                }
+              `}</style>
               </Link>
             ) : null}
           </div>

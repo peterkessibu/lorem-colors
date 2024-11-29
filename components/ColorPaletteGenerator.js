@@ -1,3 +1,5 @@
+// components/ColorPaletteGenerator.js
+
 import { useState, useEffect } from "react";
 import QuestionnaireForm from "./QuestionnaireForm";
 import PaletteCard from "./PaletteCard";
@@ -11,6 +13,9 @@ const ColorPaletteGenerator = () => {
   const [colorFormat, setColorFormat] = useState("hex");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+
+  // New State for Locked Colors
+  const [lockedColors, setLockedColors] = useState({});
 
   useEffect(() => {
     if (isGenerating) {
@@ -49,6 +54,15 @@ const ColorPaletteGenerator = () => {
 
       setPalettes(data.palettes);
       setCurrentPaletteIndex(0);
+
+      // Initialize lockedColors for the new palettes
+      const initialLockedColors = {};
+      data.palettes.forEach((palette) => {
+        Object.keys(palette.colors).forEach((colorName) => {
+          initialLockedColors[colorName] = false;
+        });
+      });
+      setLockedColors(initialLockedColors);
     } catch (err) {
       console.error("Error generating palettes:", err);
       setError(err.message);
@@ -66,11 +80,18 @@ const ColorPaletteGenerator = () => {
     setCurrentPaletteIndex((prev) => Math.min(prev + 1, palettes.length - 1));
   };
 
+  // Function to toggle lock state of a color
+  const handleLockToggle = (colorName) => {
+    setLockedColors((prev) => ({
+      ...prev,
+      [colorName]: !prev[colorName],
+    }));
+  };
+
   const currentPalette = palettes[currentPaletteIndex];
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">AI Generated Color Palette Mockup</h1>
       <div className="flex flex-col lg:flex-row gap-8">
         <aside className="w-full lg:w-64 lg:sticky lg:top-8">
           <QuestionnaireForm
@@ -79,6 +100,7 @@ const ColorPaletteGenerator = () => {
           />
         </aside>
         <div className="flex-1">
+          <h1 className="text-3xl font-bold text-center mb-8">AI Generated Color Palette Mockup</h1>
           {error && (
             <div className="text-red-500 text-center mb-4">{error}</div>
           )}
@@ -95,12 +117,12 @@ const ColorPaletteGenerator = () => {
                 colors={
                   isGenerating || palettes.length === 0
                     ? {
-                        Background: "#f0f0f0",
-                        Text: "#a0a0a0",
-                        Border: "#d0d0d0",
-                        Accent: "#c0c0c0",
-                        Secondary: "#b0b0b0",
-                      }
+                      Background: "#f0f0f0",
+                      Text: "#a0a0a0",
+                      Border: "#d0d0d0",
+                      Accent: "#c0c0c0",
+                      Secondary: "#b0b0b0",
+                    }
                     : currentPalette.colors
                 }
               />
@@ -108,10 +130,10 @@ const ColorPaletteGenerator = () => {
           </div>
           {!isGenerating && palettes.length > 0 && (
             <>
-              <div className="flex items-center justify-center mb-4">
+              <div className="flex items-center justify-center mb-4 my-4">
                 <button
                   onClick={handlePrev}
-                  className="p-2"
+                  className="p-2 bg-gray-300 rounded-[4px] active:bg-slate-200"
                   disabled={currentPaletteIndex === 0}
                   aria-label="Previous Palette"
                 >
@@ -122,7 +144,7 @@ const ColorPaletteGenerator = () => {
                 </span>
                 <button
                   onClick={handleNext}
-                  className="p-2"
+                  className="p-2 bg-gray-300 rounded-[4px] active:bg-slate-200"
                   disabled={currentPaletteIndex === palettes.length - 1}
                   aria-label="Next Palette"
                 >
@@ -133,6 +155,8 @@ const ColorPaletteGenerator = () => {
                 palette={currentPalette}
                 colorFormat={colorFormat}
                 setColorFormat={setColorFormat}
+                lockedColors={lockedColors} // Passed as prop
+                handleLockToggle={handleLockToggle} // Passed as prop
               />
             </>
           )}
