@@ -80,11 +80,11 @@ export default function Hero() {
 
   return (
     <div
-      className={`relative overflow-hidden transition-all duration-500 ${
+      className={`overflow-hidden transition-all duration-500 ${
         isClicked ? bgGradient : "bg-white"
       }`}
     >
-      <div className="max-w-7xl h-screen mx-auto relative z-10 flex flex-col lg:flex-row">
+      <div className="max-w-7xl min-h-screen mx-auto relative z-10 flex flex-col lg:flex-row">
         {/* Text Section */}
         <div
           className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 ${
@@ -100,18 +100,25 @@ export default function Hero() {
             >
               {/* Main Heading */}
               <motion.h1
-                className={`text-4xl leading-snug tracking-tight font-extrabold md:text-[54px] transition-colors duration-500 ${
+                className={`text-4xl leading-snug tracking-tight font-extrabold transition-colors duration-500 ${
                   isClicked ? "text-white" : "text-black"
                 }`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <span className="block">Everything</span>
-                <span className="block">In black and white,</span>
-                <span className="block">Till you click...</span>
+                <span className="block">Transform Your Designs</span>
+                <span className="block">with Perfect Colors.</span>
               </motion.h1>
-
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <span>
+                  Generate stunning color palettes tailored to your needs. Elevate your projects with AI-powered color recommendations and comprehensive analytics.
+                </span>
+              </motion.div>
               {/* Generate Palette Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -127,7 +134,7 @@ export default function Hero() {
                       onClick={handleButtonClick}
                       disabled={isClicked}
                     >
-                      Generate Palette
+                      Get Started
                     </Button>
                   </div>
                 </div>
@@ -179,7 +186,7 @@ export default function Hero() {
                 y="50%"
                 textAnchor="middle"
                 fill="url(#gradient)"
-                fontSize="90"
+                fontSize="88"
                 fontWeight="bold"
                 dy=".3em"
                 variants={isClicked ? gradientVariants : containerVariants}

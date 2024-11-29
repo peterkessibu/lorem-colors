@@ -45,16 +45,7 @@ export default function Header() {
                   Color Gen
                 </Button>
               </Link>
-            ) : (
-              // Get Started Button
-              <div className="flex space-x-4">
-                <Link href={"/genAI-Color-Palette"}>
-                  <Button variant="outline" size="lg">
-                    Get Started
-                  </Button>
-                </Link>
-              </div>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

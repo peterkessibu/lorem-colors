@@ -138,7 +138,7 @@ export default function ColorTuner() {
                     <div key={shade} className="flex items-center">
                       {/* Color Box */}
                       <div
-                        className="w-8 h-8 rounded mr-2 border border-gray-400"
+                        className="w-10 h-10 rounded mr-2 border border-gray-400"
                         style={{ backgroundColor: color }}
                       />
 
