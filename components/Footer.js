@@ -32,7 +32,7 @@ const socialLinks = [
 const footerSections = [
   {
     title: "Solutions",
-    links: [{ name: "Color Gen", href: "/color-gen" }],
+    links: [{ name: "Color Shades", href: "/color-shades" }],
   },
   {
     title: "Info",
@@ -102,7 +102,7 @@ export default function Footer() {
                     key={social.name}
                     href={social.href}
                     target="_blank"
-                    className={`flex items-center px-4 py-2 bg-gray-200 rounded-lg shadow-md transition-colors duration-300 ${social.hoverTextColor} text-gray-500 hover:bg-gray-200`}
+                    className={`flex items-center p-4 bg-gray-200 rounded-full shadow-md transition-colors duration-300 ${social.hoverTextColor} text-gray-500 hover:bg-gray-200`}
                   >
                     <span className="sr-only">{social.name}</span>
                     {social.icon && (

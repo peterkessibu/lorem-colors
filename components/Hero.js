@@ -210,11 +210,11 @@ export default function Hero() {
                 <linearGradient
                   id="gradient"
                   gradientTransform={`rotate(${rotation})`}
-                >
-                  <stop offset="0%" stopColor="#ff0000" />
-                  <stop offset="25%" stopColor="#ffa500" />
-                  <stop offset="50%" stopColor="#00ff00" />
-                  <stop offset="75%" stopColor="#0000ff" />
+                ><stop offset="0%" stopColor="#ff0000" />
+                  <stop offset="20%" stopColor="#ffa500" />
+                  <stop offset="40%" stopColor="#ffff00" />
+                  <stop offset="60%" stopColor="#00ff00" />
+                  <stop offset="80%" stopColor="#0000ff" />
                   <stop offset="100%" stopColor="#800080" />
                 </linearGradient>
               </defs>
