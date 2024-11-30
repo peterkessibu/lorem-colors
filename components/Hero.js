@@ -121,9 +121,7 @@ export default function Hero() {
                     isClicked ? "text-white" : "text-black"
                   }`}
                 >
-                  Generate stunning color palettes tailored to your needs.
-                  Elevate your projects with AI-powered color recommendations
-                  and comprehensive analytics.
+                  Create personalized color palettes and elevate your projects with AI-powered color recommendations.
                 </span>
               </motion.div>
               {/* Generate Palette Button */}
