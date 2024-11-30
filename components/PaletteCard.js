@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import ColorSwatch from "./ColorSwatch";
 import { motion } from "framer-motion";
@@ -10,7 +16,7 @@ import { motion } from "framer-motion";
 // Helper function to convert HEX to RGB
 const hexToRgb = (hex) => {
   // Remove '#' if present
-  hex = hex.replace('#', '');
+  hex = hex.replace("#", "");
 
   // Parse the r, g, b values
   const bigint = parseInt(hex, 16);
@@ -21,7 +27,13 @@ const hexToRgb = (hex) => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
-const PaletteCard = ({ palette, colorFormat, setColorFormat, lockedColors, handleLockToggle }) => {
+const PaletteCard = ({
+  palette,
+  colorFormat,
+  setColorFormat,
+  lockedColors,
+  handleLockToggle,
+}) => {
   const [copied, setCopied] = useState(false);
 
   const handleExport = () => {
@@ -32,7 +44,8 @@ const PaletteCard = ({ palette, colorFormat, setColorFormat, lockedColors, handl
       })
       .join("\n");
 
-    navigator.clipboard.writeText(exportData)
+    navigator.clipboard
+      .writeText(exportData)
       .then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 3000);

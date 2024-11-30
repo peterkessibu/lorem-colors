@@ -39,7 +39,8 @@
     "app/(root)/page.js",
     "components/ColorTuner.js",
     "app/global-error.ts",
-    "components/global-error.js"
-, "app/layout.js"  ],
+    "components/global-error.js",
+    "app/layout.js"
+  ],
   "exclude": ["node_modules"]
 }

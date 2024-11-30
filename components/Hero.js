@@ -100,8 +100,9 @@ export default function Hero() {
             >
               {/* Main Heading */}
               <motion.h1
-                className={`text-2xl md:text-4xl leading-snug tracking-tight font-extrabold transition-colors duration-500 ${isClicked ? "text-white" : "text-black"
-                  }`}
+                className={`text-2xl md:text-4xl leading-snug tracking-tight font-extrabold transition-colors duration-500 ${
+                  isClicked ? "text-white" : "text-black"
+                }`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -112,14 +113,17 @@ export default function Hero() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
+                transition={{ duration: 0.5 }}
                 className="w-5/6 mx-auto lg:mx-0"
               >
                 <span
-                  className={`block tracking-tight mt-2 ${isClicked ? "text-white" : "text-black"
-                    }`}
+                  className={`block tracking-tight mt-2 ${
+                    isClicked ? "text-white" : "text-black"
+                  }`}
                 >
-                  Generate stunning color palettes tailored to your needs. Elevate your projects with AI-powered color recommendations and comprehensive analytics.
+                  Generate stunning color palettes tailored to your needs.
+                  Elevate your projects with AI-powered color recommendations
+                  and comprehensive analytics.
                 </span>
               </motion.div>
               {/* Generate Palette Button */}
@@ -210,7 +214,8 @@ export default function Hero() {
                 <linearGradient
                   id="gradient"
                   gradientTransform={`rotate(${rotation})`}
-                ><stop offset="0%" stopColor="#ff0000" />
+                >
+                  <stop offset="0%" stopColor="#ff0000" />
                   <stop offset="20%" stopColor="#ffa500" />
                   <stop offset="40%" stopColor="#ffff00" />
                   <stop offset="60%" stopColor="#00ff00" />

@@ -91,7 +91,7 @@ export default function Dashboard({ colors }) {
                 >
                   {item}
                 </p>
-              )
+              ),
             )}
           </div>
         </div>

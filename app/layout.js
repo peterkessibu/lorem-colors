@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import localFont from "next/font/local";
 import "./globals.css";
 import { useRouter } from "next/navigation";
@@ -28,7 +28,8 @@ export default function RootLayout({ children }) {
       case "/":
         setMetadata({
           title: "Home - Lorem Colors",
-          description: "Welcome to the AI powered Color Palette Generator Application",
+          description:
+            "Welcome to the AI powered Color Palette Generator Application",
         });
         break;
       case "/genAI-Color-Palette":

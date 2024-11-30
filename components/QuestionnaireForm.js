@@ -52,12 +52,15 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
 
   const validate = () => {
     const newErrors = {};
-    if (!formData.primaryColor) newErrors.primaryColor = "Primary color is required.";
+    if (!formData.primaryColor)
+      newErrors.primaryColor = "Primary color is required.";
     if (!formData.backgroundColorPreference)
-      newErrors.backgroundColorPreference = "Background color preference is required.";
+      newErrors.backgroundColorPreference =
+        "Background color preference is required.";
     if (!formData.contrastPreference)
       newErrors.contrastPreference = "Contrast preference is required.";
-    if (!formData.intendedMood) newErrors.intendedMood = "Intended mood is required.";
+    if (!formData.intendedMood)
+      newErrors.intendedMood = "Intended mood is required.";
     return newErrors;
   };
 
@@ -189,11 +192,19 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
         </div>
 
         {/* Submit Button */}
-        <Button type="submit" className="w-full" disabled={!isFormValid || disabled}>
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={!isFormValid || disabled}
+        >
           {disabled ? (
             <>
               Generating
-              <motion.span style={loadingDots} variants={dotVariants} animate="animate">
+              <motion.span
+                style={loadingDots}
+                variants={dotVariants}
+                animate="animate"
+              >
                 <motion.span>.</motion.span>
                 <motion.span>.</motion.span>
                 <motion.span>.</motion.span>
