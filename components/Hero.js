@@ -96,13 +96,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-left"
+              className="text-center lg:text-left"
             >
               {/* Main Heading */}
               <motion.h1
-                className={`text-4xl leading-snug tracking-tight font-extrabold transition-colors duration-500 ${
-                  isClicked ? "text-white" : "text-black"
-                }`}
+                className={`text-2xl md:text-4xl leading-snug tracking-tight font-extrabold transition-colors duration-500 ${isClicked ? "text-white" : "text-black"
+                  }`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
@@ -114,9 +113,12 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="w-5/6"
+                className="w-5/6 mx-auto lg:mx-0"
               >
-                <span className="block leading-snug tracking-tight">
+                <span
+                  className={`block tracking-tight mt-2 ${isClicked ? "text-white" : "text-black"
+                    }`}
+                >
                   Generate stunning color palettes tailored to your needs. Elevate your projects with AI-powered color recommendations and comprehensive analytics.
                 </span>
               </motion.div>

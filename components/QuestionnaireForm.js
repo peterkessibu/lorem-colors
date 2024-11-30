@@ -176,12 +176,12 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select intended mood" />
             </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Professional">Professional</SelectItem>
-                <SelectItem value="Playful">Playful</SelectItem>
-                <SelectItem value="Minimalistic">Minimalistic</SelectItem>
-                <SelectItem value="Bold">Bold</SelectItem>
-              </SelectContent>
+            <SelectContent>
+              <SelectItem value="Professional">Professional</SelectItem>
+              <SelectItem value="Playful">Playful</SelectItem>
+              <SelectItem value="Minimalistic">Minimalistic</SelectItem>
+              <SelectItem value="Bold">Bold</SelectItem>
+            </SelectContent>
           </Select>
           {errors.intendedMood && (
             <p className="text-red-500 text-xs">{errors.intendedMood}</p>
@@ -192,7 +192,7 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
         <Button type="submit" className="w-full" disabled={!isFormValid || disabled}>
           {disabled ? (
             <>
-              Generating...
+              Generating
               <motion.span style={loadingDots} variants={dotVariants} animate="animate">
                 <motion.span>.</motion.span>
                 <motion.span>.</motion.span>

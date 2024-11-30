@@ -155,8 +155,8 @@ const ColorPaletteGenerator = () => {
                 palette={currentPalette}
                 colorFormat={colorFormat}
                 setColorFormat={setColorFormat}
-                lockedColors={lockedColors} // Passed as prop
-                handleLockToggle={handleLockToggle} // Passed as prop
+                lockedColors={lockedColors} 
+                handleLockToggle={handleLockToggle}
               />
             </>
           )}
