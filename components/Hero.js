@@ -117,7 +117,7 @@ export default function Hero() {
                 className="w-5/6 mx-auto lg:mx-0"
               >
                 <span
-                  className={`block tracking-tight mt-2 ${
+                  className={`block tracking-tight leading-normal mt-2 text-lg ${
                     isClicked ? "text-white" : "text-black"
                   }`}
                 >
@@ -130,7 +130,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
               >
-                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                <div className="mt-4 md:mt-8 sm:flex sm:justify-center lg:justify-start">
                   <div className="rounded-md">
                     <Button
                       variant="outline"
