@@ -91,7 +91,7 @@ export default function Hero() {
             isClicked ? "bg-transparent" : ""
           } w-full`}
         >
-          <main className="mt-4 md:mt-6 mx-4 p-4 lg:py-16">
+          <main className="mt-8 md:mt-6 mx-4 p-4 lg:py-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
