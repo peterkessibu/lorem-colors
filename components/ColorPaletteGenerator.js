@@ -129,6 +129,27 @@ const ColorPaletteGenerator = () => {
             AI Generated Color Palette Mockup
           </h1>
           {error && <div className="text-red-500 text-center mb-4">{error}</div>}
+          <div className="flex items-center justify-center mb-4 my-4">
+            <button
+              onClick={handlePrev}
+              className="p-2 bg-gray-300 rounded-[4px] active:bg-slate-200"
+              disabled={currentPaletteIndex === 0}
+              aria-label="Previous Palette"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <span className="mx-4">
+              Palette {currentPaletteIndex + 1} of {palettes.length}
+            </span>
+            <button
+              onClick={handleNext}
+              className="p-2 bg-gray-300 rounded-[4px] active:bg-slate-200"
+              disabled={currentPaletteIndex === palettes.length - 1}
+              aria-label="Next Palette"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
           <div className="relative">
             {isGenerating && (
               <div className="absolute inset-0 bg-white opacity-80 flex justify-center items-center z-10">
@@ -175,27 +196,6 @@ const ColorPaletteGenerator = () => {
           </div>
           {!isGenerating && palettes.length > 0 && (
             <>
-              <div className="flex items-center justify-center mb-4 my-4">
-                <button
-                  onClick={handlePrev}
-                  className="p-2 bg-gray-300 rounded-[4px] active:bg-slate-200"
-                  disabled={currentPaletteIndex === 0}
-                  aria-label="Previous Palette"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <span className="mx-4">
-                  Palette {currentPaletteIndex + 1} of {palettes.length}
-                </span>
-                <button
-                  onClick={handleNext}
-                  className="p-2 bg-gray-300 rounded-[4px] active:bg-slate-200"
-                  disabled={currentPaletteIndex === palettes.length - 1}
-                  aria-label="Next Palette"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </div>
               <PaletteCard
                 palette={currentPalette}
                 colorFormat={colorFormat}

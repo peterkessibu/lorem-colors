@@ -130,7 +130,7 @@ Background Color Preference: ${backgroundColorPreference}
 Saturation Level: ${contrastPreference}
 Contrast Preference: ${contrastPreference}
 Intended Mood: ${intendedMood} - ${moodDescription}
-Shade Preference (for shadows and accents): ${backgroundColorPreference}
+Shade Preference (for shadows and accents): ${backgroundColorPreference === 'light' ? 'soft and light shades only.' : 'dark and rich shades only.'}
 Custom Color or Description: ${customDescription}
 
 Requirements:
