@@ -98,6 +98,10 @@ const ColorPaletteGenerator = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.05,
+        repeat: Infinity,
+        repeatType: "loop",
+        duration: 0.6,
+        ease: "easeInOut",
       },
     },
   };

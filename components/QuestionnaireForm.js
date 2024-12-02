@@ -12,6 +12,8 @@ import {
 import { Button } from "@/components/ui/button";
 import colors from "@/lib/colors";
 
+const colorNames = Object.keys(colors);
+
 const QuestionnaireForm = ({ onSubmit, disabled }) => {
   const [formData, setFormData] = useState({
     primaryColor: "",
