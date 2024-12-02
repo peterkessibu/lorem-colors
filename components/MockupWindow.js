@@ -107,7 +107,7 @@ export default function Dashboard({ colors }) {
       {/* Main Content */}
       <main className="flex-1 overflow-auto space-y-4 p-4">
         {/* Dashboard Header */}
-        <div className="flex items-center justify-between flex-col md:flex-row">
+        <div className="flex items-center justify-between flex-row">
           <h1 className="text-base md:text-lg font-bold">Dashboard</h1>
           <div className="flex space-x-2 mt-2 md:mt-0">
             <Button

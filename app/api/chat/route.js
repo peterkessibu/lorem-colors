@@ -130,7 +130,7 @@ Background Color Preference: ${backgroundColorPreference}
 Saturation Level: ${contrastPreference}
 Contrast Preference: ${contrastPreference}
 Intended Mood: ${intendedMood} - ${moodDescription}
-Shade Preference (for shadows and accents): ${backgroundColorPreference}
+Shade Preference (for shadows and accents): ${backgroundColorPreference === 'light' ? 'soft and light shades only.' : 'dark and rich shades only.'}
 Custom Color or Description: ${customDescription}
 
 Requirements:
@@ -187,7 +187,7 @@ Requirements:
    - Hover Effects:
      - Ensure hover states reflect interactive states appropriately, providing clear visual feedback without compromising color visibility.
 
-Respond only with valid JSON without any additional text or markdown. The JSON structure should have a top-level key "palettes" which is an array of palette objects as described below.
+Respond only with valid JSON without any additional text or markdown. The JSON structure should have a top-level key "palettes" which is an array of palette objects as described below. Ensure no duplicate keys within each palette object.
 
 Each palette object should have the following structure:
     {
