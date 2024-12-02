@@ -163,14 +163,7 @@ Requirements:
    - Each palette should follow the format: "Palette-variant-X"
    - Example: "Palette-Variant-1"
 
-5. Description Requirements:
-   - Each palette description should include:
-     - Primary Use Case: Specific scenarios where the palette excels.
-     - Suggested Industry Application: Industries that would benefit most from the palette.
-     - Key Psychological Effects: Emotional and psychological impact of the color combinations.
-     - Recommended Content Types: Types of content that align well with the palette.
-
-6. Additional Requirements:
+5. Additional Requirements:
    - Accent Colors for Cards: Use accent colors to style card components distinctly.
    - Text Color Based on Theme:
      - Use white text for dark accents/backgrounds.
@@ -191,25 +184,24 @@ Respond only with valid JSON without any additional text or markdown. The JSON s
 
 Each palette object should have the following structure:
     {
-      "name": "Palette-Variant-X",
-        "colors": {
-        "primary": "#HEXCODE",
-          "secondary": "#HEXCODE",
-            "accent": "#HEXCODE",
-              "background": "#HEXCODE",
-                "border": "#HEXCODE",
-                  "hover": "#HEXCODE",
-                    "text": "#HEXCODE",
-                      "sales_name": "#HEXCODE",
-                        "sales_email": "#HEXCODE"
-      },
-      "description": {
-        "primary_use_case": "Description here",
-          "suggested_industry_application": "Description here",
-            "key_psychological_effects": "Description here",
-              "recommended_content_types": "Description here"
+  "palettes": [
+    {
+      "name": "Palette 1",
+      "colors": {
+        "primary": "#color1",
+        "secondary": "#color2",
+        "accent": "#color3",
+        "background": "#color4",
+        "border": "#color5",
+        "hover": "#color6",
+        "text": "#color7",
+        "sales_name": "#color8",
+        "sales_email": "#color9"
       }
     }
+    // Additional palettes...
+  ]
+}
     `;
 
     let stream;
