@@ -8,8 +8,8 @@ export default function Testimonials() {
       content:
         "Lorem Colors has revolutionized our design process. The AI-powered recommendations are spot-on!",
       author: {
-        name: "Sarah Johnson",
-        role: "Lead Designer, TechCorp",
+        name: "Prince Kennedy",
+        role: "Lead Designer, UI/UX Cape Coast",
         image: "/globe.svg",
       },
     },
@@ -17,8 +17,8 @@ export default function Testimonials() {
       content:
         "It is easy to transform our brand identity with Lorem Colors. The color palettes are always on point!",
       author: {
-        name: "Michael Chen",
-        role: "Creative Director, DesignHub",
+        name: "Reginald Crabbe",
+        role: "Creative Director, Reggie Designs",
         image: "/globe.svg",
       },
     },
@@ -26,8 +26,8 @@ export default function Testimonials() {
       content:
         "Lorem Colors has become an essential tool in our branding projects. Highly recommended for all UI designs!",
       author: {
-        name: "Emily Rodriguez",
-        role: "Brand Strategist, BrandWorks",
+        name: "Emmanuel Totimeh",
+        role: "Frontend Engineer",
         image: "/globe.svg",
       },
     },
@@ -35,8 +35,8 @@ export default function Testimonials() {
       content:
         "The seamless integration of Lorem Colors into our workflow has significantly boosted our productivity.",
       author: {
-        name: "David Lee",
-        role: "Product Manager, InnovateX",
+        name: "Adoley",
+        role: "Product Manager",
         image: "/globe.svg",
       },
     },

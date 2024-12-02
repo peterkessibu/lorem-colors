@@ -8,7 +8,7 @@ import { Instagram, Github, Palette, Linkedin, X } from "lucide-react";
 const socialLinks = [
   {
     name: "Instagram",
-    href: "#",
+    href: "https://www.instagram.com/_zheebuuu101/",
     icon: Instagram,
     hoverTextColor: "hover:text-pink-500",
     text: null,
