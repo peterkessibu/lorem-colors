@@ -187,7 +187,7 @@ Requirements:
    - Hover Effects:
      - Ensure hover states reflect interactive states appropriately, providing clear visual feedback without compromising color visibility.
 
-Respond only with valid JSON without any additional text or markdown. The JSON structure should have a top-level key "palettes" which is an array of palette objects as described below. Ensure no duplicate keys within each palette object.
+Respond only with valid JSON without any additional text or markdown. The JSON structure should have a top-level key "palettes" which is an array of palette objects as described below.
 
 Each palette object should have the following structure:
     {

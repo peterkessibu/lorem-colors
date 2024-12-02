@@ -182,7 +182,7 @@ const ColorPaletteGenerator = () => {
             )}
             <div
               ref={mockupRef}
-              className={`mockup-container scroll-mt-8 md:scroll-mt-4 ${isGenerating ? "blur" : ""} mt-4`}
+              className={`mockup-container -scroll-mt-8 md:scroll-mt-4 ${isGenerating ? "blur" : ""} mt-4`}
             >
               <MockupWindow
                 colors={

@@ -100,7 +100,7 @@ export default function Hero() {
             >
               {/* Main Heading */}
               <motion.h1
-                className={`text-2xl md:text-4xl leading-snug tracking-tight font-extrabold transition-colors duration-500 ${
+                className={`text-2xl md:text-4xl leading-snug tracking-tight font-extrabold transition-colors mb-2 duration-500 ${
                   isClicked ? "text-white" : "text-black"
                 }`}
                 initial={{ opacity: 0, y: 20 }}
@@ -117,7 +117,7 @@ export default function Hero() {
                 className="w-5/6 mx-auto lg:mx-0"
               >
                 <span
-                  className={`block tracking-tight leading-normal mt-2 text-lg ${
+                  className={`block tracking-tight leading-normal my-2 text-lg ${
                     isClicked ? "text-white" : "text-black"
                   }`}
                 >
