@@ -122,13 +122,18 @@ const ColorPaletteGenerator = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row gap-8">
         <aside className="w-full lg:w-64 lg:sticky lg:top-8">
-          <QuestionnaireForm onSubmit={handleFormSubmit} disabled={isSubmitting} />
+          <QuestionnaireForm
+            onSubmit={handleFormSubmit}
+            disabled={isSubmitting}
+          />
         </aside>
         <div className="flex-1 overflow-auto max-h-screen">
           <h1 className="text-3xl font-bold text-center mb-8">
             AI Generated Color Palette Mockup
           </h1>
-          {error && <div className="text-red-500 text-center mb-4">{error}</div>}
+          {error && (
+            <div className="text-red-500 text-center mb-4">{error}</div>
+          )}
           <div className="flex items-center justify-center mb-4 my-4">
             <button
               onClick={handlePrev}
@@ -183,12 +188,12 @@ const ColorPaletteGenerator = () => {
                 colors={
                   isGenerating || palettes.length === 0
                     ? {
-                      Background: "#f0f0f0",
-                      Text: "#a0a0a0",
-                      Border: "#d0d0d0",
-                      Accent: "#c0c0c0",
-                      Secondary: "#b0b0b0",
-                    }
+                        Background: "#f0f0f0",
+                        Text: "#a0a0a0",
+                        Border: "#d0d0d0",
+                        Accent: "#c0c0c0",
+                        Secondary: "#b0b0b0",
+                      }
                     : currentPalette.colors
                 }
               />

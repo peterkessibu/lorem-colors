@@ -176,13 +176,7 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
           className="w-full"
           disabled={!isFormValid || disabled}
         >
-          {disabled ? (
-            <>
-              Generating...
-            </>
-          ) : (
-            "Generate Palettes"
-          )}
+          {disabled ? <>Generating...</> : "Generate Palettes"}
         </Button>
       </form>
     </div>
