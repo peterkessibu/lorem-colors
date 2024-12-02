@@ -85,12 +85,19 @@ export default function Dashboard({ colors }) {
           >
             {["Overview", "Customers", "Products", "Settings"].map(
               (item, index) => (
-                <p
+                <Button
                   key={index}
-                  className="py-1 px-3 hover:bg-gray-800 hover:text-white rounded-lg text-sm"
+                  variant="outline"
+                  className="py-1 px-3"
+                  style={{
+                    backgroundColor: accent,
+                    borderColor: borderColor,
+                    color: textColor,
+                    hoverColor: background,
+                  }}
                 >
                   {item}
-                </p>
+                </Button>
               ),
             )}
           </div>
@@ -108,9 +115,9 @@ export default function Dashboard({ colors }) {
               size="sm"
               className="flex items-center px-2 py-1"
               style={{
-                backgroundColor: "#1F2937",
-                borderColor: "#1F2937",
-                color: "#FFFFFF",
+                backgroundColor: accent,
+                borderColor: borderColor,
+                color: textColor,
               }}
             >
               <CalendarIcon className="mr-1 h-4 w-4" />
@@ -119,11 +126,13 @@ export default function Dashboard({ colors }) {
               </span>
             </Button>
             <Button
+              variant="outline"
               size="sm"
               className="flex items-center px-2 py-1"
               style={{
-                backgroundColor: "#1F2937",
-                color: "#FFFFFF",
+                backgroundColor: accent,
+                borderColor: borderColor,
+                color: textColor,
               }}
             >
               <Download className="mr-1 h-4 w-4" />
@@ -149,12 +158,12 @@ export default function Dashboard({ colors }) {
                 <CardTitle className="text-sm font-medium">Sales</CardTitle>
                 <DollarSign className="h-4 w-4 text-gray-500" />
               </div>
-              <CardContent>
+              <div>
                 <div className="text-xl font-bold">+12,234</div>
                 <p className="text-xs" style={{ color: emailColor }}>
                   +19% from last month
                 </p>
-              </CardContent>
+              </div>
             </div>
 
             {/* Active Now Card */}
@@ -172,12 +181,12 @@ export default function Dashboard({ colors }) {
                 </CardTitle>
                 <Users className="h-4 w-4 text-gray-500" />
               </div>
-              <CardContent>
+              <div>
                 <div className="text-xl font-bold">+573</div>
                 <p className="text-xs" style={{ color: emailColor }}>
                   +201 since last hour
                 </p>
-              </CardContent>
+              </div>
             </div>
           </div>
 

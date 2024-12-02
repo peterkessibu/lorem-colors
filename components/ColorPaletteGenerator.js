@@ -1,6 +1,7 @@
 // components/ColorPaletteGenerator.js
 
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import QuestionnaireForm from "./QuestionnaireForm";
 import PaletteCard from "./PaletteCard";
 import MockupWindow from "./MockupWindow";
@@ -90,28 +91,58 @@ const ColorPaletteGenerator = () => {
 
   const currentPalette = palettes[currentPaletteIndex];
 
+  // Framer Motion Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const letterVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const letters = "Generating...".split("");
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row gap-8">
         <aside className="w-full lg:w-64 lg:sticky lg:top-8">
-          <QuestionnaireForm
-            onSubmit={handleFormSubmit}
-            disabled={isSubmitting}
-          />
+          <QuestionnaireForm onSubmit={handleFormSubmit} disabled={isSubmitting} />
         </aside>
         <div className="flex-1">
           <h1 className="text-3xl font-bold text-center mb-8">
             AI Generated Color Palette Mockup
           </h1>
-          {error && (
-            <div className="text-red-500 text-center mb-4">{error}</div>
-          )}
+          {error && <div className="text-red-500 text-center mb-4">{error}</div>}
           <div className="relative">
             {isGenerating && (
-              <div className="video-container absolute inset-0 flex justify-center items-center bg-white bg-opacity-80 z-10">
-                <video autoPlay loop muted>
-                  <source src="/gen_svg.mp4" type="video/mp4" />
-                </video>
+              <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-80 z-10">
+                <motion.svg width="300" height="100">
+                  <motion.text
+                    x="50%"
+                    y="50%"
+                    textAnchor="middle"
+                    fill="#000000"
+                    fontSize="24"
+                    fontWeight="bold"
+                    dy=".3em"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {letters.map((letter, index) => (
+                      <motion.tspan key={index} variants={letterVariants}>
+                        {letter === " " ? "\u00A0" : letter}
+                      </motion.tspan>
+                    ))}
+                  </motion.text>
+                </motion.svg>
               </div>
             )}
             <div className={`mockup-container ${isGenerating ? "blur" : ""}`}>
@@ -119,12 +150,12 @@ const ColorPaletteGenerator = () => {
                 colors={
                   isGenerating || palettes.length === 0
                     ? {
-                        Background: "#f0f0f0",
-                        Text: "#a0a0a0",
-                        Border: "#d0d0d0",
-                        Accent: "#c0c0c0",
-                        Secondary: "#b0b0b0",
-                      }
+                      Background: "#f0f0f0",
+                      Text: "#a0a0a0",
+                      Border: "#d0d0d0",
+                      Accent: "#c0c0c0",
+                      Secondary: "#b0b0b0",
+                    }
                     : currentPalette.colors
                 }
               />
