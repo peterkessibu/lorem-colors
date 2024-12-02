@@ -134,27 +134,29 @@ const ColorPaletteGenerator = () => {
           {error && (
             <div className="text-red-500 text-center mb-4">{error}</div>
           )}
-          <div className="flex items-center justify-center mb-4 my-4">
-            <button
-              onClick={handlePrev}
-              className="p-2 bg-gray-300 rounded-[4px] active:bg-slate-200"
-              disabled={currentPaletteIndex === 0}
-              aria-label="Previous Palette"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            <span className="mx-4">
-              Palette {currentPaletteIndex + 1} of {palettes.length}
-            </span>
-            <button
-              onClick={handleNext}
-              className="p-2 bg-gray-300 rounded-[4px] active:bg-slate-200"
-              disabled={currentPaletteIndex === palettes.length - 1}
-              aria-label="Next Palette"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-          </div>
+          {palettes.length > 0 && (
+            <div className="flex items-center justify-center mb-4 my-4">
+              <button
+                onClick={handlePrev}
+                className="p-2 bg-gray-300 rounded-[4px] active:bg-slate-200"
+                disabled={currentPaletteIndex === 0}
+                aria-label="Previous Palette"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <span className="mx-4">
+                Palette {currentPaletteIndex + 1} of {palettes.length}
+              </span>
+              <button
+                onClick={handleNext}
+                className="p-2 bg-gray-300 rounded-[4px] active:bg-slate-200"
+                disabled={currentPaletteIndex === palettes.length - 1}
+                aria-label="Next Palette"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
+          )}
           <div className="relative">
             {isGenerating && (
               <div className="absolute inset-0 bg-white opacity-80 flex justify-center items-center z-10">
@@ -182,18 +184,19 @@ const ColorPaletteGenerator = () => {
             )}
             <div
               ref={mockupRef}
-              className={`mockup-container -scroll-mt-8 md:scroll-mt-4 ${isGenerating ? "blur" : ""} mt-4`}
+              className={`mockup-container -scroll-mt-8 md:scroll-mt-4 ${isGenerating ? "blur" : ""
+                } mt-4`}
             >
               <MockupWindow
                 colors={
                   isGenerating || palettes.length === 0
                     ? {
-                        Background: "#f0f0f0",
-                        Text: "#a0a0a0",
-                        Border: "#d0d0d0",
-                        Accent: "#c0c0c0",
-                        Secondary: "#b0b0b0",
-                      }
+                      Background: "#f0f0f0",
+                      Text: "#a0a0a0",
+                      Border: "#d0d0d0",
+                      Accent: "#c0c0c0",
+                      Secondary: "#b0b0b0",
+                    }
                     : currentPalette.colors
                 }
               />
