@@ -88,7 +88,7 @@ export default function Dashboard({ colors }) {
                 <Button
                   key={index}
                   variant="outline"
-                  className="py-1 px-3"
+                  className="py-1 px-3 rounded-xl"
                   style={{
                     backgroundColor: accent,
                     borderColor: borderColor,

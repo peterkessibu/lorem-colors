@@ -1,6 +1,6 @@
 // components/ColorPaletteGenerator.js
 
-import { useState, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import QuestionnaireForm from "./QuestionnaireForm";
 import PaletteCard from "./PaletteCard";
@@ -18,11 +18,12 @@ const ColorPaletteGenerator = () => {
   // New State for Locked Colors
   const [lockedColors, setLockedColors] = useState({});
 
+  // Add a ref for the mockup container
+  const mockupRef = useRef(null);
+
   useEffect(() => {
-    if (isGenerating) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
+    if (isGenerating && mockupRef.current) {
+      mockupRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [isGenerating]);
 
@@ -91,24 +92,28 @@ const ColorPaletteGenerator = () => {
 
   const currentPalette = palettes[currentPaletteIndex];
 
-  // Framer Motion Variants
+  // Framer Motion Variants for individual letter animation
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: {},
     visible: {
-      opacity: 1,
       transition: {
-        staggerChildren: 0.05,
-        repeat: Infinity,
-        repeatType: "loop",
-        duration: 0.6,
-        ease: "easeInOut",
+        staggerChildren: 0.1,
       },
     },
   };
 
   const letterVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        repeat: Infinity,
+        repeatType: "loop",
+        duration: 1,
+        ease: "easeInOut",
+      },
+    },
   };
 
   const letters = "Generating...".split("");
@@ -119,21 +124,21 @@ const ColorPaletteGenerator = () => {
         <aside className="w-full lg:w-64 lg:sticky lg:top-8">
           <QuestionnaireForm onSubmit={handleFormSubmit} disabled={isSubmitting} />
         </aside>
-        <div className="flex-1">
+        <div className="flex-1 overflow-auto max-h-screen">
           <h1 className="text-3xl font-bold text-center mb-8">
             AI Generated Color Palette Mockup
           </h1>
           {error && <div className="text-red-500 text-center mb-4">{error}</div>}
           <div className="relative">
             {isGenerating && (
-              <div className="absolute inset-0 flex justify-center items-center bg-white bg-opacity-80 z-10">
+              <div className="absolute inset-0 bg-white opacity-80 flex justify-center items-center z-10">
                 <motion.svg width="300" height="100">
                   <motion.text
                     x="50%"
                     y="50%"
                     textAnchor="middle"
                     fill="#000000"
-                    fontSize="24"
+                    fontSize="38"
                     fontWeight="bold"
                     dy=".3em"
                     variants={containerVariants}
@@ -149,7 +154,10 @@ const ColorPaletteGenerator = () => {
                 </motion.svg>
               </div>
             )}
-            <div className={`mockup-container ${isGenerating ? "blur" : ""}`}>
+            <div
+              ref={mockupRef}
+              className={`mockup-container scroll-mt-8 md:scroll-mt-4 ${isGenerating ? "blur" : ""} mt-4`}
+            >
               <MockupWindow
                 colors={
                   isGenerating || palettes.length === 0
