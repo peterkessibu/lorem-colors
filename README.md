@@ -21,8 +21,6 @@ Lorem Colors is a dynamic and user-friendly web application designed to generate
 - **📱 Responsive Design:** Optimized for both desktop and mobile devices.
 - **🔄 Interactive UI:** Smooth animations and transitions enhance user experience.
 - **🔗 Social Media Integration:** Share your palettes directly to platforms like Instagram, LinkedIn, and GitHub.
-- **🛠️ Fixed Sidebar Layout:** Enjoy a consistent navigation experience with a fixed sidebar on larger screens.
-- **🎥 Loading Animations:** Engage users with visually appealing loading indicators during palette generation.
 
 ## 🚀 Demo
 
@@ -72,10 +70,7 @@ Once the development server is running:
 
 ### 🔑 Key Components
 
-- **Header.js:** The top navigation bar featuring logo, navigation links, and responsive menu.
-- **Footer.js:** The footer section containing navigation links, social media icons, and a modal popup for support links.
-- **Hero.js:** The landing section featuring a dynamic and animated hero component with a blurred background effect.
-- **Modal.js:** A reusable modal component that renders dynamically based on user interactions.
+- **ColorTuner.js:** The color shades section shows the shades of a partiular color, which uses slider for user preference.
 - **PaletteCard.js:** Displays the generated color palettes with options to customize and share.
 - **QuestionnaireForm.js:** Collects user preferences to generate tailored color palettes.
 - **MockupWindow.js:** Showcases the selected color palette in a visually appealing mockup.
