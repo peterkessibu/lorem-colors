@@ -11,29 +11,6 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import colors from "@/lib/colors";
-import { motion } from "framer-motion";
-
-const colorNames = Object.keys(colors);
-
-const loadingDots = {
-  display: "inline-block",
-  marginLeft: "5px",
-};
-
-const dotVariants = {
-  animate: {
-    y: [0, -5, 0],
-    transition: {
-      y: {
-        repeat: Infinity,
-        repeatType: "loop",
-        duration: 0.5,
-        ease: "easeInOut",
-        staggerChildren: 0.2,
-      },
-    },
-  },
-};
 
 const QuestionnaireForm = ({ onSubmit, disabled }) => {
   const [formData, setFormData] = useState({
@@ -199,16 +176,7 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
         >
           {disabled ? (
             <>
-              Generating
-              <motion.span
-                style={loadingDots}
-                variants={dotVariants}
-                animate="animate"
-              >
-                <motion.span>.</motion.span>
-                <motion.span>.</motion.span>
-                <motion.span>.</motion.span>
-              </motion.span>
+              Generating...
             </>
           ) : (
             "Generate Palettes"
