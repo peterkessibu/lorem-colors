@@ -1,4 +1,4 @@
-// components/QuestionnaireForm.js
+// Description: A form component that takes user input for generating color palettes.
 
 import { useState } from "react";
 import { Label } from "@/components/ui/label";

@@ -1,4 +1,4 @@
-// components/Hero.js
+// Description: Hero section of the landing page.
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";

@@ -1,4 +1,4 @@
-// components/CallToAction.js
+// Description: Call to action component for the landing page.
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";

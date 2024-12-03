@@ -1,4 +1,4 @@
-// components/Footer.js
+// Description: Footer component for the application.
 
 import { usePathname } from "next/navigation";
 import { useState } from "react";

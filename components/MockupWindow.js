@@ -1,4 +1,4 @@
-// components/MockupWindow.js
+// Description: A mockup window component that displays a dashboard with statistical cards, charts, and recent sales.
 
 import {
   Bar,

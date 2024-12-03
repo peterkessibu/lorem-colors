@@ -1,4 +1,4 @@
-//components/ColorSwatch.js
+// Description: A component that displays a color swatch with the color value and name.
 
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";

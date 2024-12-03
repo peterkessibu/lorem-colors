@@ -1,8 +1,11 @@
+// Description: Testimonials section component.
+
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 
 export default function Testimonials() {
+  // Testimonials Data
   const testimonials = [
     {
       content:
@@ -44,15 +47,25 @@ export default function Testimonials() {
 
   const duplicatedTestimonials = [...testimonials, ...testimonials];
 
-  const [animate, setAnimate] = useState(false);
+  const controls = useAnimation();
+  const [isDragging, setIsDragging] = useState(false);
 
+  //handle drag start
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setAnimate(true);
-    }, 2000);
+    if (!isDragging) {
+      controls.start("animate");
+    } else {
+      controls.stop();
+    }
+  }, [isDragging, controls]);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //handle drag end
+  const handleDragEnd = () => {
+    setIsDragging(false);
+    setTimeout(() => {
+      controls.start("animate");
+    }, 2450);
+  };
 
   const carouselVariants = {
     animate: {
@@ -89,7 +102,7 @@ export default function Testimonials() {
 
           {/* Section Header */}
           <h2 className="text-3xl font-extrabold text-gray-900 text-center relative z-10">
-            What Our Clients Say
+            What Our Users Say
           </h2>
           <p className="mt-4 text-lg leading-6 text-gray-600 text-center relative z-10">
             Trusted by designers and businesses worldwide.
@@ -101,7 +114,11 @@ export default function Testimonials() {
           <motion.div
             className="flex space-x-8"
             variants={carouselVariants}
-            animate={animate ? "animate" : ""}
+            animate={controls}
+            drag="x"
+            dragConstraints={{ left: -1000, right: 0 }}
+            onDragStart={() => setIsDragging(true)}
+            onDragEnd={handleDragEnd}
             style={{ width: `${(duplicatedTestimonials.length / 3) * 100}%` }}
           >
             {duplicatedTestimonials.map((testimonial, index) => (

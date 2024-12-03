@@ -1,4 +1,4 @@
-//components/Header.js
+// Description: Header Component for the Application
 
 import { usePathname, useRouter } from "next/navigation";
 import { motion } from "framer-motion";

@@ -1,4 +1,4 @@
-// app/api/chat/route.js
+// This file is responsible for handling the POST request to generate color palettes based on user input.
 
 import Together from "together-ai";
 import { NextResponse } from "next/server";
@@ -74,11 +74,7 @@ export async function POST(request) {
       customDescription,
     } = await request.json();
 
-    if (
-      !primaryColor ||
-      !backgroundColorPreference ||
-      !intendedMood
-    ) {
+    if (!primaryColor || !backgroundColorPreference || !intendedMood) {
       return NextResponse.json(
         { message: "All fields are required" },
         { status: 400 },
@@ -211,7 +207,7 @@ export async function POST(request) {
           { role: "user", content: prompt },
         ],
         stream: true,
-        ...generationConfig, 
+        ...generationConfig,
       });
     } catch (apiError) {
       // Handle errors from the AI API

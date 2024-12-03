@@ -1,4 +1,4 @@
-// components/PaletteCard.js
+// Description: A card component to display a color palette with color swatches.
 
 import { useState } from "react";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";

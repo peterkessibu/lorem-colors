@@ -1,4 +1,4 @@
-// components/ColorPaletteGenerator.js
+// Description: A component that generates color palettes based on user input and displays them in a mockup window.
 
 import { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";

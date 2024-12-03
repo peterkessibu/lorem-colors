@@ -1,4 +1,4 @@
-//components/Landing-Page.js
+//  Description: The main component for the landing page.
 
 import Header from "./Header";
 import Hero from "./Hero";

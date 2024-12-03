@@ -1,3 +1,5 @@
+// Description: A color tuner tool to generate shades of a color.
+
 import { useState, useEffect, useCallback } from "react";
 import { CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";

@@ -1,4 +1,4 @@
-//components/Features.js
+// Description: Features section component.
 
 import { motion } from "framer-motion";
 import { Palette, Users, Cpu } from "lucide-react";

@@ -1,3 +1,5 @@
+// Description: Layout component for the application.
+
 "use client";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -53,9 +55,7 @@ export default function RootLayout({ children }) {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </head>
-      <body className={`${poppins.variable} antialiased`}>
-        {children}
-      </body>
+      <body className={`${poppins.variable} antialiased`}>{children}</body>
     </html>
   );
 }
