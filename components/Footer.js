@@ -79,7 +79,7 @@ export default function Footer() {
 
   // Dynamic routes
   const isColorPalettePage = pathname === "/genAI-Color-Palette";
-  const isColorBox = pathname === "/color-gen";
+  const isColorBox = pathname === "/color-shades";
 
   return (
     <footer className="bg-white">

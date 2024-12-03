@@ -10,7 +10,7 @@ export default function Testimonials() {
       author: {
         name: "Prince Kennedy",
         role: "Lead Designer, UI/UX Cape Coast",
-        image: "/globe.svg",
+        image: "/user4.png",
       },
     },
     {
@@ -19,7 +19,7 @@ export default function Testimonials() {
       author: {
         name: "Reginald Crabbe",
         role: "Creative Director, Reggie Designs",
-        image: "/globe.svg",
+        image: "/user3.png",
       },
     },
     {
@@ -28,7 +28,7 @@ export default function Testimonials() {
       author: {
         name: "Emmanuel Totimeh",
         role: "Frontend Engineer",
-        image: "/globe.svg",
+        image: "/user2.png",
       },
     },
     {
@@ -37,7 +37,7 @@ export default function Testimonials() {
       author: {
         name: "Adoley",
         role: "Product Manager",
-        image: "/globe.svg",
+        image: "/user1.png",
       },
     },
   ];
@@ -70,7 +70,7 @@ export default function Testimonials() {
 
   return (
     <section className="relative bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="w-full mx-auto">
         <div className="mb-16 relative flex flex-col items-center">
           {/* SVG Quote Icon */}
           <div className="absolute top-4 md:left-1/3 left-9 transform -translate-x-1/2 -translate-y-12 w-12 h-12 md:w-24 md:h-24 text-gray-700 pointer-events-none">
