@@ -62,12 +62,12 @@ const PaletteCard = ({
       <CardHeader className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white">
         <CardTitle className="flex justify-between items-center">
           {/* Palette Name */}
-          <span className="text-lg font-semibold">{palette.name}</span>
-          <span className="text-lg font-semibold">Color Palette</span>
+          <span className="text-base">{palette.name}</span>
+          <span className="text-base">Color Palette</span>
 
           {/* Color Format Selector */}
           <Select value={colorFormat} onValueChange={setColorFormat}>
-            <SelectTrigger className="w-[120px] bg-white text-black rounded-md shadow-md">
+            <SelectTrigger className="md:w-[120px] w-[80px] bg-white text-black rounded-md shadow-md">
               <SelectValue placeholder="Color format" />
             </SelectTrigger>
             <SelectContent className="bg-white text-black rounded-md shadow-md">

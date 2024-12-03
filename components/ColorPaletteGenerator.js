@@ -128,7 +128,7 @@ const ColorPaletteGenerator = () => {
           />
         </aside>
         <div className="flex-1 overflow-auto max-h-screen">
-          <h1 className="text-3xl font-bold text-center mb-8">
+          <h1 className="text-xl md:text-3xl font-bold text-center mb-8">
             AI Generated Color Palette Mockup
           </h1>
           {error && (
