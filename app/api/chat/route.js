@@ -32,13 +32,11 @@ const selectShade = (colorName, preference) => {
   }
 
   if (preference === "Light") {
-    // Shades 50 - 400
-    const lightShades = [50, 100, 200, 300, 400];
+    const lightShades = [50, 100, 200, 300, 400, 500];
     const selectedShade = lightShades[getRandomInt(0, lightShades.length - 1)];
     return colorShades[selectedShade];
   } else if (preference === "Dark") {
-    // Shades 500 - 950 for specified colors
-    const darkShadesGeneral = [500, 600, 700, 800, 900, 950];
+    const darkShadesGeneral = [600, 700, 800, 900, 950];
     const specialColors = [
       "Emerald",
       "Green",
@@ -72,7 +70,6 @@ export async function POST(request) {
     const {
       primaryColor,
       backgroundColorPreference,
-      contrastPreference,
       intendedMood,
       customDescription,
     } = await request.json();
@@ -80,7 +77,6 @@ export async function POST(request) {
     if (
       !primaryColor ||
       !backgroundColorPreference ||
-      !contrastPreference ||
       !intendedMood
     ) {
       return NextResponse.json(
@@ -127,8 +123,6 @@ export async function POST(request) {
 Primary Color: ${primaryColor} (This should be the base color for the background and accent, with all other colors relating to it, especially for the light and dark Background Color Preference)
 Accent Color: ${accentColor}
 Background Color Preference: ${backgroundColorPreference}
-Saturation Level: ${contrastPreference}
-Contrast Preference: ${contrastPreference}
 Intended Mood: ${intendedMood} - ${moodDescription}
 Shade Preference (for shadows and accents): ${backgroundColorPreference}
 Custom Color or Description: ${customDescription}
@@ -149,13 +143,12 @@ Requirements:
    - Primary & Secondary: Must maintain WCAG 2.1 AA contrast ratio (4.5:1) with background.
    - Text Colors: Must achieve AAA compliance (7:1) for body text.
    - Color-Blind Friendly: Include color combinations that are distinguishable for color-blind users.
-   - Avoid Problematic Combinations: Such as red/green and blue/purple to prevent confusion.
+   - Avoid Problematic Combinations: Such as red/green, blue/purple and other problematic color combinations to prevent confusion.
    - Distinctiveness: Each color in a palette should be easily distinguishable from the others to ensure clarity and usability.
 
 3. Technical Specifications:
    - Hexadecimal Format: All colors must be provided in hexadecimal format.
    - Color Space: Include proper color space considerations (sRGB).
-   - Saturation Levels: Maintain consistent saturation levels within the specified intensity range to ensure visual harmony.
    - Contrast: Ensure sufficient contrast between interactive and non-interactive elements.
    - Hue Variation: Incorporate a balanced range of hues to enhance visibility and aesthetic appeal.
 
@@ -208,7 +201,7 @@ Each palette object should have the following structure:
     try {
       // Initiate the AI generation process with the specified model and prompt
       stream = await together.chat.completions.create({
-        model: "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo", // Specify the AI model
+        model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
         messages: [
           {
             role: "system",
@@ -217,8 +210,8 @@ Each palette object should have the following structure:
           },
           { role: "user", content: prompt },
         ],
-        stream: true, // Enable streaming of the response
-        ...generationConfig, // Spread the generation configuration
+        stream: true,
+        ...generationConfig, 
       });
     } catch (apiError) {
       // Handle errors from the AI API
@@ -239,7 +232,7 @@ Each palette object should have the following structure:
         result += chunk.choices[0]?.delta?.content || "";
       }
 
-      result = result.trim(); // Trim any leading/trailing whitespace
+      result = result.trim();
 
       // Remove any markdown code block wrappers (e.g., ```json ... ```)
       if (result.startsWith("```json")) {
