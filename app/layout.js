@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { CSPostHogProvider } from "./providers";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -55,7 +56,9 @@ export default function RootLayout({ children }) {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
       </head>
-      <body className={`${poppins.variable} antialiased`}>{children}</body>
+      <CSPostHogProvider>
+        <body className={`${poppins.variable} antialiased`}>{children}</body>
+      </CSPostHogProvider>
     </html>
   );
 }
