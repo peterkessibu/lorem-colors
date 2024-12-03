@@ -120,7 +120,7 @@ export default function Dashboard({ colors }) {
                 color: textColor,
               }}
             >
-              <CalendarIcon className="mr-1 h-4 w-4" />
+              <CalendarIcon className="md:mr-1 h-4 w-4" />
               <span className="hidden md:block text-xs">
                 Jan 20, 2023 - Feb 04, 2023
               </span>
@@ -135,7 +135,7 @@ export default function Dashboard({ colors }) {
                 color: textColor,
               }}
             >
-              <Download className="mr-1 h-4 w-4" />
+              <Download className="md:mr-1 h-4 w-4" />
               <span className="hidden md:block text-xs">Download</span>
             </Button>
           </div>
