@@ -58,13 +58,9 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
       </head>
       <CSPostHogProvider>
-        
-          <body className={`${poppins.variable}`}>
-            <ErrorBoundary>
-              {children}
-            </ErrorBoundary>
-            </body>
-        
+        <body className={`${poppins.variable}`}>
+          <ErrorBoundary>{children}</ErrorBoundary>
+        </body>
       </CSPostHogProvider>
     </html>
   );

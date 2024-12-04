@@ -187,19 +187,20 @@ const ColorPaletteGenerator = () => {
             )}
             <div
               ref={mockupRef}
-              className={`mockup-container -scroll-mt-8 md:scroll-mt-4 ${isGenerating ? "blur" : ""
-                } mt-4`}
+              className={`mockup-container -scroll-mt-8 md:scroll-mt-4 ${
+                isGenerating ? "blur" : ""
+              } mt-4`}
             >
               <MockupWindow
                 colors={
                   isGenerating || palettes.length === 0
                     ? {
-                      Background: "#f0f0f0",
-                      Text: "#a0a0a0",
-                      Border: "#d0d0d0",
-                      Accent: "#c0c0c0",
-                      Secondary: "#b0b0b0",
-                    }
+                        Background: "#f0f0f0",
+                        Text: "#a0a0a0",
+                        Border: "#d0d0d0",
+                        Accent: "#c0c0c0",
+                        Secondary: "#b0b0b0",
+                      }
                     : currentPalette.colors
                 }
               />
