@@ -25,6 +25,7 @@
     "framer-motion": "^11.11.17",
     "lucide-react": "^0.456.0",
     "next": "15.0.3",
+    "next-session": "^4.0.5",
     "openai": "^4.71.1",
     "posthog-js": "^1.194.3",
     "react": "^18.0.0",

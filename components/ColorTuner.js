@@ -109,7 +109,6 @@ export default function ColorTuner() {
             <div className="flex flex-col md:flex-row lg:justify-center justify-between">
               {/* Color Picker Section */}
               <div className="flex flex-col items-center lg:items-start w-full">
-                <Label className="mb-2 text-base">Color Box</Label>
                 <HexColorPicker color={baseColor} onChange={setBaseColor} />
                 <Input
                   type="text"

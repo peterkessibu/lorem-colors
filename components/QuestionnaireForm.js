@@ -1,5 +1,6 @@
 // Description: A form component that takes user input for generating color palettes.
 
+
 import { useState } from "react";
 import { Label } from "@/components/ui/label";
 import {
@@ -141,11 +142,7 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
               <SelectItem value="Low Contrast">Low Contrast</SelectItem>
             </SelectContent>
           </Select>
-          {errors.contrastPreference && (
-            <p className="text-red-500 text-xs">{errors.contrastPreference}</p>
-          )}
         </div>
-
         {/* Intended Mood */}
         <div className="space-y-1">
           <Label className="text-sm font-semibold">Intended Mood</Label>
