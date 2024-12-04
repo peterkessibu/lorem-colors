@@ -1,6 +1,6 @@
 // Description: A component that generates color palettes based on user input and displays them in a mockup window.
 
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import QuestionnaireForm from "./QuestionnaireForm";
 import PaletteCard from "./PaletteCard";
@@ -10,13 +10,15 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const ColorPaletteGenerator = () => {
   const [palettes, setPalettes] = useState([]);
   const [currentPaletteIndex, setCurrentPaletteIndex] = useState(0);
-  const [error, setError] = useState(null);
   const [colorFormat, setColorFormat] = useState("hex");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
   // New State for Locked Colors
   const [lockedColors, setLockedColors] = useState({});
+
+  // New Error State
+  const [error, setError] = useState(null);
 
   // Add a ref for the mockup container
   const mockupRef = useRef(null);
@@ -31,7 +33,6 @@ const ColorPaletteGenerator = () => {
     if (isSubmitting) return;
     setIsSubmitting(true);
     setIsGenerating(true);
-    setError(null);
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
@@ -67,7 +68,7 @@ const ColorPaletteGenerator = () => {
       setLockedColors(initialLockedColors);
     } catch (err) {
       console.error("Error generating palettes:", err);
-      setError(err.message);
+      setError(err); // Set the error state
     } finally {
       setIsSubmitting(false);
       setIsGenerating(false);
@@ -118,6 +119,11 @@ const ColorPaletteGenerator = () => {
 
   const letters = "Generating...".split("");
 
+  // Throw error during render if error state is set
+  if (error) {
+    throw error;
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col lg:flex-row gap-8">
@@ -131,9 +137,6 @@ const ColorPaletteGenerator = () => {
           <h1 className="text-xl md:text-3xl font-bold text-center mb-8">
             AI Generated Color Palette Mockup
           </h1>
-          {error && (
-            <div className="text-red-500 text-center mb-4">{error}</div>
-          )}
           {palettes.length > 0 && (
             <div className="flex items-center justify-center mb-4 my-4">
               <button
@@ -184,20 +187,19 @@ const ColorPaletteGenerator = () => {
             )}
             <div
               ref={mockupRef}
-              className={`mockup-container -scroll-mt-8 md:scroll-mt-4 ${
-                isGenerating ? "blur" : ""
-              } mt-4`}
+              className={`mockup-container -scroll-mt-8 md:scroll-mt-4 ${isGenerating ? "blur" : ""
+                } mt-4`}
             >
               <MockupWindow
                 colors={
                   isGenerating || palettes.length === 0
                     ? {
-                        Background: "#f0f0f0",
-                        Text: "#a0a0a0",
-                        Border: "#d0d0d0",
-                        Accent: "#c0c0c0",
-                        Secondary: "#b0b0b0",
-                      }
+                      Background: "#f0f0f0",
+                      Text: "#a0a0a0",
+                      Border: "#d0d0d0",
+                      Accent: "#c0c0c0",
+                      Secondary: "#b0b0b0",
+                    }
                     : currentPalette.colors
                 }
               />

@@ -6,6 +6,7 @@ import "./globals.css";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CSPostHogProvider } from "./providers";
+import ErrorBoundary from "./error";
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700"],
@@ -57,7 +58,13 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
       </head>
       <CSPostHogProvider>
-        <body className={`${poppins.variable} antialiased`}>{children}</body>
+        
+          <body className={`${poppins.variable}`}>
+            <ErrorBoundary>
+              {children}
+            </ErrorBoundary>
+            </body>
+        
       </CSPostHogProvider>
     </html>
   );
