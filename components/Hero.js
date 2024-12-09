@@ -87,11 +87,11 @@ export default function Hero() {
       <div className="w-full min-h-screen mx-auto relative flex flex-col lg:flex-row">
         {/* Text Section */}
         <div
-          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 ${
+          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-[54%] lg:pb-28 ${
             isClicked ? "bg-transparent" : ""
           } w-full`}
         >
-          <main className="mt-8 md:mt-6 mx-4 p-4 lg:py-16">
+          <main className="mt-6 md:mt-16 mx-8 justify-center items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -110,6 +110,7 @@ export default function Hero() {
                   }`}
                 >
                   <span>Transform Your Designs</span>{" "}
+                  <br/>
                   <span>with Perfect Colors.</span>
                 </div>
               </motion.h1>

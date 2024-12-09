@@ -62,7 +62,7 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
 
   return (
     <div className="mx-auto px-4">
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-4">
         {/* Primary Color */}
         <div className="space-y-1">
           <Label className="text-sm font-semibold">Primary Color</Label>
