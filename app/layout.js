@@ -1,18 +1,11 @@
 // Description: Layout component for the application.
 
 "use client";
-import { Poppins } from "next/font/google";
 import "./globals.css";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CSPostHogProvider } from "./providers";
 import ErrorBoundary from "./error";
-
-const poppins = Poppins({
-  weight: ["100", "200", "300", "400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-poppins",
-});
 
 export default function RootLayout({ children }) {
   const router = useRouter();
@@ -58,7 +51,7 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
       </head>
       <CSPostHogProvider>
-        <body className={`${poppins.variable}`}>
+        <body>
           <ErrorBoundary>{children}</ErrorBoundary>
         </body>
       </CSPostHogProvider>

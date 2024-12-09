@@ -18,7 +18,7 @@ export default function CallToAction() {
     if (isClicked) {
       const timer = setTimeout(() => {
         router.push("/genAI-Color-Palette");
-      }, 1040);
+      }, 550);
       return () => clearTimeout(timer);
     }
   }, [isClicked, router]);

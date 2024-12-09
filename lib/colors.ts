@@ -1,4 +1,4 @@
-// lib/colors.js
+// Description : Color palette from tailwindcss.com, with some modifications.
 
 //Scrapped from tailwindcss.com
 const colors = {
