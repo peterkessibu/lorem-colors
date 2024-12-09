@@ -14,15 +14,41 @@ const ColorPaletteGenerator = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
 
-  // New State for Locked Colors
+  // State for Locked Colors
   const [lockedColors, setLockedColors] = useState({});
 
-  // New Error State
+  // Error State
   const [error, setError] = useState(null);
 
-  // Add a ref for the mockup container
+  // Ref for the mockup container
   const mockupRef = useRef(null);
 
+  // Load palettes from localStorage on mount
+  useEffect(() => {
+    const storedPalettes = localStorage.getItem("palettes");
+    if (storedPalettes) {
+      setPalettes(JSON.parse(storedPalettes));
+    }
+  }, []);
+
+  // Save palettes to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("palettes", JSON.stringify(palettes));
+  }, [palettes]);
+
+  // Clear localStorage on app close
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.removeItem("palettes");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  // Scroll into view when generating
   useEffect(() => {
     if (isGenerating && mockupRef.current) {
       mockupRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -83,7 +109,7 @@ const ColorPaletteGenerator = () => {
     setCurrentPaletteIndex((prev) => Math.min(prev + 1, palettes.length - 1));
   };
 
-  // Function to toggle lock state of a color
+  // Toggle lock state of a color
   const handleLockToggle = (colorName) => {
     setLockedColors((prev) => ({
       ...prev,
@@ -93,7 +119,7 @@ const ColorPaletteGenerator = () => {
 
   const currentPalette = palettes[currentPaletteIndex];
 
-  // Framer Motion Variants for individual letter animation
+  // Framer Motion Variants
   const containerVariants = {
     hidden: {},
     visible: {
@@ -207,15 +233,13 @@ const ColorPaletteGenerator = () => {
             </div>
           </div>
           {!isGenerating && palettes.length > 0 && (
-            <>
-              <PaletteCard
-                palette={currentPalette}
-                colorFormat={colorFormat}
-                setColorFormat={setColorFormat}
-                lockedColors={lockedColors}
-                handleLockToggle={handleLockToggle}
-              />
-            </>
+            <PaletteCard
+              palette={currentPalette}
+              colorFormat={colorFormat}
+              setColorFormat={setColorFormat}
+              lockedColors={lockedColors}
+              handleLockToggle={handleLockToggle}
+            />
           )}
         </div>
       </div>

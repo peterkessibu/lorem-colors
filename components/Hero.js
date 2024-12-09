@@ -84,10 +84,10 @@ export default function Hero() {
         isClicked ? bgGradient : "bg-white"
       }`}
     >
-      <div className="max-w-7xl min-h-screen mx-auto relative z-10 flex flex-col lg:flex-row">
+      <div className="w-full min-h-screen mx-auto relative flex flex-col lg:flex-row">
         {/* Text Section */}
         <div
-          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 xl:pb-32 ${
+          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-1/2 lg:pb-28 ${
             isClicked ? "bg-transparent" : ""
           } w-full`}
         >
@@ -96,19 +96,20 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-center lg:text-left"
+              className="text-center lg:text-left md:mx-6"
             >
               {/* Main Heading */}
               <motion.h1
-                className={`text-2xl md:text-4xl leading-snug tracking-tight font-extrabold transition-colors mb-2 duration-500 ${
-                  isClicked ? "text-white" : "text-black"
-                }`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <span className="block">Transform Your Designs</span>
-                <span className="block">with Perfect Colors.</span>
+                <div className={`transition-colors mb-2 duration-500 w-full text-3xl  md:text-4xl leading-snug tracking-tight font-extrabold ${isClicked ? "text-white" : "text-black"
+                  }`}>
+                  <span>Transform Your Designs</span>
+                  {" "}
+                  <span>with Perfect Colors.</span>
+                </div>
               </motion.h1>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -117,11 +118,11 @@ export default function Hero() {
                 className="w-5/6 mx-auto lg:mx-0"
               >
                 <span
-                  className={`block tracking-tight leading-normal my-2 text-lg ${
+                  className={`block leading-normal my-2 text-lg ${
                     isClicked ? "text-white" : "text-black"
                   }`}
                 >
-                  Create personalized color palettes and elevate your projects
+                  Create personalized color palettes
                   with AI-powered color recommendations.
                 </span>
               </motion.div>

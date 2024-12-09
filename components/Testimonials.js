@@ -18,16 +18,16 @@ export default function Testimonials() {
     },
     {
       content:
-        "It is easy to transform our brand identity with Lorem Colors. The color palettes are always on point!",
+        "It is easy to generate our brand identity with Lorem Colors. The color palettes are always on point!",
       author: {
         name: "Reginald Crabbe",
         role: "Creative Director, Reggie Designs",
-        image: "/user3.png",
+        image: "/Reggie_Profile.png",
       },
     },
     {
       content:
-        "Lorem Colors has become an essential tool in our branding projects. Highly recommended for all UI designs!",
+        "Lorem Colors has become an essential tool for my work flow. Highly recommended for all UI designers!",
       author: {
         name: "Emmanuel Totimeh",
         role: "Frontend Engineer",
@@ -36,10 +36,10 @@ export default function Testimonials() {
     },
     {
       content:
-        "The seamless integration of Lorem Colors into our workflow has significantly boosted our productivity.",
+        "I enjoy how Lorem Colors makes it simple for me to produce UI colors based on my design requirements.",
       author: {
-        name: "Adoley",
-        role: "Product Manager",
+        name: "Justice Duah",
+        role: "Frontend Engineer",
         image: "/user1.png",
       },
     },
