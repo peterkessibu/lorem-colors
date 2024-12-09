@@ -64,7 +64,7 @@ export default function Testimonials() {
     setIsDragging(false);
     setTimeout(() => {
       controls.start("animate");
-    }, 2450);
+    }, 2000);
   };
 
   const carouselVariants = {

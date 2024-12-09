@@ -110,7 +110,7 @@ export default function Hero() {
                   }`}
                 >
                   <span>Transform Your Designs</span>{" "}
-                  <span>with ;Perfect Colors.</span>
+                  <span>with Perfect Colors.</span>
                 </div>
               </motion.h1>
               <motion.div

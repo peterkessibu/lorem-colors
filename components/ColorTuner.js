@@ -10,7 +10,7 @@ import { Check, Copy } from "lucide-react";
 import Footer from "@/components/Footer";
 
 export default function ColorTuner() {
-  const [baseColor, setBaseColor] = useState("#000000");
+  const [baseColor, setBaseColor] = useState("#ffffff");
   const [shadeCount, setShadeCount] = useState(10);
   const [colorShades, setColorShades] = useState({});
   const [copiedShades, setCopiedShades] = useState({});
