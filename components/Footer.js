@@ -3,16 +3,9 @@
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
-import { Instagram, Github, Palette, Linkedin, X } from "lucide-react";
+import { Github, Palette, Linkedin, X } from "lucide-react";
 
 const socialLinks = [
-  {
-    name: "Instagram",
-    href: "https://www.instagram.com/_zheebuuu101/",
-    icon: Instagram,
-    hoverTextColor: "hover:text-pink-500",
-    text: null,
-  },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/peteressibu",

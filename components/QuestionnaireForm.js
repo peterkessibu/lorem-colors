@@ -80,7 +80,7 @@ const QuestionnaireForm = ({ onSubmit, disabled }) => {
                 <SelectItem key={colorName} value={colorName}>
                   <div className="flex items-center space-x-2">
                     <div
-                      className="w-[15px] h-[15px]"
+                      className="size-[15px]"
                       style={{ backgroundColor: colors[colorName][500] }}
                     ></div>
                     <span>{colorName}</span>
