@@ -1,6 +1,4 @@
-// route.js
-
-// This file handles the POST request to generate color palettes based on user input.
+// Description: This file handles the POST request to generate color palettes based on user input.
 
 import Together from "together-ai";
 import { NextResponse } from "next/server";

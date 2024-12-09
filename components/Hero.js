@@ -91,7 +91,7 @@ export default function Hero() {
             isClicked ? "bg-transparent" : ""
           } w-full`}
         >
-          <main className="mt-6 md:mt-16 mx-8 justify-center items-center">
+          <main className="mt-10 md:mt-16 mx-8 justify-center items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
