@@ -40,7 +40,7 @@ export default function Testimonials() {
       author: {
         name: "Justice Duah",
         role: "Frontend Engineer",
-        image: "/user1.png",
+        image: "/Justice_Profile.png",
       },
     },
   ];
@@ -82,7 +82,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="relative bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full mx-auto">
         <div className="mb-16 relative flex flex-col items-center">
           {/* SVG Quote Icon */}

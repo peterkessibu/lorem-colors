@@ -87,7 +87,7 @@ export default function Hero() {
       <div className="w-full min-h-screen mx-auto relative flex flex-col lg:flex-row">
         {/* Text Section */}
         <div
-          className={`relative z-10 pb-8 bg-background sm:pb-16 md:pb-20 lg:w-[54%] lg:pb-28 ${
+          className={`relative z-10 pb-8 bg-background lg:w-[54%] lg:pb-28 ${
             isClicked ? "bg-transparent" : ""
           } w-full`}
         >
@@ -105,13 +105,13 @@ export default function Hero() {
                 transition={{ duration: 0.5 }}
               >
                 <div
-                  className={`transition-colors mb-2 duration-500 w-full text-3xl md:text-4xl leading-snug tracking-tight font-extrabold ${
+                  className={`transition-colors mb-3 duration-500 w-full text-3xl md:text-4xl leading-snug tracking-tight font-extrabold ${
                     isClicked ? "text-white" : "text-black"
                   }`}
                 >
                   <span>Transform Your Designs</span>{" "}
                   <br/>
-                  <span>with Perfect Colors.</span>
+                  <span>with PerfectColors.</span>
                 </div>
               </motion.h1>
               <motion.div
