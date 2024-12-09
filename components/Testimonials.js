@@ -13,7 +13,7 @@ export default function Testimonials() {
       author: {
         name: "Prince Kennedy",
         role: "Lead Designer, UI/UX Cape Coast",
-        image: "/user4.png",
+        image: "/Prince_Profile.png",
       },
     },
     {
@@ -30,8 +30,8 @@ export default function Testimonials() {
         "Lorem Colors has become an essential tool for my work flow. Highly recommended for all UI designers!",
       author: {
         name: "Emmanuel Totimeh",
-        role: "Frontend Engineer",
-        image: "/user2.png",
+        role: "Full Stack Engineer",
+        image: "/Toti_Profile.png",
       },
     },
     {
@@ -134,11 +134,12 @@ export default function Testimonials() {
                   <footer className="flex items-center">
                     <div className="flex-shrink-0">
                       <Image
-                        className="h-12 w-12 rounded-full"
+                        className="rounded-full brightness-110"
                         src={testimonial.author.image}
                         alt={`Testimonial author ${testimonial.author.name}`}
                         width={48}
                         height={48}
+                        quality={100}
                       />
                     </div>
                     <div className="ml-4">

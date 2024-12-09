@@ -25,7 +25,7 @@ export default function Header() {
           <div className="flex justify-start lg:w-0 lg:flex-1">
             <Link href="/" className="flex items-center">
               <Palette className="h-10 w-10 " />
-              <span className="ml-2 text-2xl font-bold bg-gradient-to-tr from-red-600 via-purple-600 to-yellow-500 bg-clip-text text-transparent">
+              <span className="ml-2 text-2xl md:text-3xl font-bold bg-gradient-to-tr from-red-600 via-purple-600 to-yellow-500 bg-clip-text text-transparent">
                 Lorem Colors
               </span>
             </Link>
