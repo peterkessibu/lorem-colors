@@ -19,11 +19,15 @@ class ErrorBoundary extends React.Component {
     console.error("ErrorBoundary caught an error", error, errorInfo);
   }
 
+  handleRefresh = () => {
+    window.location.reload();
+  };
+
   render() {
     if (this.state.hasError) {
       return (
         <main className="grid min-h-full place-items-center px-6 py-24 sm:py-32 lg:px-8">
-          <div className="text-center">
+          <div className="text-center text-black">
             <p className="text-base font-semibold text-indigo-600">Oops</p>
             <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">
               Something went wrong
@@ -38,9 +42,12 @@ class ErrorBoundary extends React.Component {
               >
                 Go back home
               </Link>
-              <a href="#" className="text-sm font-semibold text-gray-900">
-                Contact support <span aria-hidden="true">&rarr;</span>
-              </a>
+              <button
+                onClick={this.handleRefresh}
+                className="text-sm font-semibold text-gray-900"
+              >
+                Refresh <span aria-hidden="true">&rarr;</span>
+              </button>
             </div>
           </div>
         </main>
