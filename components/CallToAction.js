@@ -43,9 +43,8 @@ export default function CallToAction() {
         <hr />
         <div className="max-w-2xl mx-auto text-center py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
           <motion.h2
-            className={`text-base md:text-2xl font-extrabold ${
-              isClicked ? "text-white" : "text-black"
-            }`}
+            className={`text-[17px] md:text-2xl font-extrabold ${isClicked ? "text-white" : "text-black"
+              }`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -56,9 +55,8 @@ export default function CallToAction() {
             </span>
           </motion.h2>
           <motion.p
-            className={`mt-4 text-lg leading-6 ${
-              isClicked ? "text-white" : "text-black"
-            }`}
+            className={`mt-4 text-sm md:text-lg leading-6 ${isClicked ? "text-white" : "text-black"
+              }`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
