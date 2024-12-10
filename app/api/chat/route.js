@@ -50,8 +50,7 @@ const selectShade = (colorName, preference) => {
   ];
 
   if (preference === "Light") {
-    const selectedShade =
-      lightShades[getRandomInt(0, lightShades.length - 1)];
+    const selectedShade = lightShades[getRandomInt(0, lightShades.length - 1)];
     return colorShades[selectedShade];
   } else if (preference === "Dark") {
     if (specialColors.includes(colorName)) {
@@ -78,28 +77,28 @@ export async function POST(request) {
     if (!primaryColor || !backgroundColorPreference || !intendedMood) {
       return NextResponse.json(
         { message: "All fields are required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (!colors[primaryColor]) {
       return NextResponse.json(
         { message: `Unsupported primary color: ${primaryColor}` },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     // Select background and accent colors
     const backgroundColor = selectShade(
       primaryColor,
-      backgroundColorPreference
+      backgroundColorPreference,
     );
 
     const primaryShades = Object.keys(colors[primaryColor])
       .map(Number)
       .sort((a, b) => a - b);
     const bgShade = primaryShades.find(
-      (shade) => colors[primaryColor][shade] === backgroundColor
+      (shade) => colors[primaryColor][shade] === backgroundColor,
     );
 
     const bgShadeIndex = primaryShades.indexOf(Number(bgShade));
@@ -216,7 +215,7 @@ Each palette object should have the following structure:
           message: "Failed to generate palettes",
           error: apiError.message,
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -257,7 +256,7 @@ Each palette object should have the following structure:
           message: "Failed to process streamed response",
           error: streamError.message,
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
 
@@ -305,7 +304,7 @@ Each palette object should have the following structure:
         requiredColors.forEach((color) => {
           if (!palette.colors || !palette.colors[color]) {
             throw new Error(
-              `Missing color '${color}' in palette at index ${index}`
+              `Missing color '${color}' in palette at index ${index}`,
             );
           }
         });
@@ -336,14 +335,14 @@ Each palette object should have the following structure:
         "Error parsing JSON:",
         parseError,
         "\nCleaned Raw Result:",
-        result
+        result,
       );
       return NextResponse.json(
         {
           message: "Failed to parse palette data",
           error: parseError.message,
         },
-        { status: 500 }
+        { status: 500 },
       );
     }
   } catch (error) {
@@ -354,7 +353,7 @@ Each palette object should have the following structure:
         message: "Internal server error",
         error: error.message,
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

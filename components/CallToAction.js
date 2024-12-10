@@ -41,16 +41,16 @@ export default function CallToAction() {
       {/* Content */}
       <div className="relative z-10">
         <hr />
-        <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mx-auto text-center py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
           <motion.h2
-            className={`text-2xl font-extrabold ${
+            className={`text-base md:text-2xl font-extrabold ${
               isClicked ? "text-white" : "text-black"
-            } text-3xl`}
+            }`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="block">Ready to elevate your designs?</span>
+            <span className="block">Ready to elevate your designs?</span>{" "}
             <span className="block">
               Start creating with Lorem Colors today.
             </span>
@@ -63,8 +63,8 @@ export default function CallToAction() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Join thousands of designers using Lorem Colors to create stunning
-            colors and improve their design workflow.
+            Join thousands of designers and developers using Lorem Colors to
+            create stunning colors and improve their design workflow.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

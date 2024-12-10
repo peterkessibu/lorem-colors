@@ -109,9 +109,8 @@ export default function Hero() {
                     isClicked ? "text-white" : "text-black"
                   }`}
                 >
-                  <span>Transform Your Designs</span>{" "}
-                  <br/>
-                  <span>with PerfectColors.</span>
+                  <span>Transform Your Designs</span> <br />
+                  <span>with Perfect Colors.</span>
                 </div>
               </motion.h1>
               <motion.div

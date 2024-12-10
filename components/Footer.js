@@ -81,10 +81,9 @@ export default function Footer() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Logo and Social Links Section */}
             <div className="flex flex-col items-start space-y-8">
-              {/* Logo Section */}
               <div className="flex justify-start">
                 <Link href="/" className="flex items-center">
-                  <Palette className="h-16 w-16 text-gray-900" />
+                  <Palette className="h-16 w-16" />
                 </Link>
               </div>
 

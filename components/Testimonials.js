@@ -1,8 +1,9 @@
-// Description: Testimonials section component.
+// Description: Testimonials section component with infinite scroll on desktop and button navigation on mobile.
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function Testimonials() {
   // Testimonials Data
@@ -27,7 +28,7 @@ export default function Testimonials() {
     },
     {
       content:
-        "Lorem Colors has become an essential tool for my work flow. Highly recommended for all UI designers!",
+        "Lorem Colors has become an essential tool for my workflow. Highly recommended for all UI designers!",
       author: {
         name: "Emmanuel Totimeh",
         role: "Full Stack Engineer",
@@ -45,48 +46,67 @@ export default function Testimonials() {
     },
   ];
 
-  const duplicatedTestimonials = [...testimonials, ...testimonials];
+  const duplicatedTestimonials = [
+    ...testimonials,
+    ...testimonials,
+    ...testimonials,
+  ];
 
   const controls = useAnimation();
-  const [isDragging, setIsDragging] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-  //handle drag start
   useEffect(() => {
-    if (!isDragging) {
-      controls.start("animate");
-    } else {
-      controls.stop();
-    }
-  }, [isDragging, controls]);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
 
-  //handle drag end
-  const handleDragEnd = () => {
-    setIsDragging(false);
-    setTimeout(() => {
-      controls.start("animate");
-    }, 2000);
-  };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const carouselVariants = {
     animate: {
-      x: ["0%", "-50%"],
+      x: ["0%", "-66.666%"],
       transition: {
         x: {
           repeat: Infinity,
-          repeatType: "mirror",
-          duration: 15,
+          repeatType: "loop",
+          duration: 30,
           ease: "linear",
         },
       },
     },
   };
 
+  useEffect(() => {
+    if (!isMobile) {
+      controls.start("animate");
+    } else {
+      controls.stop();
+    }
+  }, [isMobile, controls]);
+
+  // Handlers for mobile navigation buttons
+  const handlePrev = () => {
+    setCurrentIndex((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1,
+    );
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) =>
+      prev === testimonials.length - 1 ? 0 : prev + 1,
+    );
+  };
+
   return (
-    <section className="relative bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="w-full mx-auto">
         <div className="mb-16 relative flex flex-col items-center">
           {/* SVG Quote Icon */}
-          <div className="absolute top-4 md:left-1/3 left-9 transform -translate-x-1/2 -translate-y-12 w-12 h-12 md:w-24 md:h-24 text-gray-700 pointer-events-none">
+          <div className="absolute top-4 md:left-1/3 left-9 transform -translate-x-1/2 -translate-y-12 w-12 h-12 md:w-24 md:h-24 text-gray-400 pointer-events-none">
             <svg
               stroke="currentColor"
               fill="none"
@@ -101,42 +121,72 @@ export default function Testimonials() {
           </div>
 
           {/* Section Header */}
-          <h2 className="text-3xl font-extrabold text-gray-900 text-center relative z-10">
+          <h2 className="text-2xl font-extrabold text-gray-900 text-center relative z-10">
             What Our Users Say
           </h2>
-          <p className="mt-4 text-lg leading-6 text-gray-600 text-center relative z-10">
-            Trusted by designers and businesses worldwide.
+          <p className="mt-4 text-base font-medium leading-6 text-gray-600 text-center relative z-10">
+            Trusted by designers and developers worldwide.
           </p>
         </div>
 
-        {/* Infinite Carousel */}
+        {/* Carousel Container */}
         <div className="relative overflow-hidden">
-          <motion.div
-            className="flex space-x-8"
-            variants={carouselVariants}
-            animate={controls}
-            drag="x"
-            dragConstraints={{ left: -1000, right: 0 }}
-            onDragStart={() => setIsDragging(true)}
-            onDragEnd={handleDragEnd}
-            style={{ width: `${(duplicatedTestimonials.length / 3) * 100}%` }}
-          >
-            {duplicatedTestimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="bg-white p-6 rounded-lg shadow-lg flex-shrink-0 w-96"
-              >
+          {!isMobile ? (
+            <motion.div
+              className="flex space-x-8"
+              variants={carouselVariants}
+              animate={controls}
+              style={{ width: `${(duplicatedTestimonials.length / 3) * 100}%` }}
+            >
+              {duplicatedTestimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className="bg-white p-6 shadow-lg flex-shrink-0 w-80 md:w-96"
+                >
+                  {/* Testimonial Content */}
+                  <blockquote className="flex-1">
+                    <div className="text-gray-700 text-sm md:text-base leading-relaxed mb-6">
+                      “{testimonial.content}”
+                    </div>
+                    <footer className="flex items-center">
+                      <div className="flex-shrink-0">
+                        <Image
+                          className="rounded-full brightness-110"
+                          src={testimonial.author.image}
+                          alt={`Testimonial author ${testimonial.author.name}`}
+                          width={48}
+                          height={48}
+                          quality={100}
+                        />
+                      </div>
+                      <div className="ml-4">
+                        <h4 className="text-lg font-medium text-gray-900">
+                          {testimonial.author.name}
+                        </h4>
+                        <p className="text-sm text-gray-500">
+                          {testimonial.author.role}
+                        </p>
+                      </div>
+                    </footer>
+                  </blockquote>
+                </div>
+              ))}
+            </motion.div>
+          ) : (
+            // Mobile: Button Navigation
+            <div className="flex flex-col items-center">
+              <div className="bg-white p-6 shadow-lg w-full md:w-96">
                 {/* Testimonial Content */}
                 <blockquote className="flex-1">
-                  <div className="text-gray-700 text-base leading-relaxed mb-6">
-                    “{testimonial.content}”
+                  <div className="text-gray-700 text-sm md:text-base leading-relaxed mb-6">
+                    “{testimonials[currentIndex].content}”
                   </div>
                   <footer className="flex items-center">
                     <div className="flex-shrink-0">
                       <Image
                         className="rounded-full brightness-110"
-                        src={testimonial.author.image}
-                        alt={`Testimonial author ${testimonial.author.name}`}
+                        src={testimonials[currentIndex].author.image}
+                        alt={`Testimonial author ${testimonials[currentIndex].author.name}`}
                         width={48}
                         height={48}
                         quality={100}
@@ -144,19 +194,43 @@ export default function Testimonials() {
                     </div>
                     <div className="ml-4">
                       <h4 className="text-lg font-medium text-gray-900">
-                        {testimonial.author.name}
+                        {testimonials[currentIndex].author.name}
                       </h4>
                       <p className="text-sm text-gray-500">
-                        {testimonial.author.role}
+                        {testimonials[currentIndex].author.role}
                       </p>
                     </div>
                   </footer>
                 </blockquote>
               </div>
-            ))}
-          </motion.div>
-          {/* Blurred Gradient Overlay */}
-          <div className="absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-gray-100 to-transparent pointer-events-none"></div>
+
+              {/* Navigation Buttons */}
+              <div className="flex justify-between mt-4 w-full max-w-md">
+                <button
+                  onClick={handlePrev}
+                  className="bg-gray-300 text-gray-700 p-2 rounded-full shadow hover:bg-gray-400 focus:outline-none"
+                  aria-label="Previous Testimonial"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="bg-gray-300 text-gray-700 p-2 rounded-full shadow hover:bg-gray-400 focus:outline-none"
+                  aria-label="Next Testimonial"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/* Blurred Gradient Overlay for Desktop */}
+          {!isMobile && (
+            <>
+              <div className="absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-gray-100 to-transparent pointer-events-none"></div>
+              <div className="absolute top-0 right-0 h-full w-32 bg-gradient-to-l from-gray-100 to-transparent pointer-events-none"></div>
+            </>
+          )}
         </div>
       </div>
     </section>
