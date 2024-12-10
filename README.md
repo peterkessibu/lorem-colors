@@ -5,7 +5,6 @@ Lorem Colors is a dynamic and user-friendly web application designed to generate
 ## 📋 Table of Contents
 
 - ✨ Features
-- 🚀 Demo
 - 🛠️ Technologies Used
 - 📥 Installation
 - 🎮 Usage
@@ -20,13 +19,7 @@ Lorem Colors is a dynamic and user-friendly web application designed to generate
 - **📊 Comprehensive Analytics:** Analyze your color choices with detailed insights.
 - **📱 Responsive Design:** Optimized for both desktop and mobile devices.
 - **🔄 Interactive UI:** Smooth animations and transitions enhance user experience.
-- **🔗 Social Media Integration:** Share your palettes directly to platforms like Instagram, LinkedIn, and GitHub.
 
-## 🚀 Demo
-
-![Lorem Colors Demo](./public/demo.gif)
-
-Experience Lorem Colors in action by visiting our live Demo.
 
 ## 🛠️ Technologies Used
 
@@ -34,8 +27,6 @@ Experience Lorem Colors in action by visiting our live Demo.
 - **🎨 Styling:** Tailwind CSS - A utility-first CSS framework.
 - **✨ Icons:** Lucide React - A collection of customizable icons.
 - **🎞️ Animations:** Framer Motion - A motion library for React.
-- **🔧 State Management:** React Hooks (`useState`, `useEffect`)
-- **📝 Type Checking:** TypeScript
 - **📂 Version Control:** Git
 
 ## 📥 Installation
@@ -62,6 +53,7 @@ Follow these steps to set up the project locally:
 
 Once the development server is running:
 
+1. **Get a key from TOGETHER AI:** Sign up with https://together.ai/ for a key.
 1. **Generate a Palette:** Navigate to the homepage and click on the "Generate Palette" button to create a new color palette.
 2. **Interact with the Palette:** Click on different sections to explore the color combinations and analytics.
 3. **Share Your Palette:** Use the social media links in the footer to share your favorite palettes.
