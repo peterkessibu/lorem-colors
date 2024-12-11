@@ -50,7 +50,7 @@ export default function Dashboard({ colors }) {
 
   return (
     <div
-      className="flex flex-col p-4 border"
+      className="flex flex-col p-4 border max-h-screen"
       style={{ backgroundColor: background, color: text }}
     >
       {/* Header Section */}
@@ -110,34 +110,31 @@ export default function Dashboard({ colors }) {
         <div className="flex items-center justify-between flex-row">
           <h1 className="text-base md:text-lg font-bold">Dashboard</h1>
           <div className="flex space-x-2 mt-2 md:mt-0">
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex items-center px-2 py-1"
-              style={{
-                backgroundColor: accent,
-                borderColor: borderColor,
-                color: textColor,
-              }}
-            >
-              <CalendarIcon className="md:mr-1 h-4 w-4" />
-              <span className="hidden md:block text-xs">
-                Jan 20, 2023 - Feb 04, 2023
-              </span>
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex items-center px-2 py-1"
-              style={{
-                backgroundColor: accent,
-                borderColor: borderColor,
-                color: textColor,
-              }}
-            >
-              <Download className="md:mr-1 h-4 w-4" />
-              <span className="hidden md:block text-xs">Download</span>
-            </Button>
+            {[
+              {
+                icon: CalendarIcon,
+                text: "Jan 20, 2023 - Feb 04, 2023",
+              },
+              {
+                icon: Download,
+                text: "Download",
+              },
+            ].map((item, index) => (
+              <Button
+                key={index}
+                variant="outline"
+                size="sm"
+                className="flex items-center px-2 py-1"
+                style={{
+                  backgroundColor: accent,
+                  borderColor: borderColor,
+                  color: textColor,
+                }}
+              >
+                <item.icon className="md:mr-1 h-4 w-4" />
+                <span className="hidden md:block text-xs">{item.text}</span>
+              </Button>
+            ))}
           </div>
         </div>
 

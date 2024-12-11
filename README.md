@@ -20,7 +20,6 @@ Lorem Colors is a dynamic and user-friendly web application designed to generate
 - **📱 Responsive Design:** Optimized for both desktop and mobile devices.
 - **🔄 Interactive UI:** Smooth animations and transitions enhance user experience.
 
-
 ## 🛠️ Technologies Used
 
 - **⚛️ Framework:** Next.js - A React framework for production.
@@ -55,10 +54,10 @@ Once the development server is running:
 
 1. **Get a key from TOGETHER AI:** Sign up with https://together.ai/ for a key.
 1. **Generate a Palette:** Navigate to the homepage and click on the "Generate Palette" button to create a new color palette.
-2. **Interact with the Palette:** Click on different sections to explore the color combinations and analytics.
-3. **Share Your Palette:** Use the social media links in the footer to share your favorite palettes.
-4. **Navigate Palettes:** Use the navigation buttons to browse through different generated palettes.
-5. **Customize Colors:** Select your preferred color format (Hex, RGB, etc.) for better integration with your projects.
+1. **Interact with the Palette:** Click on different sections to explore the color combinations and analytics.
+1. **Share Your Palette:** Use the social media links in the footer to share your favorite palettes.
+1. **Navigate Palettes:** Use the navigation buttons to browse through different generated palettes.
+1. **Customize Colors:** Select your preferred color format (Hex, RGB, etc.) for better integration with your projects.
 
 ### 🔑 Key Components
 

@@ -10,9 +10,9 @@ export default function Testimonials() {
   const testimonials = [
     {
       content:
-        "Lorem Colors has revolutionized our design process. The AI-powered recommendations are spot-on!",
+        "With Lorem Colors, you are able to speed up your design process and get better results for your work",
       author: {
-        name: "Prince Kennedy",
+        name: "Prince Acheampong",
         role: "Lead Designer, UI/UX Cape Coast",
         image: "/Prince_Profile.png",
       },
@@ -208,17 +208,17 @@ export default function Testimonials() {
               <div className="flex justify-between mt-4 w-full max-w-md">
                 <button
                   onClick={handlePrev}
-                  className="bg-gray-300 text-gray-700 p-2 rounded-full shadow hover:bg-gray-400 focus:outline-none"
+                  className="bg-gray-300 text-gray-700 p-2 rounded-full shadow active:bg-gray-400 focus:outline-none"
                   aria-label="Previous Testimonial"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="size-6" />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="bg-gray-300 text-gray-700 p-2 rounded-full shadow hover:bg-gray-400 focus:outline-none"
+                  className="bg-gray-300 text-gray-700 p-2 rounded-full shadow active:bg-gray-400 focus:outline-none"
                   aria-label="Next Testimonial"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="size-6" />
                 </button>
               </div>
             </div>
