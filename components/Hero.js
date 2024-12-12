@@ -195,7 +195,7 @@ export default function Hero() {
                 y="50%"
                 textAnchor="middle"
                 fill="url(#gradient)"
-                fontSize="90"
+                fontSize="89"
                 fontWeight="bold"
                 dy=".3em"
                 variants={isClicked ? gradientVariants : containerVariants}
