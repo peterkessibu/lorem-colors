@@ -134,35 +134,20 @@ export default function ColorTuner() {
                 />
 
                 {/* Shades Grid */}
-                <div className="grid grid-cols-2 gap-2 mt-4 w-full">
+                <div className="grid grid-cols-5 gap-2 mt-4 w-full">
                   {Object.entries(colorShades).map(([shade, color]) => (
                     <div key={shade} className="flex items-center">
                       {/* Color Box */}
                       <div
-                        className="w-10 h-10 rounded mr-2 border my-2 border-gray-400"
+                        className="w-14 h-24 rounded-lg border border-gray-400 cursor-pointer transition-transform hover:scale-110 flex items-center justify-center relative"
                         style={{ backgroundColor: color }}
-                      />
-
-                      {/* Input with Copy Button */}
-                      <div className="relative flex-grow">
-                        <Input
-                          type="text"
-                          value={color}
-                          readOnly
-                          className="w-full pr-10 text-xs sm:text-sm cursor-pointer text-gray-400"
-                          onClick={() => navigator.clipboard.writeText(color)}
-                        />
-                        <button
-                          onClick={() => handleCopy(color, shade)}
-                          className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-600 hover:text-gray-700"
-                          aria-label="Copy color"
-                        >
-                          {copiedShades[shade] ? (
-                            <Check className="w-5 h-5 text-green-500" />
-                          ) : (
-                            <Copy className="w-5 h-5" />
-                          )}
-                        </button>
+                        onClick={() => handleCopy(color, shade)}
+                      >
+                        {copiedShades[shade] ? (
+                          <Check className="size-5 text-gray-500 absolute" />
+                        ) : (
+                          <Copy className="size-5 text-gray-500 absolute" />
+                        )}
                       </div>
                     </div>
                   ))}
