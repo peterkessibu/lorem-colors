@@ -15,7 +15,7 @@ const socialLinks = [
   },
   {
     name: "GitHub",
-    href: "https://www.github.com/peterkessibu",
+    href: "https://github.com/peterkessibu/lorem-colors",
     icon: Github,
     hoverTextColor: "hover:text-gray-800",
     text: "Star on Github!",
