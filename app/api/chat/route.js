@@ -112,7 +112,7 @@ export async function POST(request) {
 
     // Prepare the prompt
     const prompt = `
-Generate 10 color palettes with distinctly visible and contrasting variants based on the following criteria:
+Generate 6 color palettes with distinctly visible and contrasting variants based on the following criteria:
 
 Primary Color: ${primaryColor} (This should be the base color for the background and accent, with all other colors relating to it, especially for the light and dark Background Color Preference)
 Accent Color: ${accentColor}
