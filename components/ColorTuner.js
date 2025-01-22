@@ -128,7 +128,7 @@ export default function ColorTuner() {
                   value={[shadeCount]}
                   onValueChange={(value) => setShadeCount(value[0])}
                   min={4}
-                  max={100}
+                  max={50}
                   step={1}
                   className="my-2 w-full"
                 />
